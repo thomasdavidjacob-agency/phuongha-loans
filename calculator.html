@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mortgage payment calculator — estimate your full monthly payment including principal, interest, taxes, insurance, PMI, and HOA. Phuong Ha Loans, Oregon & Washington." />
+  <title>Mortgage Payment Calculator | Phuong Ha Loans</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="bg" aria-hidden="true"><div class="bg__grain"></div></div>
+
+  <!-- TOP NAV -->
+  <nav class="page-nav">
+    <a href="index.html" class="lnav__brand"><span>phuongha<em class="lnav__tld">.loans</em></span></a>
+    <a href="index.html#contact" class="cta page-nav__cta">
+      <span class="cta__icon"><svg viewBox="0 0 24 24" class="ic"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      <span>Get Pre-Approved</span>
+    </a>
+  </nav>
+
+  <!-- CALCULATOR -->
+  <main class="calc section">
+    <div class="container">
+      <div class="calc__head fade-in">
+        <p class="eyebrow">PAYMENT CALCULATOR</p>
+        <h1 class="section-title">Estimate your <span class="italic">monthly payment.</span></h1>
+        <p class="calc__intro">Adjust the numbers below for a quick estimate of your all-in monthly payment — principal, interest, taxes, insurance, PMI and HOA. For an exact, personalized quote, let's talk.</p>
+      </div>
+
+      <div class="calc__grid">
+        <!-- INPUTS -->
+        <div class="card liquid-glass-strong calc__inputs fade-in">
+          <div class="form__group">
+            <label for="price">Home price</label>
+            <div class="calc__field"><span class="calc__prefix">$</span><input type="text" inputmode="numeric" id="price" value="450,000" /></div>
+          </div>
+
+          <div class="form__group">
+            <label for="down">Down payment <span class="calc__hint" id="down-pct">(20%)</span></label>
+            <div class="calc__field"><span class="calc__prefix">$</span><input type="text" inputmode="numeric" id="down" value="90,000" /></div>
+          </div>
+
+          <div class="form__row">
+            <div class="form__group">
+              <label for="rate">Interest rate</label>
+              <div class="calc__field"><input type="text" inputmode="decimal" id="rate" value="6.5" /><span class="calc__suffix">%</span></div>
+            </div>
+            <div class="form__group">
+              <label for="term">Loan term</label>
+              <div class="form__select-wrap">
+                <select id="term">
+                  <option value="30" selected>30 years</option>
+                  <option value="20">20 years</option>
+                  <option value="15">15 years</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc__divider"></div>
+
+          <div class="form__row">
+            <div class="form__group">
+              <label for="tax">Property tax <span class="calc__hint">/yr</span></label>
+              <div class="calc__field"><input type="text" inputmode="decimal" id="tax" value="1.0" /><span class="calc__suffix">%</span></div>
+            </div>
+            <div class="form__group">
+              <label for="insurance">Home insurance <span class="calc__hint">/yr</span></label>
+              <div class="calc__field"><span class="calc__prefix">$</span><input type="text" inputmode="numeric" id="insurance" value="1,500" /></div>
+            </div>
+          </div>
+
+          <div class="form__row">
+            <div class="form__group">
+              <label for="hoa">HOA <span class="calc__hint">/mo</span></label>
+              <div class="calc__field"><span class="calc__prefix">$</span><input type="text" inputmode="numeric" id="hoa" value="0" /></div>
+            </div>
+            <div class="form__group">
+              <label for="pmi-rate">PMI rate <span class="calc__hint">/yr</span></label>
+              <div class="calc__field"><input type="text" inputmode="decimal" id="pmi-rate" value="0.5" /><span class="calc__suffix">%</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULT -->
+        <div class="card liquid-glass calc__result fade-in">
+          <p class="calc__result-label">Estimated monthly payment</p>
+          <p class="calc__total" id="calc-total">$0<span>/mo</span></p>
+
+          <ul class="calc__breakdown">
+            <li><span class="dot dot--pi"></span><span class="calc__b-label">Principal &amp; interest</span><span class="calc__b-val" id="b-pi">$0</span></li>
+            <li><span class="dot dot--tax"></span><span class="calc__b-label">Property tax</span><span class="calc__b-val" id="b-tax">$0</span></li>
+            <li><span class="dot dot--ins"></span><span class="calc__b-label">Home insurance</span><span class="calc__b-val" id="b-ins">$0</span></li>
+            <li id="row-pmi"><span class="dot dot--pmi"></span><span class="calc__b-label">PMI</span><span class="calc__b-val" id="b-pmi">$0</span></li>
+            <li id="row-hoa"><span class="dot dot--hoa"></span><span class="calc__b-label">HOA</span><span class="calc__b-val" id="b-hoa">$0</span></li>
+          </ul>
+
+          <div class="calc__bar" id="calc-bar" aria-hidden="true"></div>
+
+          <div class="calc__meta">
+            <div><span>Loan amount</span><strong id="m-loan">$0</strong></div>
+            <div><span>Down payment</span><strong id="m-dp">0%</strong></div>
+          </div>
+
+          <p class="calc__pmi-note" id="pmi-note"></p>
+
+          <a href="index.html#contact" class="cta cta--full calc__cta">
+            <span class="cta__icon"><svg viewBox="0 0 24 24" class="ic"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            <span>Get My Personalized Quote</span>
+          </a>
+        </div>
+      </div>
+
+      <p class="calc__disclaimer">Estimates are for illustrative purposes only and are not a loan commitment, pre-approval, or offer to lend. Actual rates, payments, taxes, insurance, and PMI vary by lender, location, credit, and program. Contact Phuong Ha — NMLS #1839449 for a personalized quote.</p>
+
+      <!-- DOWN-PAYMENT HELP BOX -->
+      <div class="card liquid-glass-strong dpa fade-in">
+        <div class="dpa__intro">
+          <span class="loans__badge">Zero &amp; Low Down</span>
+          <h2>Having a hard time with the <span class="italic">down payment?</span></h2>
+          <p>You may need far less than you think. <strong>Down Payment Assistance (DPA)</strong> programs can cover part or all of your down payment — and sometimes closing costs too — through grants or a small second loan. And true zero-down options like <strong>VA</strong> (veterans &amp; active-duty military) and <strong>USDA</strong> (eligible rural &amp; suburban homes) can get you in with little to nothing up front. Let's find the one that fits you.</p>
+        </div>
+
+        <div class="dpa__action">
+          <!-- LEFT: contact form -->
+          <form class="dpa__form" id="dpa-form" novalidate>
+            <p class="dpa__form-title">Let's talk options</p>
+            <div class="form__group">
+              <label for="dpa-name">Full Name <span class="req">*</span></label>
+              <input type="text" id="dpa-name" name="name" placeholder="Jane Smith" required autocomplete="name" />
+              <span class="form__error" id="dpa-name-error"></span>
+            </div>
+            <div class="form__row">
+              <div class="form__group">
+                <label for="dpa-phone">Phone <span class="req">*</span></label>
+                <input type="tel" id="dpa-phone" name="phone" placeholder="(503) 555-0100" required autocomplete="tel" />
+                <span class="form__error" id="dpa-phone-error"></span>
+              </div>
+              <div class="form__group">
+                <label for="dpa-email">Email <span class="req">*</span></label>
+                <input type="email" id="dpa-email" name="email" placeholder="jane@example.com" required autocomplete="email" />
+                <span class="form__error" id="dpa-email-error"></span>
+              </div>
+            </div>
+            <button type="submit" class="cta cta--full" id="dpa-submit">
+              <span class="btn__text">Let's Talk Options</span>
+              <span class="btn__spinner" aria-hidden="true"></span>
+            </button>
+            <div class="form__result" id="dpa-result" role="alert" aria-live="polite"></div>
+          </form>
+
+          <!-- RIGHT: QR + apply -->
+          <div class="dpa__apply">
+            <p class="dpa__apply-label">Ready to apply?</p>
+            <div class="dpa__qr" id="dpa-qr">
+              <img src="solo-qr.svg" alt="Scan to start your application with Phuong Ha" />
+            </div>
+            <p class="dpa__apply-text">Scan to start your secure application — or tap below.</p>
+            <a href="https://msf.tidalwave.ai/signup/phuong.ha/D6NDRB536C4Q72PD4OLG" class="cta dpa__apply-btn" id="solo-link" target="_blank" rel="noopener">
+              <span class="cta__icon"><svg viewBox="0 0 24 24" class="ic"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              <span>Start your application</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <div class="footer__ehl">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 203" class="footer__ehl-logo" role="img" aria-label="Equal Housing Lender" fill="currentColor">
+            <title>Equal Housing Lender</title>
+            <path fill-rule="evenodd" d="M100,2 L198,80 L198,160 L2,160 L2,80 L100,2 Z M100,22 L183,82 L183,148 L17,148 L17,82 L100,22 Z"/>
+            <rect x="42" y="90"  width="116" height="18" rx="1"/>
+            <rect x="42" y="120" width="116" height="18" rx="1"/>
+            <text x="100" y="181" font-family="Arial Black,Arial,sans-serif" font-size="19" font-weight="900" text-anchor="middle" letter-spacing="1">EQUAL HOUSING</text>
+            <text x="100" y="203" font-family="Arial Black,Arial,sans-serif" font-size="26" font-weight="900" text-anchor="middle" letter-spacing="2">LENDER</text>
+          </svg>
+          <span class="footer__legal">Equal Housing Lender. Mortgage Solutions of Colorado, LLC., dba Mortgage Solutions Financial NMLS #61602. <a href="https://www.nmlsconsumeraccess.org" target="_blank" rel="noopener">NMLSConsumerAccess.org</a> &middot; Not a commitment to lend.</span>
+        </div>
+        <p class="footer__copy">&copy; <span id="year"></span> phuongha.loans — All rights reserved. &middot; <a href="index.html" class="footer__back">Back to home</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="calc.js"></script>
+</body>
+</html>

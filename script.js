@@ -1,13 +1,31 @@
 /* ============================================================
-   NAV — scroll state
+   MENU TOGGLE
    ============================================================ */
 (function () {
-  const nav = document.getElementById('nav');
-  function onScroll() {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
+  const btn   = document.getElementById('menu-btn');
+  const panel = document.getElementById('menu-panel');
+  if (!btn || !panel) return;
+
+  function close() {
+    panel.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  function open() {
+    panel.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    panel.hidden ? open() : close();
+  });
+
+  /* close on link click, outside click, or Escape */
+  panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+  document.addEventListener('click', (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && e.target !== btn) close();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 })();
 
 
@@ -50,7 +68,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
   if (!form) return;
 
-  /* --- validation helpers --- */
   function setError(fieldName, msg) {
     const field = form.elements[fieldName];
     const errEl = document.getElementById(fieldName + '-error');
@@ -96,7 +113,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
     return valid;
   }
 
-  /* --- submit handler --- */
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     clearErrors();
@@ -111,7 +127,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
     if (!validate(data)) return;
 
-    /* loading state */
     submitBtn.classList.add('loading');
     submitBtn.disabled = true;
 
@@ -133,7 +148,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       }
     } catch (err) {
       resultEl.textContent =
-        'Something went wrong. Please call us directly or email phuonghaloans@gmail.com.';
+        'Something went wrong. Please call or text 971-444-9107, or email phuong.ha@mortgagesolutions.net.';
       resultEl.className = 'form__result error';
     } finally {
       submitBtn.classList.remove('loading');
@@ -142,7 +157,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
     }
   });
 
-  /* clear field errors on input */
   ['name', 'phone', 'email', 'loanType'].forEach((fieldName) => {
     const el = form.elements[fieldName];
     if (el) {

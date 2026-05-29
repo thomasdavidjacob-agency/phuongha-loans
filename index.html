@@ -7,63 +7,179 @@
   <title>Phuong Ha Loans | Oregon & Washington Home Loans</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="#" class="nav__logo">phuongha<span>.loans</span></a>
-      <a href="#contact" class="nav__cta btn btn--gold">Get Started</a>
-    </div>
-  </nav>
+  <!-- ANIMATED GRAYSCALE GRADIENT BACKGROUND (z-0) -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg__grain"></div>
+  </div>
 
-  <!-- HERO -->
+  <!-- ====================================================== -->
+  <!-- HERO — TWO-PANEL SPLIT                                  -->
+  <!-- ====================================================== -->
   <section class="hero" id="home">
-    <div class="hero__overlay"></div>
-    <div class="hero__content fade-in">
-      <p class="hero__eyebrow">Oregon &amp; Washington Mortgage Expert</p>
-      <div class="hero__identity">
-        <img src="logo-white.png" alt="Phuong Ha Loans" class="hero__logo" />
-        <p class="hero__nmls">Phuong Ha &mdash; NMLS 1839449<br />900 Main Street, Suite 106<br />Oregon City, OR 97045</p>
+
+    <!-- ============ LEFT PANEL (52%) ============ -->
+    <div class="hero__left">
+      <div class="glass-overlay liquid-glass-strong"></div>
+
+      <div class="left__content">
+
+        <!-- NAV -->
+        <nav class="lnav">
+          <a href="#home" class="lnav__brand">
+            <span>phuongha<em class="lnav__tld">.loans</em></span>
+          </a>
+          <button class="pill liquid-glass menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-panel">
+            <svg viewBox="0 0 24 24" class="ic"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <span>Menu</span>
+          </button>
+        </nav>
+
+        <!-- HERO CENTER -->
+        <div class="left__hero fade-in">
+          <img src="logo-white.png" alt="" class="left__logo" width="80" height="80" />
+          <h1 class="left__headline">
+            Oregon &amp; Washington<br />
+            home loans, <span class="italic">done right.</span>
+          </h1>
+          <a href="#contact" class="cta liquid-glass-strong">
+            <span class="cta__icon">
+              <svg viewBox="0 0 24 24" class="ic"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            </span>
+            <span>Get Pre-Approved</span>
+          </a>
+          <div class="left__pills">
+            <span class="pill liquid-glass">Fast Pre-Approval</span>
+            <span class="pill liquid-glass">Local Expertise</span>
+            <span class="pill liquid-glass">Purchase &middot; Refi &middot; VA</span>
+          </div>
+        </div>
+
+        <!-- BOTTOM QUOTE -->
+        <div class="left__quote fade-in">
+          <p class="left__quote-label">TRUSTED GUIDANCE</p>
+          <p class="left__quote-text">
+            <span class="font-display">From application to</span>
+            <span class="italic">keys in hand.</span>
+          </p>
+          <div class="left__author">
+            <span class="line"></span>
+            <span>PHUONG HA &middot; NMLS 1839449</span>
+            <span class="line"></span>
+          </div>
+        </div>
+
       </div>
-      <h1 class="hero__headline">Oregon &amp; Washington<br />Home Loans.<br /><em>Done Right.</em></h1>
-      <p class="hero__sub">Get expert guidance, fast pre-approvals, and a dedicated partner every step of the way — from application to keys in hand.</p>
-      <a href="#contact" class="btn btn--gold btn--lg">Get My Free Consultation</a>
     </div>
-    <div class="hero__scroll-hint">
-      <span></span>
+
+    <!-- ============ RIGHT PANEL (48%, desktop only) ============ -->
+    <div class="hero__right">
+
+      <!-- TOP BAR -->
+      <div class="right__topbar">
+        <div class="pill liquid-glass right__social">
+          <a href="#contact" class="social-ic" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" class="ic"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          </a>
+          <a href="#contact" class="social-ic" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" class="ic"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-12h4v1.5"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#contact" class="social-ic" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" class="ic"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+          </a>
+          <span class="right__social-arrow">
+            <svg viewBox="0 0 24 24" class="ic"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+        <a href="#contact" class="pill liquid-glass right__account">
+          <svg viewBox="0 0 24 24" class="ic"><path d="M12 3l1.6 4.9L18.5 9.5 13.6 11 12 16l-1.6-5L5.5 9.5l4.9-1.6zM19 3v3M20.5 4.5h-3"/></svg>
+          <span>Apply</span>
+        </a>
+      </div>
+
+      <!-- COMMUNITY CARD -->
+      <div class="card liquid-glass right__community">
+        <h3>Start your application</h3>
+        <p>Tell me your goals and I'll personally reach out within 24 hours — no pressure, no obligation.</p>
+      </div>
+
+      <!-- FEATURE SECTION (pushed to bottom) -->
+      <div class="right__features liquid-glass">
+        <div class="right__feature-row">
+          <div class="card liquid-glass feature">
+            <span class="feature__icon">
+              <svg viewBox="0 0 24 24" class="ic"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8 19 13M15 9h.01M17.8 6.2 19 5M3 21l9-9M12.2 6.2 11 5"/></svg>
+            </span>
+            <h4>24-Hour Pre-Approval</h4>
+            <p>Make competitive offers with confidence.</p>
+          </div>
+          <div class="card liquid-glass feature">
+            <span class="feature__icon">
+              <svg viewBox="0 0 24 24" class="ic"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </span>
+            <h4>Loan Programs</h4>
+            <p>Purchase, Refi, FHA, VA &amp; Jumbo.</p>
+          </div>
+        </div>
+
+        <div class="card liquid-glass right__highlight">
+          <span class="thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="ic"><path d="M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5M9.5 21v-6h5v6"/></svg>
+          </span>
+          <div class="right__highlight-copy">
+            <h4>Personalized Guidance</h4>
+            <p>One dedicated partner from application to keys.</p>
+          </div>
+          <a href="#contact" class="plus liquid-glass" aria-label="Get started">
+            <svg viewBox="0 0 24 24" class="ic"><path d="M12 5v14M5 12h14"/></svg>
+          </a>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- WHY US -->
-  <section class="why" id="why">
+  <!-- SLIDE-DOWN MENU PANEL -->
+  <div class="menu-panel liquid-glass-strong" id="menu-panel" hidden>
+    <a href="#why">Why Work With Me</a>
+    <a href="#loans">Loan Programs</a>
+    <a href="calculator.html">Payment Calculator</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="menu-panel__cta">Get Pre-Approved</a>
+  </div>
+
+  <!-- ====================================================== -->
+  <!-- WHY ME                                                  -->
+  <!-- ====================================================== -->
+  <section class="section why" id="why">
     <div class="container">
       <div class="section-header fade-in">
-        <p class="section-eyebrow">Why Work With Us</p>
-        <h2>The Phuong Ha Difference</h2>
+        <p class="eyebrow">WHY WORK WITH ME</p>
+        <h2 class="section-title">The Phuong Ha <span class="italic">difference.</span></h2>
       </div>
       <div class="why__grid">
-        <div class="why__card fade-in">
-          <div class="why__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
+        <div class="card liquid-glass why__card fade-in">
+          <span class="why__icon">
+            <svg viewBox="0 0 24 24" class="ic"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
           <h3>Fast Pre-Approvals</h3>
           <p>Get pre-approved in as little as 24 hours so you can make competitive offers with confidence in any market.</p>
         </div>
-        <div class="why__card fade-in">
-          <div class="why__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
+        <div class="card liquid-glass why__card fade-in">
+          <span class="why__icon">
+            <svg viewBox="0 0 24 24" class="ic"><path d="M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5M9.5 21v-6h5v6"/></svg>
+          </span>
           <h3>Local Expertise</h3>
           <p>Deep roots in Oregon and Washington mean I know the local market, lenders, and programs that give you an edge.</p>
         </div>
-        <div class="why__card fade-in">
-          <div class="why__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          </div>
+        <div class="card liquid-glass why__card fade-in">
+          <span class="why__icon">
+            <svg viewBox="0 0 24 24" class="ic"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
           <h3>Personalized Service</h3>
           <p>You work directly with me — no hand-offs, no call centers. Just clear communication and honest advice.</p>
         </div>
@@ -71,63 +187,84 @@
     </div>
   </section>
 
-  <!-- LOAN TYPES -->
-  <section class="loans" id="loans">
+  <!-- ====================================================== -->
+  <!-- LOAN TYPES                                              -->
+  <!-- ====================================================== -->
+  <section class="section loans" id="loans">
     <div class="container">
       <div class="section-header fade-in">
-        <p class="section-eyebrow">Loan Programs</p>
-        <h2>Find the Right Loan for You</h2>
+        <p class="eyebrow">LOAN PROGRAMS</p>
+        <h2 class="section-title">Find the right loan <span class="italic">for you.</span></h2>
       </div>
+
+      <!-- ZERO-DOWN FEATURE CARD (spans full width) — leads the section -->
+      <div class="card liquid-glass loans__feature fade-in">
+        <div class="loans__feature-head">
+          <span class="loans__badge">Zero &amp; Low Down</span>
+          <h3>Short on a down payment?</h3>
+        </div>
+        <div class="loans__feature-body">
+          <p>You may not need 20% &mdash; or even anything &mdash; down. <strong>Down Payment Assistance (DPA)</strong> programs can cover part or all of your down payment, and sometimes closing costs too, through grants or a small second loan. And true zero-down options like <strong>VA</strong> (veterans &amp; active-duty military) and <strong>USDA</strong> (eligible rural &amp; suburban homes) can get you into a home with little to no cash up front.</p>
+          <a href="#contact" class="loans__link">See if you qualify <svg viewBox="0 0 24 24" class="ic ic--sm"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
       <div class="loans__grid">
-        <div class="loans__card fade-in">
-          <div class="loans__badge">Purchase</div>
+        <div class="card liquid-glass loans__card fade-in">
+          <span class="loans__badge">Purchase</span>
           <h3>Purchase Loans</h3>
           <p>Buying your first home or your next one? I'll match you with the right program, rate, and lender for your situation.</p>
-          <a href="#contact" class="loans__link">Learn More →</a>
+          <a href="#contact" class="loans__link">Learn More <svg viewBox="0 0 24 24" class="ic ic--sm"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-        <div class="loans__card fade-in">
-          <div class="loans__badge">Refinance</div>
+        <div class="card liquid-glass loans__card fade-in">
+          <span class="loans__badge">Refinance</span>
           <h3>Refinance</h3>
           <p>Lower your rate, reduce your payment, or tap equity for home improvements — I'll find the option that saves you the most.</p>
-          <a href="#contact" class="loans__link">Learn More →</a>
+          <a href="#contact" class="loans__link">Learn More <svg viewBox="0 0 24 24" class="ic ic--sm"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-        <div class="loans__card fade-in">
-          <div class="loans__badge">FHA</div>
+        <div class="card liquid-glass loans__card fade-in">
+          <span class="loans__badge">FHA</span>
           <h3>FHA Loans</h3>
           <p>Low down payment options starting at 3.5% with flexible credit requirements — a great path to homeownership.</p>
-          <a href="#contact" class="loans__link">Learn More →</a>
+          <a href="#contact" class="loans__link">Learn More <svg viewBox="0 0 24 24" class="ic ic--sm"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-        <div class="loans__card fade-in">
-          <div class="loans__badge">VA</div>
+        <div class="card liquid-glass loans__card fade-in">
+          <span class="loans__badge">VA</span>
           <h3>VA Loans</h3>
           <p>Exclusive zero-down benefits for veterans and active-duty military. You served — let me help you get the home you deserve.</p>
-          <a href="#contact" class="loans__link">Learn More →</a>
+          <a href="#contact" class="loans__link">Learn More <svg viewBox="0 0 24 24" class="ic ic--sm"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-        <div class="loans__card fade-in">
-          <div class="loans__badge">Jumbo</div>
+        <div class="card liquid-glass loans__card fade-in">
+          <span class="loans__badge">Jumbo</span>
           <h3>Jumbo Loans</h3>
           <p>Financing above conventional limits for higher-value properties in Oregon and Washington, with competitive rates.</p>
-          <a href="#contact" class="loans__link">Learn More →</a>
+          <a href="#contact" class="loans__link">Learn More <svg viewBox="0 0 24 24" class="ic ic--sm"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT / LEAD FORM -->
-  <section class="contact" id="contact">
+  <!-- ====================================================== -->
+  <!-- CONTACT / LEAD FORM                                     -->
+  <!-- ====================================================== -->
+  <section class="section contact" id="contact">
     <div class="container">
       <div class="contact__wrap">
         <div class="contact__copy fade-in">
-          <p class="section-eyebrow">Free Consultation</p>
-          <h2>Let's Talk About Your Home Loan</h2>
-          <p>Fill out the form and I'll personally reach out within 24 hours. No pressure, no obligations — just straightforward answers from a licensed mortgage professional.</p>
+          <div class="contact__portrait liquid-glass">
+            <img src="phuong.jpg" alt="Phuong Ha, licensed mortgage professional" width="360" height="450" />
+          </div>
+          <p class="eyebrow">FREE CONSULTATION</p>
+          <h2 class="section-title">Let's talk about <span class="italic">your home loan.</span></h2>
+          <p class="contact__lead">Fill out the form and I'll personally reach out within 24 hours. No pressure, no obligations — just straightforward answers from a licensed mortgage professional.</p>
           <div class="contact__trust">
-            <span>✓ Licensed in Oregon &amp; Washington</span>
-            <span>✓ Response within 24 hours</span>
-            <span>✓ No obligation, ever</span>
+            <span>Licensed in Oregon &amp; Washington</span>
+            <span>Response within 24 hours</span>
+            <span>No obligation, ever</span>
           </div>
         </div>
-        <div class="contact__form-wrap fade-in">
+
+        <div class="card liquid-glass-strong contact__form-wrap fade-in">
           <form class="form" id="lead-form" novalidate>
             <div class="form__group">
               <label for="name">Full Name <span class="req">*</span></label>
@@ -165,7 +302,7 @@
               <label for="message">Message <span class="opt">(optional)</span></label>
               <textarea id="message" name="message" rows="4" placeholder="Tell me a little about your situation…"></textarea>
             </div>
-            <button type="submit" class="btn btn--gold btn--full" id="submit-btn">
+            <button type="submit" class="cta cta--full liquid-glass-strong" id="submit-btn">
               <span class="btn__text">Get My Free Consultation</span>
               <span class="btn__spinner" aria-hidden="true"></span>
             </button>
@@ -176,27 +313,52 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ====================================================== -->
+  <!-- FOOTER                                                  -->
+  <!-- ====================================================== -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__inner">
+      <div class="card liquid-glass footer__inner">
         <div class="footer__brand">
-          <a href="#" class="nav__logo">phuongha<span>.loans</span></a>
-          <img src="logo-white.png" alt="Phuong Ha Loans" class="footer__logo" />
-          <p>Licensed Mortgage Professional<br />Serving Oregon &amp; Washington</p>
+          <a href="#home" class="footer__logo-row">
+            <span>phuongha<em>.loans</em></span>
+          </a>
+          <div class="footer__details">
+            <p class="footer__name">Phuong Ha</p>
+            <p>Licensed Mortgage Loan Originator &middot; NMLS #1839449</p>
+            <p>900 Main Street, Suite 106<br />Oregon City, OR 97045</p>
+            <p class="footer__line">
+              <svg viewBox="0 0 24 24" class="ic ic--sm"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+              <a href="tel:+19714449107">971-444-9107</a>
+              <span class="footer__tag">Mobile</span>
+            </p>
+            <p class="footer__line">
+              <svg viewBox="0 0 24 24" class="ic ic--sm"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+              <a href="mailto:phuong.ha@mortgagesolutions.net">phuong.ha@mortgagesolutions.net</a>
+            </p>
+          </div>
         </div>
         <div class="footer__links">
-          <a href="#why">Why Us</a>
-          <a href="#loans">Loan Types</a>
+          <a href="#why">Why Me</a>
+          <a href="#loans">Loan Programs</a>
+          <a href="calculator.html">Calculator</a>
           <a href="#contact">Contact</a>
         </div>
-        <div class="footer__contact">
-          <a href="mailto:phuonghaloans@gmail.com">phuonghaloans@gmail.com</a>
-          <span>Oregon &amp; Washington</span>
-        </div>
       </div>
+
       <div class="footer__bottom">
-        <p>&copy; <span id="year"></span> phuongha.loans — All rights reserved. Equal Housing Lender.</p>
+        <div class="footer__ehl">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 203" class="footer__ehl-logo" role="img" aria-label="Equal Housing Lender" fill="currentColor">
+            <title>Equal Housing Lender</title>
+            <path fill-rule="evenodd" d="M100,2 L198,80 L198,160 L2,160 L2,80 L100,2 Z M100,22 L183,82 L183,148 L17,148 L17,82 L100,22 Z"/>
+            <rect x="42" y="90"  width="116" height="18" rx="1"/>
+            <rect x="42" y="120" width="116" height="18" rx="1"/>
+            <text x="100" y="181" font-family="Arial Black,Arial,sans-serif" font-size="19" font-weight="900" text-anchor="middle" letter-spacing="1">EQUAL HOUSING</text>
+            <text x="100" y="203" font-family="Arial Black,Arial,sans-serif" font-size="26" font-weight="900" text-anchor="middle" letter-spacing="2">LENDER</text>
+          </svg>
+          <span class="footer__legal">Equal Housing Lender. Mortgage Solutions of Colorado, LLC., dba Mortgage Solutions Financial NMLS #61602. <a href="https://www.nmlsconsumeraccess.org" target="_blank" rel="noopener">NMLSConsumerAccess.org</a> &middot; Not a commitment to lend.</span>
+        </div>
+        <p class="footer__copy">&copy; <span id="year"></span> phuongha.loans — All rights reserved.</p>
       </div>
     </div>
   </footer>
