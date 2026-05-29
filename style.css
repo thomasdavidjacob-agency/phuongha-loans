@@ -876,14 +876,15 @@ textarea { resize: vertical; min-height: 100px; }
 .dpa__intro strong { color: var(--accent-light); font-weight: 600; }
 
 .dpa__action { display: grid; grid-template-columns: 1.25fr 1fr; gap: 28px; align-items: stretch; }
-.dpa__form { display: flex; flex-direction: column; }
+.dpa__form { display: flex; flex-direction: column; padding-bottom: 26px; }
 .dpa__form-title { font-size: 1.05rem; font-weight: 600; color: #fff; margin-bottom: 16px; }
 .dpa__form .cta--full { margin-top: auto; }
 
 .dpa__apply {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
   gap: 14px; padding: 26px; border-radius: 1.25rem; background: rgba(255,255,255,0.04);
 }
+.dpa__apply .cta { margin-top: auto; }
 .dpa__apply-label { font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-light); }
 .dpa__qr {
   width: 168px; height: 168px; background: #fff; border-radius: 1rem;
