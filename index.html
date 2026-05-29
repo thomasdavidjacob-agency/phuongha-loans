@@ -21,127 +21,86 @@
   <!-- HERO — TWO-PANEL SPLIT                                  -->
   <!-- ====================================================== -->
   <section class="hero" id="home">
+    <div class="hero__grid liquid-glass-strong">
 
-    <!-- ============ LEFT PANEL (52%) ============ -->
-    <div class="hero__left">
-      <div class="glass-overlay liquid-glass-strong"></div>
+      <!-- NAV -->
+      <nav class="lnav">
+        <a href="#home" class="lnav__brand"><span>phuongha<em class="lnav__tld">.loans</em></span></a>
+        <button class="pill liquid-glass menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-panel">
+          <svg viewBox="0 0 24 24" class="ic"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <span>Menu</span>
+        </button>
+      </nav>
 
-      <div class="left__content">
+      <!-- LOGO -->
+      <img src="logo-white.png" alt="" class="left__logo hero__logo fade-in" width="200" height="200" />
 
-        <!-- NAV -->
-        <nav class="lnav">
-          <a href="#home" class="lnav__brand">
-            <span>phuongha<em class="lnav__tld">.loans</em></span>
-          </a>
-          <button class="pill liquid-glass menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-panel">
-            <svg viewBox="0 0 24 24" class="ic"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-            <span>Menu</span>
-          </button>
-        </nav>
+      <!-- HEADLINE -->
+      <h1 class="left__headline hero__headline fade-in">
+        Oregon &amp; Washington<br />
+        home loans, <span class="italic">done right.</span>
+      </h1>
 
-        <!-- HERO CENTER -->
-        <div class="left__hero fade-in">
-          <img src="logo-white.png" alt="" class="left__logo" width="80" height="80" />
-          <h1 class="left__headline">
-            Oregon &amp; Washington<br />
-            home loans, <span class="italic">done right.</span>
-          </h1>
-          <a href="#contact" class="cta liquid-glass-strong">
-            <span class="cta__icon">
-              <svg viewBox="0 0 24 24" class="ic"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-            </span>
-            <span>Get Pre-Approved</span>
-          </a>
-          <div class="left__pills">
-            <span class="pill liquid-glass">Fast Pre-Approval</span>
-            <span class="pill liquid-glass">Local Expertise</span>
-            <span class="pill liquid-glass">Purchase &middot; Refi &middot; VA</span>
-          </div>
-        </div>
-
-        <!-- BOTTOM QUOTE -->
-        <div class="left__quote fade-in">
-          <p class="left__quote-label">TRUSTED GUIDANCE</p>
-          <p class="left__quote-text">
-            <span class="font-display">From application to</span>
-            <span class="italic">keys in hand.</span>
-          </p>
-          <div class="left__author">
-            <span class="line"></span>
-            <span>PHUONG HA &middot; NMLS 1839449</span>
-            <span class="line"></span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ============ RIGHT PANEL (48%, desktop only) ============ -->
-    <div class="hero__right">
-
-      <!-- TOP BAR -->
-      <div class="right__topbar">
-        <div class="pill liquid-glass right__social">
-          <a href="#contact" class="social-ic" aria-label="Twitter">
-            <svg viewBox="0 0 24 24" class="ic"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
-          </a>
-          <a href="#contact" class="social-ic" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" class="ic"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-12h4v1.5"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="#contact" class="social-ic" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" class="ic"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
-          </a>
-          <span class="right__social-arrow">
-            <svg viewBox="0 0 24 24" class="ic"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-        </div>
-        <a href="#contact" class="pill liquid-glass right__account">
-          <svg viewBox="0 0 24 24" class="ic"><path d="M12 3l1.6 4.9L18.5 9.5 13.6 11 12 16l-1.6-5L5.5 9.5l4.9-1.6zM19 3v3M20.5 4.5h-3"/></svg>
-          <span>Apply</span>
-        </a>
+      <!-- VIDEO MODULE -->
+      <div class="video-module hero__video fade-in">
+        <button type="button" class="video-poster" id="video-open" aria-haspopup="dialog" aria-controls="vlightbox" aria-label="Play Phuong's story">
+          <picture>
+            <source srcset="/hero-poster.webp" type="image/webp" />
+            <img src="/hero-poster.jpg" alt="Phuong Ha, Oregon &amp; Washington mortgage professional" width="800" height="1000" />
+          </picture>
+          <span class="video-poster__shade" aria-hidden="true"></span>
+          <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="video-label">Hear my story &middot; 45 sec</span>
+        </button>
       </div>
 
-      <!-- COMMUNITY CARD -->
-      <div class="card liquid-glass right__community">
-        <h3>Start your application</h3>
-        <p>Tell me your goals and I'll personally reach out within 24 hours — no pressure, no obligation.</p>
+      <!-- CTA -->
+      <a href="#contact" class="cta liquid-glass-strong hero__cta fade-in">
+        <span class="cta__icon"><svg viewBox="0 0 24 24" class="ic"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></span>
+        <span>Get Pre-Approved</span>
+      </a>
+
+      <!-- BADGES -->
+      <div class="left__pills hero__pills fade-in">
+        <span class="pill liquid-glass">Fast Pre-Approval</span>
+        <span class="pill liquid-glass">Local Expertise</span>
+        <span class="pill liquid-glass">Purchase &middot; Refi &middot; VA</span>
       </div>
 
-      <!-- FEATURE SECTION (pushed to bottom) -->
-      <div class="right__features liquid-glass">
-        <div class="right__feature-row">
-          <div class="card liquid-glass feature">
-            <span class="feature__icon">
-              <svg viewBox="0 0 24 24" class="ic"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8 19 13M15 9h.01M17.8 6.2 19 5M3 21l9-9M12.2 6.2 11 5"/></svg>
-            </span>
-            <h4>24-Hour Pre-Approval</h4>
-            <p>Make competitive offers with confidence.</p>
-          </div>
-          <div class="card liquid-glass feature">
-            <span class="feature__icon">
-              <svg viewBox="0 0 24 24" class="ic"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-            </span>
-            <h4>Loan Programs</h4>
-            <p>Purchase, Refi, FHA, VA &amp; Jumbo.</p>
-          </div>
-        </div>
-
-        <div class="card liquid-glass right__highlight">
-          <span class="thumb" aria-hidden="true">
-            <svg viewBox="0 0 24 24" class="ic"><path d="M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5M9.5 21v-6h5v6"/></svg>
-          </span>
-          <div class="right__highlight-copy">
-            <h4>Personalized Guidance</h4>
-            <p>One dedicated partner from application to keys.</p>
-          </div>
-          <a href="#contact" class="plus liquid-glass" aria-label="Get started">
-            <svg viewBox="0 0 24 24" class="ic"><path d="M12 5v14M5 12h14"/></svg>
-          </a>
+      <!-- QUOTE -->
+      <div class="left__quote hero__quote fade-in">
+        <p class="left__quote-label">TRUSTED GUIDANCE</p>
+        <p class="left__quote-text">
+          <span class="font-display">From application to</span>
+          <span class="italic">keys in hand.</span>
+        </p>
+        <div class="left__author">
+          <span class="line"></span>
+          <span>PHUONG HA &middot; NMLS 1839449</span>
+          <span class="line"></span>
         </div>
       </div>
 
     </div>
   </section>
+
+  <!-- VIDEO LIGHTBOX -->
+  <div class="vlightbox" id="vlightbox" hidden>
+    <div class="vlightbox__backdrop" id="vlightbox-backdrop"></div>
+    <div class="vlightbox__dialog" role="dialog" aria-modal="true" aria-label="Phuong's story">
+      <button type="button" class="vlightbox__close" id="vlightbox-close" aria-label="Close video">
+        <svg viewBox="0 0 24 24" class="ic"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <div class="vlightbox__frame">
+        <video class="vlightbox__video" id="hero-video" controls playsinline preload="none" width="1920" height="1080" poster="/hero-poster.jpg">
+          <source src="/hero-story.webm" type="video/webm" />
+          <source src="/hero-story.mp4" type="video/mp4" />
+          <track kind="captions" src="/hero-story.vtt" srclang="en" label="English" default />
+          Sorry, your browser doesn&rsquo;t support embedded video.
+        </video>
+      </div>
+    </div>
+  </div>
 
   <!-- SLIDE-DOWN MENU PANEL -->
   <div class="menu-panel liquid-glass-strong" id="menu-panel" hidden>
@@ -151,6 +110,50 @@
     <a href="#contact">Contact</a>
     <a href="#contact" class="menu-panel__cta">Get Pre-Approved</a>
   </div>
+
+  <!-- ====================================================== -->
+  <!-- APPLICATION SECTION (moved out of hero)                 -->
+  <!-- ====================================================== -->
+  <section class="section apply" id="apply">
+    <div class="container">
+      <div class="card liquid-glass-strong apply__box fade-in">
+        <div class="apply__copy">
+          <p class="eyebrow">START YOUR APPLICATION</p>
+          <h2 class="section-title">Ready when <span class="italic">you are.</span></h2>
+          <p class="apply__lead">Tell me your goals and I'll personally reach out within 24 hours — no pressure, no obligation. Or scan the code and start your secure application right now.</p>
+          <a href="#contact" class="apply__talk">Prefer to talk first? Get a free consultation <svg viewBox="0 0 24 24" class="ic ic--sm"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="apply__action">
+          <p class="apply__action-label">Ready to apply?</p>
+          <div class="apply__qr"><img src="/solo-qr.svg" alt="Scan to start your application with Phuong Ha" /></div>
+          <p class="apply__action-text">Scan to start your secure application — or tap below.</p>
+          <a href="https://msf.tidalwave.ai/signup/phuong.ha/D6NDRB536C4Q72PD4OLG" class="cta apply__btn" target="_blank" rel="noopener">
+            <span class="cta__icon"><svg viewBox="0 0 24 24" class="ic"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            <span>Start your application</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- relocated feature cards -->
+      <div class="features-strip">
+        <div class="card liquid-glass feature fade-in">
+          <span class="feature__icon"><svg viewBox="0 0 24 24" class="ic"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8 19 13M15 9h.01M17.8 6.2 19 5M3 21l9-9M12.2 6.2 11 5"/></svg></span>
+          <h4>24-Hour Pre-Approval</h4>
+          <p>Make competitive offers with confidence.</p>
+        </div>
+        <div class="card liquid-glass feature fade-in">
+          <span class="feature__icon"><svg viewBox="0 0 24 24" class="ic"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+          <h4>Loan Programs</h4>
+          <p>Purchase, Refi, FHA, VA &amp; Jumbo.</p>
+        </div>
+        <div class="card liquid-glass feature fade-in">
+          <span class="feature__icon"><svg viewBox="0 0 24 24" class="ic"><path d="M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5M9.5 21v-6h5v6"/></svg></span>
+          <h4>Personalized Guidance</h4>
+          <p>One dedicated partner from application to keys.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ====================================================== -->
   <!-- WHY ME                                                  -->

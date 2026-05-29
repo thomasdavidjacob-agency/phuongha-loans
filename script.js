@@ -26,6 +26,60 @@
     if (!panel.hidden && !panel.contains(e.target) && e.target !== btn) close();
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+  /* close when the user scrolls */
+  window.addEventListener('scroll', () => { if (!panel.hidden) close(); }, { passive: true });
+})();
+
+
+/* ============================================================
+   HERO VIDEO LIGHTBOX
+   ============================================================ */
+(function () {
+  const openBtn  = document.getElementById('video-open');
+  const lb       = document.getElementById('vlightbox');
+  const closeBtn = document.getElementById('vlightbox-close');
+  const backdrop = document.getElementById('vlightbox-backdrop');
+  const video    = document.getElementById('hero-video');
+  if (!openBtn || !lb) return;
+
+  let lastFocus = null;
+
+  function onKey(e) {
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'Tab') {
+      const focusables = [closeBtn, video].filter(Boolean);
+      const first = focusables[0];
+      const last  = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }
+
+  function open() {
+    lastFocus = document.activeElement;
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+    if (video && typeof video.play === 'function') {
+      // user gesture → allowed to play with sound
+      video.play().catch(function () {});
+    }
+    document.addEventListener('keydown', onKey);
+  }
+
+  function close() {
+    if (video) { try { video.pause(); video.currentTime = 0; } catch (e) {} }
+    lb.hidden = true;
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKey);
+    const restore = (lastFocus && lastFocus !== document.body) ? lastFocus : openBtn;
+    if (restore && typeof restore.focus === 'function') restore.focus();
+  }
+
+  openBtn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
 })();
 
 
