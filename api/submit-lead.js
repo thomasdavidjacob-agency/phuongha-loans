@@ -1,6 +1,6 @@
 const { Resend } = require('resend');
 
-const RECIPIENT = 'phuonghaloans@gmail.com';
+const RECIPIENT = ['phuonghaloans@gmail.com', 'phuong.ha@mortgagesolutions.net'];
 const FROM_ADDRESS = 'leads@phuongha.loans';
 
 function sanitize(str) {
