@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.55" stroke-width="1.1">
+  <!-- contour cluster 1 -->
+  <path d="M70 120 q55 -42 118 -8 q56 36 22 90 q-44 60 -112 32 q-64 -30 -28 -114 z"/>
+  <path d="M104 134 q38 -28 86 -5 q40 26 14 64 q-32 42 -82 22 q-44 -22 -18 -81 z"/>
+  <path d="M140 150 q22 -16 50 -3 q24 16 8 40 q-20 26 -52 12 q-24 -14 -6 -49 z"/>
+  <!-- contour cluster 2 -->
+  <path d="M300 320 q60 -46 128 -8 q58 38 22 96 q-46 62 -116 30 q-66 -32 -34 -118 z"/>
+  <path d="M338 336 q40 -30 88 -5 q40 28 14 66 q-34 42 -84 20 q-44 -22 -22 -81 z"/>
+  <!-- stray contour ridge -->
+  <path d="M-20 360 q90 -40 180 -10 q70 24 150 6" stroke-opacity="0.32"/>
+  <path d="M40 30 q70 30 150 18 q80 -12 150 24" stroke-opacity="0.32"/>
+</svg>

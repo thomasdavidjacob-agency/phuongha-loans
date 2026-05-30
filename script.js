@@ -1,34 +1,31 @@
 /* ============================================================
-   MENU TOGGLE
+   TOP MENU — active link scroll-spy
    ============================================================ */
 (function () {
-  const btn   = document.getElementById('menu-btn');
-  const panel = document.getElementById('menu-panel');
-  if (!btn || !panel) return;
+  const links = Array.from(document.querySelectorAll('.topbar__links a[data-spy]'));
+  if (!links.length) return;
 
-  function close() {
-    panel.hidden = true;
-    btn.setAttribute('aria-expanded', 'false');
+  const map = {};
+  links.forEach((a) => { map[a.getAttribute('data-spy')] = a; });
+  const sections = Object.keys(map)
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+  if (!sections.length) return;
+
+  function setActive(id) {
+    links.forEach((a) => a.classList.toggle('active', a.getAttribute('data-spy') === id));
   }
-  function open() {
-    panel.hidden = false;
-    btn.setAttribute('aria-expanded', 'true');
-  }
 
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    panel.hidden ? open() : close();
-  });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    },
+    { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+  );
 
-  /* close on link click, outside click, or Escape */
-  panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
-  document.addEventListener('click', (e) => {
-    if (!panel.hidden && !panel.contains(e.target) && e.target !== btn) close();
-  });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
-
-  /* close when the user scrolls */
-  window.addEventListener('scroll', () => { if (!panel.hidden) close(); }, { passive: true });
+  sections.forEach((s) => observer.observe(s));
 })();
 
 

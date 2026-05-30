@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+  <!-- faint graticule (map grid) -->
+  <g stroke-opacity="0.18" stroke-width="1">
+    <line x1="0" y1="160" x2="1200" y2="160"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="640" x2="1200" y2="640"/>
+    <line x1="260" y1="0" x2="260" y2="780"/>
+    <line x1="620" y1="0" x2="620" y2="780"/>
+    <line x1="940" y1="0" x2="940" y2="780"/>
+  </g>
+
+  <!-- topographic contours (scattered "here and there") -->
+  <g stroke-opacity="0.4" stroke-width="1.25">
+    <!-- cluster A (upper left) -->
+    <path d="M70 150 q70 -55 150 -10 q70 45 30 110 q-55 75 -140 40 q-80 -40 -40 -140 z"/>
+    <path d="M105 165 q50 -38 105 -6 q48 32 20 78 q-40 52 -100 28 q-55 -28 -25 -98 z"/>
+    <path d="M140 178 q32 -24 66 -4 q30 20 12 50 q-26 33 -64 18 q-34 -18 -14 -64 z"/>
+    <!-- cluster B (lower right) -->
+    <path d="M870 520 q90 -60 185 -8 q80 52 30 130 q-66 86 -170 46 q-92 -48 -45 -168 z"/>
+    <path d="M915 540 q62 -42 130 -6 q56 38 22 92 q-46 60 -118 32 q-64 -34 -32 -116 z"/>
+    <path d="M958 558 q40 -27 84 -4 q36 24 14 58 q-30 39 -76 20 q-42 -22 -22 -74 z"/>
+    <!-- cluster C (lower left) -->
+    <path d="M120 600 q60 -46 128 -8 q56 38 22 92 q-46 60 -116 30 q-64 -32 -34 -106 z"/>
+    <path d="M158 616 q40 -30 86 -5 q38 26 14 62 q-32 40 -80 20 q-42 -22 -22 -77 z"/>
+    <!-- cluster D (upper right) -->
+    <path d="M930 110 q56 -42 120 -6 q52 36 20 86 q-44 56 -110 28 q-58 -30 -30 -98 z"/>
+    <path d="M968 126 q38 -28 80 -4 q34 24 12 56 q-30 37 -74 18 q-38 -20 -20 -70 z"/>
+  </g>
+
+  <!-- Portland–Vancouver metro: Columbia & Willamette rivers -->
+  <g stroke-opacity="0.55" stroke-width="2.5">
+    <!-- Columbia River (OR/WA line) running E–W with the bend -->
+    <path d="M-20 300 C 160 280 300 350 470 332 C 620 316 720 360 860 318 C 980 282 1100 320 1230 300"/>
+    <!-- Willamette River joining from the south at the confluence -->
+    <path d="M548 800 C 560 660 548 520 520 432 C 506 388 506 360 540 336"/>
+  </g>
+
+  <!-- confluence markers (Portland south bank, Vancouver north bank) -->
+  <g stroke-opacity="0.6" stroke-width="1.5">
+    <circle cx="540" cy="372" r="6"/>
+    <circle cx="540" cy="372" r="13" stroke-opacity="0.35"/>
+    <circle cx="600" cy="300" r="5"/>
+    <circle cx="600" cy="300" r="11" stroke-opacity="0.35"/>
+  </g>
+</svg>
