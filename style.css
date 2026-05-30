@@ -243,70 +243,50 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.02em; }
   flex: 1;
   border-radius: 1.5rem;
   padding: 32px 30px;
-  /* mobile-first: single column, explicit order */
+  /* centered, video-first single column */
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 22px;
 }
-.lnav        { order: 0; }
-.hero__logo  { order: 1; }
-.hero__headline { order: 2; }
-.hero__video { order: 3; }
-.hero__cta   { order: 4; }
-.hero__pills { order: 5; }
-.hero__quote { order: 6; }
+/* order: nav, logo, video, headline, cta, pills, quote */
+.lnav           { order: 0; width: 100%; }
+.hero__logo     { order: 1; }
+.hero__video    { order: 2; }
+.hero__headline { order: 3; }
+.hero__cta      { order: 4; }
+.hero__pills    { order: 5; }
+.hero__quote    { order: 6; }
 
 /* nav */
-.lnav { display: flex; align-items: center; justify-content: space-between; }
+.lnav { display: flex; align-items: center; justify-content: space-between; text-align: left; }
 .lnav__brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.4rem; font-weight: 600; letter-spacing: -0.04em; color: #fff; }
 .lnav__tld { font-style: normal; color: var(--accent-light); }
 .menu-btn { font-size: 0.85rem; color: #fff; }
 
-.left__logo { width: clamp(120px, 16vw, 200px); height: auto; aspect-ratio: 1; object-fit: contain; opacity: 0.95; }
-.left__headline { font-size: clamp(2.2rem, 4.2vw, 3.8rem); line-height: 1.04; letter-spacing: -0.05em; color: #fff; }
+.left__logo { width: clamp(110px, 13vw, 160px); height: auto; aspect-ratio: 1; object-fit: contain; opacity: 0.95; margin-bottom: 2px; }
+.left__headline { font-size: clamp(2.1rem, 4vw, 3.4rem); line-height: 1.05; letter-spacing: -0.05em; color: #fff; }
 .left__headline .italic { font-size: 0.95em; }
-.left__pills { display: flex; flex-wrap: wrap; gap: 10px; }
-.hero__cta { align-self: flex-start; }
+.left__pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 
 /* bottom quote */
+.left__quote { margin-top: 4px; }
 .left__quote-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 12px; }
-.left__quote-text { font-size: clamp(1.2rem, 1.8vw, 1.6rem); line-height: 1.25; letter-spacing: -0.02em; color: #fff; }
+.left__quote-text { font-size: clamp(1.2rem, 1.8vw, 1.55rem); line-height: 1.25; letter-spacing: -0.02em; color: #fff; }
 .left__quote-text .italic { color: rgba(255,255,255,0.85); }
-.left__author { display: flex; align-items: center; gap: 14px; margin-top: 18px; font-size: 0.7rem; letter-spacing: 0.18em; color: var(--accent-light); }
+.left__author { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 18px; font-size: 0.7rem; letter-spacing: 0.18em; color: var(--accent-light); }
 .left__author .line { height: 1px; flex: 1; max-width: 60px; background: rgba(200,145,58,0.5); }
 
-/* desktop: 2-column grid (~55/45) */
 @media (min-width: 1024px) {
-  .hero__grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    grid-template-rows: auto auto auto auto auto 1fr;
-    grid-template-areas:
-      "nav    nav"
-      "logo   video"
-      "head   video"
-      "cta    video"
-      "pills  video"
-      "quote  video";
-    column-gap: 48px;
-    row-gap: 20px;
-    padding: 40px 48px;
-    align-items: start;
-  }
-  .lnav { grid-area: nav; margin-bottom: 6px; }
-  .hero__logo { grid-area: logo; align-self: start; }
-  .hero__headline { grid-area: head; }
-  .hero__cta { grid-area: cta; }
-  .hero__pills { grid-area: pills; }
-  .hero__quote { grid-area: quote; align-self: end; }
-  .hero__video { grid-area: video; align-self: center; }
+  .hero__grid { padding: 36px 48px; gap: 24px; justify-content: center; }
 }
 
 /* ---- VIDEO MODULE ---- */
-.video-module { width: 100%; }
+.video-module { width: 100%; max-width: 640px; }
 .video-poster {
   position: relative; display: block; width: 100%; margin: 0; padding: 0;
-  aspect-ratio: 4 / 5; border: none; cursor: pointer;
+  aspect-ratio: 16 / 9; border: none; cursor: pointer;
   border-radius: 1.25rem; overflow: hidden;
   background: var(--navy-card);
   box-shadow: 0 24px 64px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(255,255,255,0.12);
