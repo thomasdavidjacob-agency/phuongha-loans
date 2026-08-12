@@ -9,6 +9,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+
+  <!-- canonical + social -->
+  <link rel="canonical" href="https://phuongha.loans/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#0D1B2A" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="phuongha.loans" />
+  <meta property="og:title" content="Phuong Ha Loans | Oregon &amp; Washington Home Loans" />
+  <meta property="og:description" content="Phuong Ha Loans — Oregon &amp; Washington home loans. Fast pre-approvals, local expertise, and personalized service for purchase, refinance, FHA, VA, and jumbo loans." />
+  <meta property="og:url" content="https://phuongha.loans/" />
+  <meta property="og:image" content="https://phuongha.loans/hero-poster.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Phuong Ha Loans | Oregon &amp; Washington Home Loans" />
+  <meta name="twitter:description" content="Phuong Ha Loans — Oregon &amp; Washington home loans. Fast pre-approvals, local expertise, and personalized service for purchase, refinance, FHA, VA, and jumbo loans." />
+  <meta name="twitter:image" content="https://phuongha.loans/hero-poster.jpg" />
 </head>
 <body>
 
@@ -33,6 +48,8 @@
         <a href="calculator.html">Calculator</a>
         <a href="#contact" data-spy="contact">Contact</a>
         <a href="blog.html">Blog</a>
+        <a href="prep.html">Prep</a>
+        <a href="resources.html">Resources</a>
         <a href="#contact" class="topbar__cta">Get Pre-Approved</a>
       </div>
     </div>
@@ -56,16 +73,20 @@
         home loans, <span class="italic">done right.</span>
       </h1>
 
-      <!-- VIDEO MODULE -->
+      <!-- PORTRAIT MODULE -->
+      <!-- Photo-only until hero-story.mp4/.webm are shot. To restore the video:
+           1. drop hero-story.mp4 + hero-story.webm in the project root
+           2. swap this block back to the <button id="video-open"> version (see git history)
+           3. un-comment the VIDEO LIGHTBOX block below
+           script.js no-ops on its own while #video-open is absent. -->
       <div class="video-module hero__video fade-in">
-        <button type="button" class="video-poster" id="video-open" aria-haspopup="dialog" aria-controls="vlightbox" aria-label="Play Phuong's story">
+        <div class="video-poster video-poster--static">
           <picture>
             <source srcset="/hero-poster.webp" type="image/webp" />
             <img src="/hero-poster.jpg" alt="Phuong Ha, Oregon &amp; Washington mortgage professional" width="1280" height="720" />
           </picture>
           <span class="video-poster__shade" aria-hidden="true"></span>
-          <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-        </button>
+        </div>
       </div>
 
       <!-- CTA + BADGES -->
@@ -98,7 +119,8 @@
     </div>
   </section>
 
-  <!-- VIDEO LIGHTBOX -->
+  <!-- VIDEO LIGHTBOX — disabled until hero-story.mp4/.webm exist (both 404 in prod) -->
+  <!--
   <div class="vlightbox" id="vlightbox" hidden>
     <div class="vlightbox__backdrop" id="vlightbox-backdrop"></div>
     <div class="vlightbox__dialog" role="dialog" aria-modal="true" aria-label="Phuong's story">
@@ -115,6 +137,7 @@
       </div>
     </div>
   </div>
+  -->
 
   <!-- ====================================================== -->
   <!-- APPLICATION SECTION (moved out of hero)                 -->
