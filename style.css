@@ -985,6 +985,29 @@ a.blog__card:hover .blog__readmore { color: var(--accent-light); }
 .post__body li { color: rgba(255,255,255,0.78); font-size: 1.04rem; line-height: 1.7; margin-bottom: 10px; }
 .post__body li::marker { color: var(--accent-light); }
 .post__body blockquote { margin: 28px 0; padding: 4px 0 4px 22px; border-left: 2px solid var(--gold); color: #fff; font-family: var(--font-serif); font-style: italic; font-size: 1.25rem; line-height: 1.5; }
+
+/* inline links in article body — the global `a { color: inherit }` would
+   otherwise make them indistinguishable from surrounding copy */
+.post__body a { color: var(--gold); border-bottom: 1px solid rgba(200,145,58,0.4); transition: color 0.15s ease, border-color 0.15s ease; }
+.post__body a:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+.post__body a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+
+/* article links inside the zero/low-down feature card on the home page */
+.loans__feature-links { margin: 14px 0 0; font-size: 0.93rem; line-height: 1.9; opacity: 0.9; }
+.loans__feature-links a { color: var(--gold); border-bottom: 1px solid rgba(200,145,58,0.4); transition: color 0.15s ease, border-color 0.15s ease; }
+.loans__feature-links a:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+.loans__feature-links a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+.loans__feature-links span { opacity: 0.4; margin: 0 6px; }
+
+/* related reading block at the foot of each article */
+.post__related { margin: 40px 0 0; padding: 22px 26px; border-radius: 1.25rem; background: rgba(255,255,255,0.035); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.09); }
+.post__related .eyebrow { margin: 0 0 14px; }
+.post__related ul { list-style: none; margin: 0; padding: 0; }
+.post__related li { margin: 0 0 10px; line-height: 1.45; }
+.post__related li:last-child { margin-bottom: 0; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.09); }
+.post__related a { color: var(--gold); border-bottom: 1px solid rgba(200,145,58,0.35); transition: color 0.15s ease, border-color 0.15s ease; }
+.post__related a:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+.post__related a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
 .post__cta-box { margin: 40px 0 8px; padding: 26px 30px; border-radius: 1.25rem; display: flex; flex-direction: row; gap: 24px; align-items: center; }
 .post__cta-photo { flex: 0 0 auto; width: 96px; border-radius: 0.95rem; padding: 6px; }
 .post__cta-photo img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 0.6rem; display: block; }

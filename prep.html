@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free NMLS SAFE Act practice questions for aspiring Mortgage Loan Officers in Oregon. 200 questions covering federal law, ethics, lending standards, and state guidelines." />
+  <title>NMLS MLO Exam Prep | PhuongHa.Loans</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .prep-hero {
+      position: relative;
+      z-index: 10;
+      padding: clamp(40px, 7vh, 80px) 0 clamp(28px, 4vh, 48px);
+    }
+    .prep-hero__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 56px);
+    }
+    .prep-hero__label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 14px;
+    }
+    .prep-hero__title {
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .prep-hero__title .italic { font-size: 0.95em; }
+    .prep-hero__sub {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+      max-width: 640px;
+      margin-bottom: 28px;
+    }
+    .prep-hero__pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Full-width iframe wrapper */
+    .prep-frame {
+      position: relative;
+      z-index: 10;
+      padding: 0 0 clamp(40px, 6vh, 72px);
+    }
+    .prep-frame__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 56px);
+    }
+    .prep-frame__wrap {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.45), inset 0 1px 1px rgba(255,255,255,0.1);
+      position: relative;
+    }
+    .prep-frame__wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.4) 0%,
+        rgba(255,255,255,0.1) 20%,
+        transparent 40%,
+        transparent 60%,
+        rgba(255,255,255,0.1) 80%,
+        rgba(255,255,255,0.4) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+              mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .prep-frame__iframe {
+      display: block;
+      width: 100%;
+      height: 900px;
+      border: none;
+      border-radius: 1.25rem;
+      transition: height 0.2s ease;
+    }
+
+    /* Access CTA below iframe */
+    .prep-access {
+      position: relative;
+      z-index: 10;
+      padding: 0 0 clamp(56px, 8vh, 100px);
+    }
+    .prep-access__inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 56px);
+      text-align: center;
+    }
+    .prep-access__box {
+      padding: 40px 36px;
+      border-radius: 1.5rem;
+    }
+    .prep-access__title {
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      color: #fff;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+    .prep-access__body {
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .prep-access__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+  </style>
+
+  <!-- canonical + social -->
+  <link rel="canonical" href="https://phuongha.loans/prep.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#0D1B2A" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="phuongha.loans" />
+  <meta property="og:title" content="NMLS MLO Exam Prep | PhuongHa.Loans" />
+  <meta property="og:description" content="Free NMLS SAFE Act practice questions for aspiring Mortgage Loan Officers in Oregon. 200 questions covering federal law, ethics, lending standards, and state guidelines." />
+  <meta property="og:url" content="https://phuongha.loans/prep.html" />
+  <meta property="og:image" content="https://phuongha.loans/hero-poster.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NMLS MLO Exam Prep | PhuongHa.Loans" />
+  <meta name="twitter:description" content="Free NMLS SAFE Act practice questions for aspiring Mortgage Loan Officers in Oregon. 200 questions covering federal law, ethics, lending standards, and state guidelines." />
+  <meta name="twitter:image" content="https://phuongha.loans/hero-poster.jpg" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true"><div class="bg__grain"></div></div>
+  <div class="page-topo" aria-hidden="true"></div>
+
+  <nav class="topbar">
+    <div class="topbar__inner">
+      <a href="index.html" class="topbar__brand">phuongha<em>.loans</em></a>
+      <div class="topbar__links">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#why">Why Me</a>
+        <a href="index.html#loans">Loan Programs</a>
+        <a href="down-payment-assistance.html">Down Payment Help</a>
+        <a href="calculator.html">Calculator</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="blog.html">Blog</a>
+        <a href="prep.html" class="active">Prep</a>
+        <a href="resources.html">Resources</a>
+        <a href="index.html#contact" class="topbar__cta">Get Pre-Approved</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="prep-hero">
+    <div class="prep-hero__inner">
+      <p class="prep-hero__label">MLO Licensing</p>
+      <h1 class="prep-hero__title">MLO Exam <span class="italic">Prep.</span></h1>
+      <p class="prep-hero__sub">200 NMLS SAFE Act practice questions — free preview, full access by request. Built for aspiring Mortgage Loan Officers in Oregon and Washington.</p>
+      <div class="prep-hero__pills">
+        <span class="pill liquid-glass">
+          <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          200 Practice Questions
+        </span>
+        <span class="pill liquid-glass">
+          <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Timed Mode Available
+        </span>
+        <span class="pill liquid-glass">
+          <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Free Preview
+        </span>
+        <span class="pill liquid-glass">
+          <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Oregon &amp; Washington MLOs
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAM IFRAME -->
+  <section class="prep-frame">
+    <div class="prep-frame__inner">
+      <div class="prep-frame__wrap">
+        <iframe
+          src="/nmls-exam-prep.html"
+          class="prep-frame__iframe"
+          title="NMLS SAFE Act MLO Exam Practice Tool"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-forms"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL ACCESS CTA -->
+  <section class="prep-access">
+    <div class="prep-access__inner">
+      <div class="prep-access__box card liquid-glass-strong">
+        <p class="eyebrow">Full Access</p>
+        <h2 class="prep-access__title">Want all 200 questions?</h2>
+        <p class="prep-access__body">The free preview includes 5 questions. Request full access to all 200 NMLS SAFE Act practice questions — covering federal law, ethics, lending standards, general mortgage knowledge, and Oregon-specific requirements.</p>
+        <div class="prep-access__ctas">
+          <a href="index.html#contact" class="cta">
+            <span class="cta__icon"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            <span>Request Full Access</span>
+          </a>
+          <a href="resources.html" style="display:inline-flex;align-items:center;gap:8px;font-size:0.95rem;font-weight:500;color:rgba(255,255,255,0.7);padding:12px 0;transition:color .2s ease;">
+            More Resources
+            <svg viewBox="0 0 24 24" class="ic ic--sm" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <div class="footer__ehl">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 203" class="footer__ehl-logo" role="img" aria-label="Equal Housing Lender" fill="currentColor">
+            <title>Equal Housing Lender</title>
+            <path fill-rule="evenodd" d="M100,2 L198,80 L198,160 L2,160 L2,80 L100,2 Z M100,22 L183,82 L183,148 L17,148 L17,82 L100,22 Z"/>
+            <rect x="42" y="90" width="116" height="18" rx="1"/>
+            <rect x="42" y="120" width="116" height="18" rx="1"/>
+            <text x="100" y="181" font-family="Arial Black,Arial,sans-serif" font-size="19" font-weight="900" text-anchor="middle" letter-spacing="1">EQUAL HOUSING</text>
+            <text x="100" y="203" font-family="Arial Black,Arial,sans-serif" font-size="26" font-weight="900" text-anchor="middle" letter-spacing="2">LENDER</text>
+          </svg>
+          <span class="footer__legal">Phuong Ha, NMLS #1839449. Mortgage Solutions of Colorado, LLC., dba Mortgage Solutions Financial, NMLS #61602. Equal Housing Lender. <a href="https://www.nmlsconsumeraccess.org" target="_blank" rel="noopener">NMLSConsumerAccess.org</a> &middot; Not a commitment to lend.</span>
+        </div>
+        <p class="footer__copy">&copy; <span id="year"></span> phuongha.loans — All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Auto-resize iframe to its full content height (same-origin)
+    (function() {
+      const frame = document.querySelector('.prep-frame__iframe');
+      if (!frame) return;
+      function resize() {
+        try {
+          const h = frame.contentDocument.body.scrollHeight;
+          if (h > 100) frame.style.height = h + 'px';
+        } catch(e) {}
+      }
+      frame.addEventListener('load', function() {
+        resize();
+        try {
+          new ResizeObserver(resize).observe(frame.contentDocument.body);
+        } catch(e) {
+          // Fallback: poll for height changes (e.g. when modal opens)
+          setInterval(resize, 400);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mortgage and homebuying resources recommended by Oregon MLO Phuong Ha — state programs, NMLS exam prep, regulatory links, and trusted vendor referrals." />
+  <title>Mortgage Resources | PhuongHa.Loans — Oregon MLO Phuong Ha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Resources page layout ── */
+    .res-hero {
+      position: relative;
+      z-index: 10;
+      padding: clamp(44px, 8vh, 88px) 0 clamp(20px, 3vh, 40px);
+    }
+    .res-hero__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 56px);
+      max-width: 820px;
+    }
+    .res-hero__title {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .res-hero__title .italic { font-size: 0.93em; }
+    .res-hero__sub {
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      color: rgba(255,255,255,0.62);
+      line-height: 1.7;
+      max-width: 700px;
+    }
+
+    /* ── Generic resources section ── */
+    .res-section {
+      position: relative;
+      z-index: 10;
+      padding: clamp(32px, 5vh, 64px) 0;
+    }
+    .res-section__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 56px);
+    }
+    .res-section__head {
+      margin-bottom: 28px;
+    }
+    .res-section__head .eyebrow {
+      margin-bottom: 8px;
+    }
+    .res-section__title {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      color: #fff;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+    .res-section__desc {
+      margin-top: 10px;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      max-width: 620px;
+    }
+
+    /* ── Resource card grid ── */
+    .res-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .res-grid--wide {
+      grid-template-columns: 1fr;
+    }
+    .res-card {
+      padding: 30px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .res-card:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
+    .res-card__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .res-card__icon {
+      width: 40px; height: 40px;
+      border-radius: 9999px;
+      background: var(--accent-soft);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent-light);
+      flex-shrink: 0;
+    }
+    .res-card__icon .ic { width: 18px; height: 18px; }
+    .res-card__badge {
+      font-size: 0.64rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      background: var(--accent-soft);
+      border-radius: 9999px;
+      padding: 4px 10px;
+      white-space: nowrap;
+    }
+    .res-card h3 {
+      font-size: 1.1rem;
+      color: #fff;
+      line-height: 1.3;
+    }
+    .res-card p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      flex: 1;
+    }
+    .res-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      transition: gap 0.2s ease, color 0.2s ease;
+      margin-top: 4px;
+    }
+    .res-card__link:hover { gap: 10px; color: var(--gold-light); }
+    .res-card__link .ic { width: 14px; height: 14px; }
+
+    /* ── Featured card (MLO Prep) ── */
+    .res-featured {
+      padding: 36px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+    }
+    .res-featured__body h3 {
+      font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .res-featured__body p {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 560px;
+    }
+    .res-featured__cta-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding-left: 32px;
+      border-left: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+    .res-featured__cta-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    @media (max-width: 680px) {
+      .res-featured {
+        grid-template-columns: 1fr;
+        padding: 28px 24px;
+        gap: 24px;
+      }
+      .res-featured__cta-col {
+        padding-left: 0;
+        border-left: none;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        align-items: flex-start;
+        text-align: left;
+      }
+    }
+
+    /* ── Coming Soon / vendors section ── */
+    .res-coming {
+      padding: 44px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .res-coming__title {
+      font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+      color: #fff;
+      letter-spacing: -0.03em;
+    }
+    .res-coming__body {
+      color: rgba(255,255,255,0.62);
+      font-size: 0.97rem;
+      line-height: 1.75;
+      max-width: 700px;
+    }
+    .res-coming__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .res-coming__tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.06);
+      border-radius: 9999px;
+      padding: 5px 14px;
+    }
+    @media (max-width: 640px) {
+      .res-coming { padding: 28px 24px; }
+    }
+
+    /* ── Top 3 Realtors ── */
+    .realtor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .realtor-card {
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .realtor-card:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
+    .realtor-card__rank {
+      position: absolute;
+      top: 20px;
+      right: 22px;
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1;
+      color: rgba(200,145,58,0.18);
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: -0.06em;
+      user-select: none;
+    }
+    .realtor-card__avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+    .realtor-card__name {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .realtor-card__brokerage {
+      font-size: 0.8rem;
+      color: var(--accent-light);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .realtor-card__specialty {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .realtor-card__meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .realtor-card__contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .realtor-card__contact .ic { width: 13px; height: 13px; flex-shrink: 0; }
+    .realtor-card__contact a {
+      color: var(--accent-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .realtor-card__contact a:hover { color: var(--gold-light); }
+    .realtor-placeholder {
+      opacity: 0.45;
+      font-style: italic;
+    }
+
+    /* ── Divider between sections ── */
+    .res-divider {
+      position: relative;
+      z-index: 10;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 56px);
+    }
+    .res-divider hr {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* ── Compliance footer strip ── */
+    .res-compliance {
+      position: relative;
+      z-index: 10;
+      padding: 20px 0 clamp(48px, 6vh, 80px);
+    }
+    .res-compliance__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 56px);
+    }
+    .res-compliance__text {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.65;
+    }
+    .res-compliance__text a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: underline;
+    }
+    .res-compliance__text a:hover { color: var(--accent-light); }
+  </style>
+
+  <!-- canonical + social -->
+  <link rel="canonical" href="https://phuongha.loans/resources.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#0D1B2A" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="phuongha.loans" />
+  <meta property="og:title" content="Mortgage Resources | PhuongHa.Loans — Oregon MLO Phuong Ha" />
+  <meta property="og:description" content="Mortgage and homebuying resources recommended by Oregon MLO Phuong Ha — state programs, NMLS exam prep, regulatory links, and trusted vendor referrals." />
+  <meta property="og:url" content="https://phuongha.loans/resources.html" />
+  <meta property="og:image" content="https://phuongha.loans/hero-poster.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mortgage Resources | PhuongHa.Loans — Oregon MLO Phuong Ha" />
+  <meta name="twitter:description" content="Mortgage and homebuying resources recommended by Oregon MLO Phuong Ha — state programs, NMLS exam prep, regulatory links, and trusted vendor referrals." />
+  <meta name="twitter:image" content="https://phuongha.loans/hero-poster.jpg" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true"><div class="bg__grain"></div></div>
+  <div class="page-topo" aria-hidden="true"></div>
+
+  <nav class="topbar">
+    <div class="topbar__inner">
+      <a href="index.html" class="topbar__brand">phuongha<em>.loans</em></a>
+      <div class="topbar__links">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#why">Why Me</a>
+        <a href="index.html#loans">Loan Programs</a>
+        <a href="down-payment-assistance.html">Down Payment Help</a>
+        <a href="calculator.html">Calculator</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="blog.html">Blog</a>
+        <a href="prep.html">Prep</a>
+        <a href="resources.html" class="active">Resources</a>
+        <a href="index.html#contact" class="topbar__cta">Get Pre-Approved</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="res-hero">
+    <div class="res-hero__inner">
+      <p class="eyebrow">Tools &amp; Partners</p>
+      <h1 class="res-hero__title">Resources<span class="italic">.</span></h1>
+      <p class="res-hero__sub">Tools, partners, and programs Phuong Ha recommends to homebuyers, first-time owners, and aspiring loan officers across Oregon.</p>
+    </div>
+  </section>
+
+  <!-- ── SECTION 1: MLO LICENSING ── -->
+  <section class="res-section">
+    <div class="res-section__inner">
+      <div class="res-section__head">
+        <p class="eyebrow">MLO Licensing</p>
+        <h2 class="res-section__title">Exam Prep</h2>
+        <p class="res-section__desc">Resources for aspiring Mortgage Loan Officers preparing for the NMLS SAFE Act exam in Oregon.</p>
+      </div>
+
+      <div class="res-grid res-grid--wide">
+        <div class="res-featured card liquid-glass-strong">
+          <div class="res-featured__body">
+            <div class="res-card__header" style="margin-bottom:16px;">
+              <div class="res-card__icon">
+                <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              </div>
+              <span class="res-card__badge">Free Tool</span>
+            </div>
+            <h3>NMLS SAFE Exam Prep</h3>
+            <p>Free 5-question preview of our 200-question NMLS practice exam — built for aspiring MLOs in Oregon. Covers federal law, ethics, lending standards, general mortgage knowledge, and Oregon-specific guidelines. Full access available by request.</p>
+            <a href="prep.html" class="cta" style="width:fit-content;">
+              <span class="cta__icon"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              <span>Start Free Preview</span>
+            </a>
+          </div>
+          <div class="res-featured__cta-col">
+            <p class="res-featured__cta-label">Questions</p>
+            <p style="font-size:3rem;font-weight:600;color:#fff;line-height:1;letter-spacing:-0.04em;">200</p>
+            <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;max-width:140px;">NMLS SAFE Act practice questions across all exam topics</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="res-divider"><hr /></div>
+
+  <!-- ── SECTION 2: HOMEBUYER PROGRAMS ── -->
+  <section class="res-section">
+    <div class="res-section__inner">
+      <div class="res-section__head">
+        <p class="eyebrow">Oregon Programs</p>
+        <h2 class="res-section__title">Homebuyer Programs</h2>
+        <p class="res-section__desc">State and federal programs that help Oregon homebuyers access affordable financing, down payment assistance, and educational tools.</p>
+      </div>
+
+      <div class="res-grid">
+
+        <div class="res-card card liquid-glass">
+          <div class="res-card__header">
+            <div class="res-card__icon">
+              <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <span class="res-card__badge">State Program</span>
+          </div>
+          <h3>Oregon Bond Residential Loan Program</h3>
+          <p>Below-market interest rate mortgages for first-time homebuyers in Oregon, offered through Oregon Housing and Community Services. Can be paired with down payment assistance.</p>
+          <a href="https://www.ohcs.oregon.gov" target="_blank" rel="noopener noreferrer" class="res-card__link">
+            Visit OHCS
+            <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="res-card card liquid-glass">
+          <div class="res-card__header">
+            <div class="res-card__icon">
+              <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <span class="res-card__badge">State Program</span>
+          </div>
+          <h3>Oregon Down Payment Assistance</h3>
+          <p>Grant and deferred loan programs through OHCS to help Oregon buyers cover down payment and closing costs. Income and purchase price limits apply by county.</p>
+          <a href="https://www.ohcs.oregon.gov" target="_blank" rel="noopener noreferrer" class="res-card__link">
+            Visit OHCS
+            <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="res-card card liquid-glass">
+          <div class="res-card__header">
+            <div class="res-card__icon">
+              <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <span class="res-card__badge">Federal</span>
+          </div>
+          <h3>CFPB Homebuyer Tools</h3>
+          <p>Free tools and plain-English guides from the Consumer Financial Protection Bureau — covering mortgages, closing costs, rate shopping, and your rights as a homebuyer.</p>
+          <a href="https://www.consumerfinance.gov/owning-a-home/" target="_blank" rel="noopener noreferrer" class="res-card__link">
+            Visit CFPB
+            <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="res-divider"><hr /></div>
+
+  <!-- ── SECTION 3: REGULATORY & LICENSING ── -->
+  <section class="res-section">
+    <div class="res-section__inner">
+      <div class="res-section__head">
+        <p class="eyebrow">Licensing &amp; Oversight</p>
+        <h2 class="res-section__title">Regulatory Links</h2>
+        <p class="res-section__desc">Official resources for verifying mortgage professionals, understanding Oregon licensing requirements, and accessing federal housing programs.</p>
+      </div>
+
+      <div class="res-grid">
+
+        <div class="res-card card liquid-glass">
+          <div class="res-card__header">
+            <div class="res-card__icon">
+              <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <span class="res-card__badge">Verify</span>
+          </div>
+          <h3>NMLS Consumer Access</h3>
+          <p>The official national registry to verify any mortgage professional's license, credentials, and disciplinary history. Always verify before you work with an MLO.</p>
+          <a href="https://www.nmlsconsumeraccess.org" target="_blank" rel="noopener noreferrer" class="res-card__link">
+            NMLSConsumerAccess.org
+            <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="res-card card liquid-glass">
+          <div class="res-card__header">
+            <div class="res-card__icon">
+              <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <span class="res-card__badge">Oregon</span>
+          </div>
+          <h3>Oregon Division of Financial Regulation</h3>
+          <p>Oregon's mortgage licensing authority. Oversees MLO licensing, consumer complaints, and regulatory compliance for mortgage professionals operating in Oregon.</p>
+          <a href="https://dfr.oregon.gov" target="_blank" rel="noopener noreferrer" class="res-card__link">
+            dfr.oregon.gov
+            <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="res-card card liquid-glass">
+          <div class="res-card__header">
+            <div class="res-card__icon">
+              <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <span class="res-card__badge">Federal</span>
+          </div>
+          <h3>HUD — U.S. Dept. of Housing and Urban Development</h3>
+          <p>Federal agency overseeing FHA loans, fair housing law, homebuyer education, and housing assistance programs nationwide. An essential reference for any homebuyer.</p>
+          <a href="https://www.hud.gov" target="_blank" rel="noopener noreferrer" class="res-card__link">
+            hud.gov
+            <svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="res-divider"><hr /></div>
+
+  <!-- ── SECTION 4: TOP 3 REALTORS ── -->
+  <section class="res-section">
+    <div class="res-section__inner">
+      <div class="res-section__head">
+        <p class="eyebrow">By Referral Only</p>
+        <h2 class="res-section__title">Phuong's Top 3 Realtors</h2>
+        <p class="res-section__desc">Phuong Ha is finalizing a short list of hand-picked Oregon agents — personally vetted and selected for their track record with first-time buyers and loan-sensitive transactions.</p>
+      </div>
+
+      <div class="res-coming card liquid-glass">
+        <div>
+          <span class="res-card__badge" style="display:inline-block;margin-bottom:14px;">In Progress</span>
+          <h3 class="res-coming__title">Phuong's Referral Network — Coming Soon</h3>
+        </div>
+        <p class="res-coming__body">Phuong personally refers clients to a small circle of trusted, Oregon-based real estate agents — chosen for their responsiveness and their experience guiding first-time and down-payment-assistance buyers to the closing table. The full list is being finalized. Working with an agent already? Phuong is happy to coordinate directly.</p>
+        <div class="res-coming__tags">
+          <span class="res-coming__tag">First-Time Buyers</span>
+          <span class="res-coming__tag">DPA Transactions</span>
+          <span class="res-coming__tag">Portland Metro</span>
+          <span class="res-coming__tag">Oregon City &amp; Clackamas</span>
+        </div>
+        <div>
+          <a href="index.html#contact" class="cta" style="width:fit-content;">
+            <span class="cta__icon"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            <span>Ask Phuong for a Referral</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="res-divider"><hr /></div>
+
+  <!-- ── SECTION 5: PREFERRED VENDORS (COMING SOON) ── -->
+  <section class="res-section">
+    <div class="res-section__inner">
+      <div class="res-section__head">
+        <p class="eyebrow">Coming Soon</p>
+        <h2 class="res-section__title">Preferred Vendors</h2>
+      </div>
+
+      <div class="res-coming card liquid-glass">
+        <div>
+          <span class="res-card__badge" style="display:inline-block;margin-bottom:14px;">In Progress</span>
+          <h3 class="res-coming__title">Preferred Vendors — Coming Soon</h3>
+        </div>
+        <p class="res-coming__body">Phuong Ha is curating a vetted network of Oregon title companies, real estate attorneys, home inspectors, and credit specialists. Check back soon — or reach out if you'd like to be considered.</p>
+        <div class="res-coming__tags">
+          <span class="res-coming__tag">Title Companies</span>
+          <span class="res-coming__tag">Real Estate Attorneys</span>
+          <span class="res-coming__tag">Home Inspectors</span>
+          <span class="res-coming__tag">Credit Specialists</span>
+          <span class="res-coming__tag">Escrow Services</span>
+        </div>
+        <div>
+          <a href="mailto:phuong.ha@mortgagesolutions.net" class="cta" style="width:fit-content;">
+            <span class="cta__icon"><svg viewBox="0 0 24 24" class="ic" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            <span>Contact Phuong Ha</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPLIANCE LINE -->
+  <div class="res-compliance">
+    <div class="res-compliance__inner">
+      <p class="res-compliance__text">Phuong Ha, NMLS #1839449. Mortgage Solutions of Colorado, LLC., dba Mortgage Solutions Financial, NMLS #61602. Equal Housing Lender. <a href="https://www.nmlsconsumeraccess.org" target="_blank" rel="noopener">NMLSConsumerAccess.org</a> &middot; Not a commitment to lend. External links are provided for informational purposes only and do not constitute an endorsement.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <div class="footer__ehl">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 203" class="footer__ehl-logo" role="img" aria-label="Equal Housing Lender" fill="currentColor">
+            <title>Equal Housing Lender</title>
+            <path fill-rule="evenodd" d="M100,2 L198,80 L198,160 L2,160 L2,80 L100,2 Z M100,22 L183,82 L183,148 L17,148 L17,82 L100,22 Z"/>
+            <rect x="42" y="90" width="116" height="18" rx="1"/>
+            <rect x="42" y="120" width="116" height="18" rx="1"/>
+            <text x="100" y="181" font-family="Arial Black,Arial,sans-serif" font-size="19" font-weight="900" text-anchor="middle" letter-spacing="1">EQUAL HOUSING</text>
+            <text x="100" y="203" font-family="Arial Black,Arial,sans-serif" font-size="26" font-weight="900" text-anchor="middle" letter-spacing="2">LENDER</text>
+          </svg>
+          <span class="footer__legal">Phuong Ha, NMLS #1839449. Mortgage Solutions of Colorado, LLC., dba Mortgage Solutions Financial, NMLS #61602. Equal Housing Lender. <a href="https://www.nmlsconsumeraccess.org" target="_blank" rel="noopener">NMLSConsumerAccess.org</a> &middot; Not a commitment to lend.</span>
+        </div>
+        <p class="footer__copy">&copy; <span id="year"></span> phuongha.loans — All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

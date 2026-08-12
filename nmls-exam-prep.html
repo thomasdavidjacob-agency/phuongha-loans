@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NMLS SAFE MLO Exam Prep | PhuongHa.Loans</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --navy-light: #1a3a5c;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --white: #ffffff;
+    --text-muted: #8a9ab5;
+    --correct: #2ecc71;
+    --wrong: #e74c3c;
+    --correct-bg: #0d2e1a;
+    --wrong-bg: #2e0d0d;
+    --border: #1e3a5a;
+    --explain-bg: #0e1f38;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--navy); color: var(--white); font-family: 'Inter', sans-serif; min-height: 100vh; }
+
+  .header {
+    background: var(--navy-mid);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--gold); }
+  .logo span { color: var(--white); }
+  .header-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+
+  .app { max-width: 820px; margin: 0 auto; padding: 28px 20px 60px; }
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* ── HOME ── */
+  .home-hero { text-align: center; padding: 44px 0 36px; }
+  .home-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .home-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.15; margin-bottom: 14px; }
+  .home-title em { font-style: normal; color: var(--gold); }
+  .home-sub { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; max-width: 500px; margin: 0 auto 36px; }
+
+  /* ── TEAM BANNER ── */
+  .team-banner {
+    background: linear-gradient(135deg, #0e1f38 0%, #112240 60%, #1a3a5c 100%);
+    border: 1px solid var(--gold);
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .team-banner::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .team-banner-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .team-banner-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    line-height: 1.35;
+    margin-bottom: 14px;
+  }
+  .team-banner-title em { font-style: normal; color: var(--gold); }
+  .team-banner-body {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #b8ccdf;
+    margin-bottom: 18px;
+  }
+  .team-banner-body strong { color: var(--white); font-weight: 600; }
+  .team-pillars {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .team-pillar {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+  }
+  .team-cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .team-btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 9px;
+    padding: 10px 22px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.18s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .team-btn-primary:hover { background: var(--gold-light); }
+  .team-btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 9px;
+    padding: 10px 22px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.18s;
+  }
+  .team-btn-secondary:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+
+  /* ── MODE GRID ── */
+  .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
+  @media (max-width: 520px) { .mode-grid { grid-template-columns: 1fr; } }
+  .mode-card { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 12px; padding: 24px 20px; cursor: pointer; transition: all 0.2s; text-align: left; }
+  .mode-card:hover { border-color: var(--gold); background: var(--navy-light); transform: translateY(-2px); }
+  .mode-icon { font-size: 1.8rem; margin-bottom: 10px; }
+  .mode-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 5px; }
+  .mode-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+  .mode-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.35);
+    color: var(--gold);
+    border-radius: 4px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    margin-bottom: 8px;
+  }
+
+  .stats-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .stat-pill { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 100px; padding: 7px 18px; font-size: 0.78rem; color: var(--text-muted); }
+  .stat-pill strong { color: var(--gold); }
+
+  /* ── QUIZ HEADER ── */
+  .quiz-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .q-counter { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+  .progress-bar { flex: 1; height: 4px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--gold); border-radius: 4px; transition: width 0.4s ease; }
+  .score-badge { font-size: 0.78rem; font-weight: 600; color: var(--gold); white-space: nowrap; }
+  .btn-exit { background: none; border: 1px solid var(--border); color: var(--text-muted); border-radius: 8px; padding: 5px 12px; font-size: 0.75rem; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+  .btn-exit:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── QUESTION CARD ── */
+  .question-card { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 16px; }
+  .q-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .q-text { font-family: 'Playfair Display', serif; font-size: 1.1rem; line-height: 1.55; }
+
+  /* ── CHOICES ── */
+  .choices { display: flex; flex-direction: column; gap: 9px; margin-bottom: 16px; }
+  .choice { background: var(--navy-mid); border: 1.5px solid var(--border); border-radius: 10px; padding: 14px 18px; cursor: pointer; display: flex; align-items: flex-start; gap: 12px; transition: all 0.18s; font-size: 0.9rem; line-height: 1.45; }
+  .choice:hover:not(.disabled) { border-color: var(--gold); background: var(--navy-light); }
+  .choice-letter { min-width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); flex-shrink: 0; margin-top: 1px; transition: all 0.18s; }
+  .choice:hover:not(.disabled) .choice-letter { border-color: var(--gold); color: var(--gold); }
+  .choice.correct { background: var(--correct-bg); border-color: var(--correct); }
+  .choice.correct .choice-letter { background: var(--correct); border-color: var(--correct); color: #fff; }
+  .choice.wrong { background: var(--wrong-bg); border-color: var(--wrong); }
+  .choice.wrong .choice-letter { background: var(--wrong); border-color: var(--wrong); color: #fff; }
+  .choice.disabled { cursor: default; }
+  .choice.correct.disabled, .choice.wrong.disabled { opacity: 1; }
+  .choice.disabled:not(.correct):not(.wrong) { opacity: 0.55; }
+
+  /* ── EXPLANATION ── */
+  .explanation-box { border-radius: 12px; padding: 20px 22px; margin-bottom: 16px; display: none; animation: fadeSlide 0.3s ease; }
+  .explanation-box.correct-exp { background: var(--correct-bg); border: 1px solid var(--correct); }
+  .explanation-box.wrong-exp { background: var(--wrong-bg); border: 1px solid var(--wrong); }
+  .explanation-box.show { display: block; }
+  @keyframes fadeSlide { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .exp-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .exp-icon { font-size: 1.1rem; }
+  .exp-status { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .correct-exp .exp-status { color: var(--correct); }
+  .wrong-exp .exp-status { color: var(--wrong); }
+  .exp-correct-answer { font-size: 0.8rem; font-weight: 600; color: var(--correct); margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid rgba(46,204,113,0.2); }
+  .wrong-exp .exp-correct-answer { border-bottom-color: rgba(231,76,60,0.2); }
+  .exp-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .exp-text { font-size: 0.88rem; line-height: 1.65; color: #c8d8ec; }
+
+  /* ── BUTTONS ── */
+  .btn-row { display: flex; gap: 10px; justify-content: flex-end; }
+  .btn-row-center { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .btn { border: none; border-radius: 10px; padding: 11px 26px; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.18s; }
+  .btn-primary { background: var(--gold); color: var(--navy); }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-secondary { background: var(--navy-light); color: var(--white); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--gold); }
+  .btn:disabled { opacity: 0.35; cursor: default; }
+
+  /* ── GATE MODAL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 12, 28, 0.92);
+    z-index: 500;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .modal-overlay.show { display: flex; }
+  @media (max-height: 740px) {
+    .modal-overlay { align-items: flex-start; padding: 16px; }
+    .modal { margin: auto; padding: 28px 24px; }
+    .modal-icon { display: none; }
+    .modal-icon + .modal-eyebrow { margin-top: 0; }
+  }
+  .modal {
+    background: var(--navy-mid);
+    border: 1px solid var(--gold);
+    border-radius: 20px;
+    padding: 40px 36px;
+    max-width: 520px;
+    width: 100%;
+    position: relative;
+    animation: modalIn 0.35s ease;
+  }
+  @keyframes modalIn { from { opacity: 0; transform: scale(0.94) translateY(12px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+  .modal-glow {
+    position: absolute;
+    top: -1px; left: 50%;
+    transform: translateX(-50%);
+    width: 120px; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    border-radius: 2px;
+  }
+  .modal-icon { text-align: center; margin-bottom: 16px; }
+  .modal-icon svg { width: 44px; height: 44px; stroke: var(--gold); display: inline-block; }
+  .modal-success-icon { font-size: 2.5rem; margin-bottom: 14px; }
+  .modal-success-icon svg { width: 44px; height: 44px; stroke: var(--gold); display: inline-block; }
+  .mode-icon { font-size: 1.8rem; margin-bottom: 10px; }
+  .mode-icon svg { width: 30px; height: 30px; stroke: var(--white); display: inline-block; }
+  .result-icon { font-size: 3rem; margin-bottom: 14px; min-height: 1em; }
+  .modal-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 10px; }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 1.3; text-align: center; margin-bottom: 10px; }
+  .modal-title em { font-style: normal; color: var(--gold); }
+  .modal-sub { font-size: 0.86rem; line-height: 1.65; color: #b0c4db; text-align: center; margin-bottom: 24px; }
+  .modal-sub strong { color: var(--white); }
+  .modal-divider { height: 1px; background: var(--border); margin-bottom: 24px; }
+  .modal-form-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+  .modal-fields { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+  .modal-input {
+    background: var(--navy);
+    border: 1.5px solid var(--border);
+    border-radius: 9px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.18s;
+    width: 100%;
+  }
+  .modal-input::placeholder { color: var(--text-muted); }
+  .modal-input:focus { outline: none; border-color: var(--gold); }
+  .modal-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 10px;
+    padding: 13px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.18s;
+    margin-bottom: 12px;
+  }
+  .modal-submit:hover { background: var(--gold-light); }
+  .modal-submit:disabled { opacity: 0.5; cursor: default; }
+  .modal-alt {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  .modal-alt a { color: var(--gold); text-decoration: none; }
+  .modal-alt a:hover { text-decoration: underline; }
+  .modal-success { display: none; text-align: center; padding: 10px 0; }
+  .modal-success.show { display: block; }
+  .modal-success-icon { font-size: 3rem; margin-bottom: 14px; }
+  .modal-success-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); margin-bottom: 10px; }
+  .modal-success-text { font-size: 0.86rem; line-height: 1.65; color: #b0c4db; }
+  .modal-form-body { }
+  .preview-note {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .preview-note strong { color: var(--gold); }
+
+  /* ── FLASHCARD ── */
+  .flashcard { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 14px; padding: 44px 28px 36px; min-height: 200px; display: flex; flex-direction: column; justify-content: center; cursor: pointer; transition: all 0.2s; position: relative; margin-bottom: 16px; text-align: center; }
+  .flashcard:hover { border-color: var(--gold); }
+  .flashcard.flipped { background: var(--navy-light); border-color: var(--gold-light); }
+  .card-side-label { position: absolute; top: 14px; left: 18px; font-size: 0.63rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+  .card-tap-hint { position: absolute; bottom: 14px; right: 18px; font-size: 0.65rem; color: var(--text-muted); font-style: italic; }
+  .card-q-text { font-family: 'Playfair Display', serif; font-size: 1.05rem; line-height: 1.55; }
+  .card-a-block { text-align: left; }
+  .card-correct-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--correct); margin-bottom: 6px; }
+  .card-correct-choice { font-weight: 600; font-size: 0.92rem; color: var(--white); margin-bottom: 12px; }
+  .card-exp-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .card-exp-text { font-size: 0.85rem; line-height: 1.6; color: #c8d8ec; }
+  .fc-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .btn-nav { background: var(--navy-mid); border: 1px solid var(--border); color: var(--white); border-radius: 10px; padding: 9px 18px; font-size: 0.85rem; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 500; transition: all 0.18s; }
+  .btn-nav:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+  .btn-nav:disabled { opacity: 0.3; cursor: default; }
+  .fc-num { font-size: 0.8rem; color: var(--text-muted); }
+
+  /* ── EXAM ── */
+  .exam-unanswered-note { font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 12px; font-style: italic; }
+
+  /* ── RESULTS ── */
+  .results-card { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 14px; padding: 36px 28px; text-align: center; margin-bottom: 20px; }
+  .result-icon { font-size: 3rem; margin-bottom: 14px; }
+  .result-score { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--gold); font-weight: 700; line-height: 1; margin-bottom: 8px; }
+  .result-label { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 22px; }
+  .result-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px; }
+  .result-stat { background: var(--navy); border: 1px solid var(--border); border-radius: 10px; padding: 14px 6px; }
+  .result-stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; }
+  .result-stat-num.green { color: var(--correct); }
+  .result-stat-num.red { color: var(--wrong); }
+  .result-stat-lbl { font-size: 0.7rem; color: var(--text-muted); margin-top: 3px; }
+  .result-cta { background: var(--navy); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px; text-align: left; margin-top: 16px; }
+  .result-cta-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); margin-bottom: 7px; }
+  .result-cta-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; }
+  .result-cta-link { display: inline-block; background: var(--gold); color: var(--navy); border-radius: 8px; padding: 9px 20px; font-size: 0.83rem; font-weight: 700; text-decoration: none; transition: background 0.18s; }
+  .result-cta-link:hover { background: var(--gold-light); }
+
+  /* ── EXAM REVIEW ── */
+  .review-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
+  .review-item { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+  .review-item.review-correct { border-left: 3px solid var(--correct); }
+  .review-item.review-wrong { border-left: 3px solid var(--wrong); }
+  .review-q-num { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .review-q-text { font-family: 'Playfair Display', serif; font-size: 0.95rem; line-height: 1.45; margin-bottom: 10px; }
+  .review-your-answer { font-size: 0.8rem; margin-bottom: 4px; }
+  .review-your-answer .lbl { color: var(--text-muted); }
+  .review-your-answer .val-wrong { color: var(--wrong); font-weight: 600; }
+  .review-your-answer .val-correct-mark { color: var(--correct); font-weight: 600; }
+  .review-correct-answer { font-size: 0.8rem; color: var(--correct); font-weight: 600; margin-bottom: 8px; }
+  .review-explanation { font-size: 0.82rem; line-height: 1.6; color: #a8bcd8; background: var(--explain-bg); border-radius: 8px; padding: 10px 14px; margin-top: 8px; }
+  .review-exp-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    padding: 28px 24px 24px;
+    margin-top: 48px;
+  }
+  .footer-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .footer-logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+  }
+  .footer-logo span { color: var(--white); }
+  .footer-nmls-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .equal-housing-icon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+  .footer-nmls-text {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .footer-nmls-text strong { color: var(--white); }
+  .footer-divider { height: 1px; background: var(--border); }
+  .footer-disclosure {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .footer-disclosure a { color: var(--gold); text-decoration: none; }
+  .footer-disclosure a:hover { text-decoration: underline; }
+  .footer-contact-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+  }
+  .footer-contact-row a { color: var(--gold); text-decoration: none; }
+  .footer-contact-row a:hover { text-decoration: underline; }
+  .footer-contact-row span { color: var(--text-muted); }
+</style>
+
+  <!-- canonical + social -->
+  <link rel="canonical" href="https://phuongha.loans/nmls-exam-prep.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#0D1B2A" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="phuongha.loans" />
+  <meta property="og:title" content="NMLS SAFE MLO Exam Prep | PhuongHa.Loans" />
+  <meta property="og:url" content="https://phuongha.loans/nmls-exam-prep.html" />
+  <meta property="og:image" content="https://phuongha.loans/hero-poster.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NMLS SAFE MLO Exam Prep | PhuongHa.Loans" />
+  <meta name="twitter:image" content="https://phuongha.loans/hero-poster.jpg" />
+</head>
+<body>
+
+<!-- ── GATE MODAL ── -->
+<div class="modal-overlay" id="gate-modal">
+  <div class="modal">
+    <div class="modal-glow"></div>
+
+    <div class="modal-form-body" id="modal-form-body">
+      <div class="modal-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <div class="modal-eyebrow">Full Access · Members Only</div>
+      <h2 class="modal-title">Your <em>Free Preview</em> Is Complete</h2>
+      <p class="modal-sub">
+        You've just experienced <strong>five questions from the most advanced MLO exam prep platform in Oregon.</strong>
+        The full library — 200 questions, complete explanations, and exam simulation — is waiting for you on the other side.
+      </p>
+
+      <div class="modal-divider"></div>
+
+      <div style="background: linear-gradient(135deg, #0e1f38, #112240); border: 1px solid rgba(201,168,76,0.3); border-radius: 12px; padding: 18px 20px; margin-bottom: 22px;">
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Your Next Chapter Starts Here</div>
+        <p style="font-size:0.84rem; line-height:1.65; color:#b0c4db;">
+          As part of <strong style="color:var(--white);">Phuong Ha's team</strong>, you're already operating at a different level — one where <strong style="color:var(--white);">AI, technology, and mortgage strategy converge</strong> to build the kind of career most loan officers only read about.
+          Phuong brings the tools, the systems, and the vision. <strong style="color:var(--white);">You bring the drive.</strong>
+          Together, you're not just passing an exam — you're stepping into the future of lending.
+        </p>
+      </div>
+
+      <div class="modal-form-label">Request Full Access — It's Free</div>
+      <div class="modal-fields">
+        <input class="modal-input" id="gate-name" type="text" placeholder="Your Full Name" />
+        <input class="modal-input" id="gate-email" type="email" placeholder="Email Address" />
+        <input class="modal-input" id="gate-phone" type="tel" placeholder="Phone Number (optional)" />
+      </div>
+      <!-- honeypot: bots fill this, humans don't -->
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true" />
+      <input type="hidden" id="_formT" />
+      <button class="modal-submit" id="gate-submit-btn" onclick="submitGate()">Send My Access Request →</button>
+      <div class="modal-alt">
+        Prefer to reach out directly?
+        <a href="tel:9714449107">(971) 444-9107</a>
+        &nbsp;·&nbsp;
+        <a href="mailto:phuong.ha@mortgagesolutions.net">phuong.ha@mortgagesolutions.net</a>
+      </div>
+    </div>
+
+    <div class="modal-success" id="modal-success">
+      <div class="modal-success-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <div class="modal-success-title">Check Your Email</div>
+      <p class="modal-success-text">
+        We sent a confirmation link to <strong id="confirm-email-display" style="color:var(--white);"></strong>. Click it to unlock all 200 questions instantly.<br><br>
+        <strong style="color:var(--white);">Can't find it?</strong> Check your spam folder, or reach out at <a href="tel:9714449107" style="color:var(--gold);">(971) 444-9107</a>.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="header">
+  <div class="logo">Phuong<span>Ha</span>.Loans</div>
+  <div style="display:flex; flex-direction:column; align-items:flex-end; gap:2px;">
+    <div class="header-tag" id="access-status-tag">
+      <span id="lock-icon" title="Free preview — register for full access"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span> NMLS SAFE MLO Exam Prep
+    </div>
+    <div style="font-size:0.6rem; color:var(--text-muted); letter-spacing:0.04em;">Phuong Ha NMLS #1839449 · Equal Housing Lender</div>
+  </div>
+</div>
+
+<div class="app">
+
+  <!-- HOME -->
+  <div class="screen active" id="screen-home">
+    <div class="home-hero">
+      <div class="home-eyebrow">Free Preview · NMLS SAFE Act</div>
+      <h1 class="home-title">Pass Your <em>MLO License</em> Exam</h1>
+      <p class="home-sub">The sharpest NMLS exam prep in Oregon — built by a licensed MLO who uses AI to train the next generation of loan officers. Every question comes with a full explanation so you actually learn.</p>
+    </div>
+
+    <!-- TEAM BANNER -->
+    <div class="team-banner">
+      <div class="team-banner-eyebrow">Join the Team · Oregon's AI-Forward MLO Network</div>
+      <h2 class="team-banner-title">You're Already Part of <em>Something Different</em></h2>
+      <p class="team-banner-body">
+        On Phuong Ha's team, you're not just getting a license — <strong>you're building a career at the intersection of mortgage, AI, and the future of lending.</strong>
+        While other loan officers are still cold-calling from spreadsheets, your team is running AI-powered lead systems, automated follow-up pipelines, and a digital presence that works around the clock.
+        <br><br>
+        <strong>Phuong Ha (NMLS #1839449)</strong> brings two decades of cross-industry expertise — from digital marketing and AI systems to mortgage origination — and shares every edge, every tool, and every advantage with the people who earn a seat at the table.
+        The exam is your entry point. What comes after is the real opportunity.
+      </p>
+      <div class="team-pillars">
+        <span class="team-pillar">AI-Powered Lead Gen</span>
+        <span class="team-pillar">Proven Licensing Path</span>
+        <span class="team-pillar">Mentorship from Day One</span>
+        <span class="team-pillar">Modern Mortgage Systems</span>
+        <span class="team-pillar">Oregon-Based Network</span>
+      </div>
+      <div class="team-cta-row">
+        <button class="team-btn-primary" onclick="showGate()">Get Full Exam Access</button>
+        <button class="team-btn-secondary" onclick="startMode('quiz')">Try 5 Free Questions →</button>
+      </div>
+    </div>
+
+    <div class="mode-grid">
+      <div class="mode-card" onclick="startMode('quiz')">
+        <div class="mode-badge">5 Free Questions</div>
+        <div class="mode-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div>
+        <div class="mode-name">Practice Quiz</div>
+        <div class="mode-desc">Pick your answer, see instant feedback, and read the full explanation — right or wrong. Full access unlocks all 200.</div>
+      </div>
+      <div class="mode-card" onclick="startMode('flashcard')">
+        <div class="mode-badge">5 Free Cards</div>
+        <div class="mode-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <div class="mode-name">Flashcards</div>
+        <div class="mode-desc">Flip through questions and see the correct answer with a full explanation on the back.</div>
+      </div>
+      <div class="mode-card" onclick="showGate()">
+        <div class="mode-badge">Full Access Only</div>
+        <div class="mode-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div class="mode-name">Exam Simulation</div>
+        <div class="mode-desc">50 randomized questions, 90-minute timer. No feedback until you submit — just like the real test.</div>
+      </div>
+      <div class="mode-card" onclick="showGate()">
+        <div class="mode-badge">Full Access Only</div>
+        <div class="mode-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-8.49"/></svg></div>
+        <div class="mode-name">Review Missed</div>
+        <div class="mode-desc">Drill only the questions you've gotten wrong. Your weak spots, fixed fast.</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-pill"><strong>200</strong> Total Questions</div>
+      <div class="stat-pill"><strong>Full Explanation</strong> on Every Answer</div>
+      <div class="stat-pill"><strong>5 Free</strong> Questions to Start</div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="screen" id="screen-quiz">
+    <div class="quiz-header">
+      <button class="btn-exit" onclick="exitToHome()">← Exit</button>
+      <span class="q-counter" id="quiz-counter">1 / 5</span>
+      <div class="progress-bar"><div class="progress-fill" id="quiz-progress" style="width:0%"></div></div>
+      <span class="score-badge" id="quiz-score">0 / 0</span>
+    </div>
+
+    <div class="preview-note" id="quiz-preview-note">
+      <strong>Free Preview:</strong> Questions <span id="quiz-preview-count">1–5</span> of 200 — <a href="#" onclick="showGate(); return false;" style="color:var(--gold);">get full access →</a>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label" id="quiz-q-label">Question 1</div>
+      <div class="q-text" id="quiz-q-text"></div>
+    </div>
+
+    <div class="choices" id="quiz-choices"></div>
+
+    <div class="explanation-box" id="quiz-exp-box">
+      <div class="exp-header">
+        <span class="exp-icon" id="quiz-exp-icon"></span>
+        <span class="exp-status" id="quiz-exp-status"></span>
+      </div>
+      <div class="exp-correct-answer" id="quiz-exp-correct"></div>
+      <div class="exp-label">Why This Is The Answer</div>
+      <div class="exp-text" id="quiz-exp-text"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" id="quiz-next-btn" onclick="nextQuestion()" disabled>Next Question →</button>
+    </div>
+  </div>
+
+  <!-- FLASHCARD -->
+  <div class="screen" id="screen-flashcard">
+    <div class="quiz-header">
+      <button class="btn-exit" onclick="exitToHome()">← Exit</button>
+      <span class="q-counter" id="fc-counter">1 / 5</span>
+      <div class="progress-bar"><div class="progress-fill" id="fc-progress" style="width:0%"></div></div>
+      <span class="score-badge">Flashcards</span>
+    </div>
+
+    <div class="preview-note">
+      <strong>Free Preview:</strong> Cards 1–5 of 200 — <a href="#" onclick="showGate(); return false;" style="color:var(--gold);">get full access →</a>
+    </div>
+
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="card-side-label" id="card-side">Question</div>
+      <div class="card-tap-hint">tap to flip</div>
+      <div id="card-front"><div class="card-q-text" id="card-q-text"></div></div>
+      <div id="card-back" style="display:none">
+        <div class="card-a-block">
+          <div class="card-correct-label">Correct Answer</div>
+          <div class="card-correct-choice" id="card-correct-choice"></div>
+          <div class="card-exp-label">Explanation</div>
+          <div class="card-exp-text" id="card-exp-text"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fc-nav">
+      <button class="btn-nav" id="fc-prev" onclick="fcNav(-1)" disabled>← Prev</button>
+      <span class="fc-num" id="fc-num">Card 1 of 5</span>
+      <button class="btn-nav" id="fc-next" onclick="fcNav(1)">Next →</button>
+    </div>
+  </div>
+
+  <!-- EXAM -->
+  <div class="screen" id="screen-exam">
+    <div class="quiz-header">
+      <button class="btn-exit" onclick="exitToHome()">← Exit</button>
+      <span class="q-counter" id="exam-counter">1 / 50</span>
+      <div class="progress-bar"><div class="progress-fill" id="exam-progress" style="width:0%"></div></div>
+      <span class="score-badge" id="exam-timer">90:00</span>
+    </div>
+    <div class="question-card">
+      <div class="q-label" id="exam-q-label">Question 1</div>
+      <div class="q-text" id="exam-q-text"></div>
+    </div>
+    <div class="choices" id="exam-choices"></div>
+    <div class="exam-unanswered-note" id="exam-unanswered"></div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="submitExam()">Submit & See Results</button>
+      <button class="btn btn-primary" id="exam-next-btn" onclick="examNext()">Next →</button>
+    </div>
+  </div>
+
+  <!-- EXAM REVIEW -->
+  <div class="screen" id="screen-exam-review">
+    <div class="results-card">
+      <div class="result-icon" id="er-icon"></div>
+      <div class="result-score" id="er-score">0%</div>
+      <div class="result-label" id="er-label"></div>
+      <div class="result-stats">
+        <div class="result-stat"><div class="result-stat-num green" id="er-correct">0</div><div class="result-stat-lbl">Correct</div></div>
+        <div class="result-stat"><div class="result-stat-num red" id="er-wrong">0</div><div class="result-stat-lbl">Wrong</div></div>
+        <div class="result-stat"><div class="result-stat-num" id="er-total">50</div><div class="result-stat-lbl">Total</div></div>
+      </div>
+      <div class="result-cta">
+        <div class="result-cta-title">Ready to Get Licensed With Phuong Ha?</div>
+        <div class="result-cta-text">Your team is already building the future of mortgage in Oregon. Let's finish what you started.</div>
+        <a href="https://phuongha.loans" class="result-cta-link" target="_blank">Talk to Phuong Ha →</a>
+    <div class="review-list" id="review-list"></div>
+    <div class="btn-row-center">
+      <button class="btn btn-primary" onclick="exitToHome()">Home</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="screen" id="screen-results">
+    <div class="results-card">
+      <div class="result-icon" id="result-icon"></div>
+      <div class="result-score" id="result-score">0%</div>
+      <div class="result-label" id="result-label"></div>
+      <div class="result-stats">
+        <div class="result-stat"><div class="result-stat-num green" id="result-correct">0</div><div class="result-stat-lbl">Correct</div></div>
+        <div class="result-stat"><div class="result-stat-num red" id="result-wrong">0</div><div class="result-stat-lbl">Wrong</div></div>
+        <div class="result-stat"><div class="result-stat-num" id="result-total">0</div><div class="result-stat-lbl">Total</div></div>
+      </div>
+      <div class="result-cta">
+        <div class="result-cta-title">Unlock All 200 Questions</div>
+        <div class="result-cta-text">You've seen what this tool can do. The full library — 200 questions, exam simulation, and missed-question drilling — is one conversation away.</div>
+        <a href="#" onclick="showGate(); return false;" class="result-cta-link">Get Full Access →</a>
+      </div>
+    </div>
+    <div class="btn-row-center">
+      <button class="btn btn-secondary" onclick="exitToHome()">Back to Home</button>
+      <button class="btn btn-primary" onclick="showGate()">Request Full Access</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const ALL_QUESTIONS = [{"num":1,"question":"A customer asks his mortgage broker for the name of a good title company. The broker has a list of several companies with whom she has done business in the past. At what point, according to RESPA, must she give the customer an AfBA disclosure?","choices":["At least 3 days prior to closing","At the closing table","At the same time that she gives the customer the list of title companies","She is not required to give the customer an AfBA disclosure if she has no ownership or other interest in any of the title companies on the list"],"answer":"d) If the referring party does not have an ownership or other beneficial interest, an Affiliated Business Arrangement (AfBA) disclosure is not required by RESPA.","correct":3},{"num":2,"question":"Which would NOT be considered a RESPA violation?","choices":["You pay for all the advertising for your favorite real estate agent to keep the referrals coming in","Your favorite lender gives you a travel mug with their logo on it","You rent space in a title company office below market value for the convenience of letting them handle your loans","Your primary lender takes you on a weekend golf trip, all expenses paid, if you close 10 loans in a month with them"],"answer":"b) A thing of minimal value used in the course of sales such as pens, mementos, coffee cups hats, etc. is permissible, but the other three arrangements could be considered violations of RESPA. To violate RESPA, the thing of value does not have to be money.","correct":1},{"num":3,"question":"The Real Estate Settlement Procedures Act (RESPA) is also known as","choices":["Regulation B","Regulation C","Regulation X","Regulation Z"],"answer":"c) RESPA (REXPA) is also known as Regulation X. Real Estate Settlement Procedures Act","correct":2},{"num":4,"question":"What is the LEAST acceptable factor in evaluating a mortgage loan application?","choices":["Amount of income","Credit history","Debt","Source of income"],"answer":"d) Creditors may not deny a loan based on the source of income; they may deny a loan based on the likeliness that income will not continue.","correct":3},{"num":5,"question":"What type of loan requires a non-refundable funding fee?","choices":["Conventional loan","FHA loan","Subprime loan","VA loan"],"answer":"d) The VA requires a non-refundable funding fee that varies based on the number of times the veteran has used a VA loan.","correct":3},{"num":6,"question":"What is a provision in a mortgage enabling the lender to demand full repayment if the borrower sells the mortgaged property or partial interest in a mortgaged property?","choices":["Acceleration clause","Alienation clause","Partial lien release","Prepayment penalty clause"],"answer":"b) An alienation clause requires the mortgagor to repay the entire balance of the loan if the property is sold, transferred, or otherwise abandoned.","correct":1},{"num":7,"question":"The Consumer Financial Protection Bureau was created by the","choices":["Federal Reserve Act","Federal Home Loan Bank Act","National Housing Act","Dodd-Frank Wall Street Reform and Consumer Protection Act"],"answer":"d) Dodd-Frank Wall Reform and Consumer Protection Act","correct":3},{"num":8,"question":"Which regulation encourages financial institutions to help meet the credit needs of their communities, including low- and moderate-income neighborhoods, consistent with safe and sound lending practices?","choices":["CRA \u2013 Community Reinvestment Act","HOEPA \u2013 Home Ownership Equity Protection Act","RESPA \u2013 Real Estate Settlement Procedures Act","TILA \u2013 Truth in Lending Act"],"answer":"a) The Community Reinvestment Act is intended to ensure that all neighborhoods are served by financial institutions.","correct":0},{"num":9,"question":"According to ECOA, a borrower can request a copy of the appraisal report used in the decision process within ___ days of a credit decision.","choices":["15 days","30 days","60 days","90 days"],"answer":"d) Borrowers have a right to request a copy of the appraisal report used for a decision within 90 days of that credit decision.","correct":3},{"num":10,"question":"Conforming loans follow the underwriting guidelines of","choices":["Fannie Mae and Freddie Mac","FHA and VA","Freddie Mac and Ginnie Mae","Ginnie Mae and Closing Disclosure"],"answer":"a) Traditionally, a loan is considered to be conforming when it meets Fannie Mae/Freddie Mac standards and can be sold on the secondary market.","correct":0},{"num":11,"question":"ECOA is a law that ensures","choices":["Borrowers are shown how much they will pay for credit in dollars and percentages","Financial institutions provide funding for low-income and moderate-income housing","Lenders make credit available with fairness and without discrimination","Settlement procedures are regulated so buyers can compare the cost of services"],"answer":"c) The Equal Credit Opportunity Act ensures all lenders must make credit available with fairness and without discrimination.","correct":2},{"num":12,"question":"A 65-year-old homeowner does not currently have a mortgage on his home but is in need of funds to make some repairs. Which mortgage option would best address his need?","choices":["Blanket mortgage","Equity participation mortgage","Reverse mortgage","Wraparound mortgage"],"answer":"c) A reverse mortgage allows qualified homeowners at least 62 years of age to convert equity in their home into a monthly income stream or line of credit.","correct":2},{"num":13,"question":"The borrower knows that his credit is bad, but he really wants to buy a house. He convinces his cousin to apply for a loan, knowing she will be able to get better terms. He promises her that he will pay the full mortgage amount every month. She could be considered a(n)","choices":["Identity thief","Investor","Mortgage rescuer","Straw borrower"],"answer":"d) A buyer who has no intention of living in the property he or she fraudulently mortgages could be considered a straw buyer. While this situation may seem okay, since it\u2019s just one relative helping out another, it\u2019s still misrepresentation and, therefore, fraud.","correct":3},{"num":14,"question":"An FHA borrower may","choices":["Be eligible only if qualified as low-income","Buy a six-unit dwelling","Purchase a home with nothing down","Use a gift for the entire down payment"],"answer":"d) FHA loans are not just for low-income borrowers. They can be used to purchase a one to four (1-4 unit) family residence. FHA loans do require a down payment but allow borrowers to use a gift to cover that.","correct":3},{"num":15,"question":"The value remaining in property after all liens and debts are considered is its","choices":["Assessment","Equity","Surety","Valuation"],"answer":"b) Equity is the difference between market value of a property and the sum of the mortgages and liens against it.","correct":1},{"num":16,"question":"A borrower is refinancing his home and signs the loan papers. How much time does Reg Z give him to change his mind?","choices":["3 business days","30 days","3 years","He has no right of rescission"],"answer":"a) When refinancing, Regulation Z( TILA) gives a borrower three business days to rescind after the contract is signed.","correct":0},{"num":17,"question":"An 80/20 combo loan with the sales price of $175,000, a rate of 6% for the 80% first mortgage, and a rate of 8.5% for the 20% second mortgage, would have a first mortgage loan amount of what?","choices":["$35,000","$105,000","$140,000","$175,000"],"answer":"c) The first mortgage is 80% of the sale price: $175,000 x 80% = $140,000.","correct":2},{"num":18,"question":"A convertible ARM allows a borrower to change","choices":["From an adjustable-rate mortgage to a fixed rate mortgage","The index on which the interest rate is based","The margin when interest rates rise","The rate cap when interest rates fall"],"answer":"a) A convertible adjustable-rate mortgage gives a borrower the right to change (convert) from an adjustable-rate mortgage to a fixed rate mortgage one time during the loan term, provided certain conditions are met.","correct":0},{"num":19,"question":"The act of redlining may be defined as","choices":["Channeling buyers to certain neighborhoods based on their race or ethnic background","Charging a greater rate of interest on a mortgage loan than the law allows","Refusing to make loans on property in certain neighborhoods for discriminatory reasons","Using voluntary reconveyance or friendly forfeiture to avoid judicial foreclosure"],"answer":"c) Redlining is the refusal to make loans on property in certain neighborhoods for discriminatory reasons and is an illegal discriminatory act under federal, state, and local fair housing laws.","correct":2},{"num":20,"question":"A borrower wants to get a loan to buy a house. When evaluating his credit obligations, which would NOT be considered as debt?","choices":["Cable service payment","Car payment","Child support payments","Credit card payments"],"answer":"a) His cable service payment is not considered part of his debt for qualifying purposes since cable service can be cancelled.","correct":0},{"num":21,"question":"HOEPA is an addendum to what law?","choices":["ECOA","FCRA","RESPA","TILA"],"answer":"d) HOEPA is an addendum to the Truth in Lending Act. HOEPA limits the amount of points that can be charged on loans without additional disclosures.","correct":3},{"num":22,"question":"The relationship between the cost of borrowing and the total amount financed, represented as a percentage, is known as","choices":["An ARM","The APR","A discount point","The note rate"],"answer":"b) The APR\u2014annual percentage rate\u2014takes into consideration the cost of borrowing and the total amount financed. It is represented as percentage and is the true cost of lending.","correct":1},{"num":23,"question":"While underwriting a loan file, you calculate this formula: PITI divided by income. What have you just determined?","choices":["Housing expense ration","Loan-to-value ration","Stable monthly income ratio","Total debt to income ration"],"answer":"a) Correct answer is A. A borrower\u2019s housing expense ratio is the relationship of the borrower\u2019s total monthly housing expense to income, expressed as a percentage.","correct":0},{"num":24,"question":"The definition of a \"Complete Application\" includes all of the following EXCEPT the","choices":["Address of the subject property","Gross monthly income","Name of borrower","Most recent two months of bank statements"],"answer":"d) Correct answer is d. For a complete application or 1003, you must have the following (6) six items: Name of borrower, Address of subject property, Monthly income, Social Security #, Estimate Value of subject property, and Loan amount. N-I-S-P-E-L","correct":3},{"num":25,"question":"An opinion of value is also known as","choices":["An appraisal","A comparable","Market value","An offer"],"answer":"Correct answer is A. The definition of appraisal is \u201can opinion of value.\u201d","correct":0},{"num":26,"question":"TILA requires creditors to maintain records that they complied with the disclosure requirements for how many years?","choices":["One","Two","Three","Four"],"answer":"b) TILA law requires creditors to maintain records for two years after the disclosures were required to be made.","correct":1},{"num":27,"question":"What is the maximum length of time that collection information can be reported on a credit report according to the Fair Credit Reporting Act?","choices":["Indefinitely","10 years","7 years","3 years"],"answer":"c) Seven years is the maximum length of time such information can be reported on a credit report according to the Fair Credit Reporting Act, except for criminal convictions, which can be reported indefinitely.","correct":2},{"num":28,"question":"A borrower has a stable monthly income of $4,000 and recurring debts of $600. If he's getting an FHA loan, what's the maximum monthly payment for which he would qualify?","choices":["$1.054","$1,120","$1,240","$1,462"],"answer":"b) Using the payment-to-income ratio of 31%, we get $1,240. But using the total debt to income ratio, we find: $4,000 (income) multiplied by 0.43, which equals $1,720. From that, you subtract monthly debts of $600, leaving $1,120.","correct":1},{"num":29,"question":"Which law allows a consumer who has had her credit card used by an identify thief to place a freeze on her credit report?","choices":["CRA","ECOA","FACTA","SAFE Act"],"answer":"c) FACTA has provisions that allow consumers to freeze their credit under certain circumstances, such as when they have experienced identity theft. Fair and Accurate Credit Transaction Act","correct":2},{"num":30,"question":"You are pre-qualifying a borrower for a purchase loan. She has debt equaling $950 each month and gross monthly income totaling $5,200 each month. What is the maximum qualifying house payment, including principal, interest, taxes and insurance on a conventional loan?","choices":["$590","$922","$1,000","$1,456"],"answer":"b) Two calculations need to be done: $5,200 x 28% = $1,456, then $5,200.00 x 36% = $1,872 - $950 = $922. Take the lower of the two. If you did not complete both calculations, you might have allowed Sue to have a payment of $1,456; by the time you added the debt and divided by the $5,200, your back ratio would be too high ($5,200 x 28% = $1,456 + $950 = $2,406 \u00f7 $5,200 = 46%).","correct":1},{"num":31,"question":"Under the FCRA, consumers do NOT have the right to","choices":["Dispute inaccurate information in writing and demand the information be removed from the credit report","Inspect information on their credit reports","Receive a free copy of their credit report even if they have not applied for credit","Require bankruptcies be removed from their credit report after five years, if credit has been reestablished"],"answer":"d) All consumers have the right to review their credit reports for accuracies, challenge inaccurate information, and receive a free copy of their credit report annually. They do NOT have the right to have bankruptcies removed after five years. That timeline is seven to ten years.","correct":3},{"num":32,"question":"Which situation is NOT a red flag that illegal flipping may be taking place?","choices":["A group of sellers and buyers changing ownership of one property among them","An inflated appraisal","Purchasing and remodeling a house and selling it for quick profit","A series of sales and quick resales"],"answer":"c) Purchasing and remodeling a house and then selling it for a quick profit is the good side of flipping, which is perfectly legal. The illegal side of flipping is when colluding parties profit from the sale of property with an inflated appraisal that supports a loan. It may involve a series of sales and quick resales, with one property and a group of sellers and buyers changing ownership among them.","correct":2},{"num":33,"question":"A borrower closes a loan with ABC Mortgage. His name is NOT on the National Do Not Call Registry NOR on ABC's internal do not call list. ABC Mortgage can call the borrower to solicit new business","choices":["For up to 3 months from the transaction date","For up to 12 months from the transaction date","For up to 18 months from the transaction date","Indefinitely"],"answer":"d) A consumer who does not place his name on either the National Do Not Call Registry or a company\u2019s internal do not call list has no protection from phone calls. ABC can call the borrower indefinitely.","correct":3},{"num":34,"question":"Mortgage fraud can be committed by","choices":["Any party to a mortgage loan","Appraiser only","Borrowers only","Lenders and brokers only"],"answer":"a) Any party to a mortgage loan.","correct":0},{"num":35,"question":"You are refinancing a $200,000 mortgage with a prepayment penalty of six months of interest at 6.5%. How much is the prepayment penalty?","choices":["$1,083","$2,500","$6,500","$13,000"],"answer":"c) Simply multiply the original loan amount by the interest rate for the annual interest, then divide by 2 to get six months' interest. In this case, $200,000 x 6.5% (0.065) = $13,000; $13,000 \u00f7 2 = $6,500.","correct":2},{"num":36,"question":"A borrower reports income of $40,000 from rental properties. How much of that should be considered when applying for a mortgage loan?","choices":["$40,000","$32,000","$30,000","$20,000"],"answer":"c) Income from rental properties should be counted only at 75% - this allows for vacancy losses.","correct":2},{"num":37,"question":"The document that creates a lien against real property as security for promise to repay a loan is called a","choices":["Mortgage","Negotiable instrument","Promissory note","Trust deed"],"answer":"a) A mortgage creates a lien against real property as security for the payment of a note. The mortgage is a type of security instrument where the borrower (mortgagor) pledges property to the lender (mortgagee) as collateral for the debt.","correct":0},{"num":38,"question":"What is the maximum LTV on a Rural Development loan?","choices":["75%","80%","90%","100%"],"answer":"d) Borrowers who meet the income limits in designated rural areas do not need a down payment to get a Rural Development loan.","correct":3},{"num":39,"question":"During the application process, an MLO asks if the borrower is widowed; he is violating which law?","choices":["ECOA","Fair Housing","FCRA","RESPA"],"answer":"a) ECOA states that an MLO can ask if the borrower is married, unmarried, or separated. The MLO may not ask if the borrower is widowed or single.","correct":0},{"num":40,"question":"Under Regulation Z, which advertisement would require full disclosure of credit terms?","choices":["Affordable rates available","Assume loan at 8% interest","Low down payment","Zero down"],"answer":"b) Regulation Z requires that once you state any type of credit terms in advertising such as 8% interest, you must disclose all finance charges and total annual percentage rate (APR).","correct":1},{"num":41,"question":"The Privacy Rule of the Gramm-Leach-Bliley Act requires that financial institutions provide the consumer with a Consumer Privacy Policy","choices":["Before disclosing information to non-affiliated third parties","Each time the servicing is transferred","Three business days prior to closing","Within 3 business days of applying for a loan"],"answer":"a) According to the Gramm-Leach-Bliley Act, this policy is required to be provided before disclosing information to non-affiliated third parties.","correct":0},{"num":42,"question":"A borrower is buying a house with a sales price of $200,000 and an LTV of 75%. If he pays two discount points, what is the total cost of the points?","choices":["$1,500","$2,000","$3,000","$4,000"],"answer":"c) With an LTV of 75%, the loan for this purchase is $150,000. On a $150,000 loan, a point costs $1,500 (150,000 x .01), so the borrower is paying $3,000.","correct":2},{"num":43,"question":"RESPA's Section 8 prohibits all fees EXCEPT","choices":["Earned fees","Giving a referral fee","Receiving a referral fee","Unearned fees"],"answer":"a) RESPA\u2019s Section 8 prohibits any kinds of kickback, unearned fee, or referral fee. Earned fees are certainly allowed.","correct":0},{"num":44,"question":"What is NOT considered a protected class under the Fair Housing Act?","choices":["Age","Race","Religion","Sex"],"answer":"a) While other federal legislation prohibits discrimination due to age, the Fair Housing Act does not address age","correct":0},{"num":45,"question":"HMDA","choices":["Applies only to new purchase loans","Establishes a quota for mortgage loans within a certain geographic area","Identifies possible discriminatory lending patterns","Prohibits lenders from considering an applicant\u2019s religion"],"answer":"c) The Home Mortgage Disclosure Act is a disclosure law that determines whether financial institutions are serving the housing needs of their communities by not discriminating.","correct":2},{"num":46,"question":"If an MLO or a real estate agent engages in the practice of soliciting homeowners in a particular community to sell their properties because people of other races, religions, or social status have purchased in the area, they would be guilty of","choices":["Blockbusting","Fraud","Redlining","Steering"],"answer":"a) Blockbusting is soliciting others to sell their properties due to the changes in a neighborhood.  Also called Panic Selling.","correct":0},{"num":47,"question":"Which household does NOT qualify as a protected class under the familial status clause of the Fair Housing Act?","choices":["Family with a single parent and child","Grandparents raising their grandchildren","Pregnant woman","Retired couple"],"answer":"d) Familial status refers to households that include individuals under the age of 18 who either live with parents or legal custodians. This protection also extends to pregnant women or any person in the process of obtaining legal custody of a child under the age of 18.","correct":3},{"num":48,"question":"A homeowner's house appraises for $125,000. He qualifies for an 85% LTV. He owes $63,000 on his first mortgage and $5,000 on his second mortgage. He would like to refinance his house into one mortgage loan and receive additional cash to pay off other debt. How much cash would be available if his closing costs are $4,200 and are financed in the loan?","choices":["$34,050","$38,250","$43,250","$52,800"],"answer":"a) First, determine the maximum loan amount Robby qualifies for: $125,000 x 85% = $106,250. Now, subtract the current debt and closing costs: $106,250 - $63,000 - $5,000 - $4,200 = $34,050 cash available.","correct":0},{"num":49,"question":"A residential lender is EXEMPT from the policies of the federal Civil Rights Act","choices":["At all times, federal civil rights laws apply only to agents who sell property, not to lenders","When the loan is less than $50,000","When the loan is for vacant land","Never, a lender is not exempt from civil rights laws affecting property"],"answer":"d) The Civil Rights Act of 1866 applies to anyone involved in any property transactions; there are no exceptions.","correct":3},{"num":50,"question":"The down payment requirement for a VA loan can be as little as","choices":["0%","3.50%","5%","10%"],"answer":"a) Eligible veterans do not need a down payment (ZERO DOWN) to get a VA loan.","correct":0},{"num":51,"question":"Which mortgage clause allows a lender to declare the entire unpaid balance due on a borrower's default?","choices":["Acceleration","Escalator","Foreclosure","Forfeiture"],"answer":"a) The lender\u2019s right of acceleration can mean that a buyer who misses one or two payments may have to pay off the entire debt to save the home.","correct":0},{"num":52,"question":"Which two federal regulations have the most pertinent disclosure requirements related to loan terms?","choices":["CRA and FCRA","ECOA and FACT Act","ECOA and RESPA","RESPA and TILA"],"answer":"d) RESPA and TILA require disclosure of loan terms. TILA requires the disclosure of the total finance charges and loan terms in the Truth in Lending Statement; RESPA requires lenders to provide a Good Faith Estimate of closing costs and a Closing Disclosure-1 Settlement Statement.","correct":3},{"num":53,"question":"Ralph and Alice are thinking about getting an HECM reverse mortgage. If they choose the tenure payment option, they will receive their money as","choices":["A lump sum","A line of credit to borrow against as needed","Equal monthly payments for a fixed number of months","Equal monthly payments for as long as they stay in the home"],"answer":"d) Tenure refers to the homeowners\u2019 stay in the house.","correct":3},{"num":54,"question":"What risk is PMI intended to cover?","choices":["Death of the borrowers","Default on loan repayments","Interest rates rising","Loss of property value serving as collateral"],"answer":"b) Private mortgage insurance (PMI) is offered by private companies to insure a lender against default on a loan by a borrower.","correct":1},{"num":55,"question":"A final payment at the end of a loan term to pay off the entire remaining principal and interest balance NOT covered by payments during the loan term is","choices":["Amortization","A balloon","A buydown","Reconciliation"],"answer":"b) A balloon payment pays off any remaining balance at the end of a loan term.","correct":1},{"num":56,"question":"The purpose of using PITI to structure payments in a mortgage is to","choices":["Allow the borrower to obtain actual cash form the equity built up in the property","Allow the lender to participate in any earnings, income, or profits generated","Ensure that enough funds are collected to cover taxes and insurance premiums","Include the financing of personal property such as appliances or furnishings"],"answer":"c) The lender (mortgagee) provides this service to a mortgagor by adding one-twelfth of the insurance premiums and taxes to the monthly mortgage payment amount. This ensures that enough funds are collected to cover taxes and insurance premiums.","correct":2},{"num":57,"question":"Which scenario best describes a land contract?","choices":["A buyer takes over primary liability for the loan of a seller usually implying no change in loan terms","A seller keeps the existing loan and continues to pay on it while giving the buyer another loan","A seller/lessor leases the property to the buyer/tenant with the provision that part of the rent payments be applied if the tenant decides to buy before the lease expires","A vendee makes payments to the vendor in exchange for the right to occupy, use, and enjoy the property; no deed or title transfer until all, or a specified portion of, payments have been made"],"answer":"d) A land contract is a real estate installment agreement where the buyer (vendee) makes payments to the seller (vendor) in exchange for the right to occupy, use, and enjoy the land, but no deed or title transfers until all, or a specified portion of, payments have been made.","correct":3},{"num":58,"question":"What terminology is the only correct way to ask a client about his or her marital status?","choices":["Are you married or divorced?","Are you married, unmarried, or separated?","Are you single, married, or widowed?","You cannot ask this question since martial status is a protected class"],"answer":"b) The only correct way to ask about a client's marital status is, \u201cAre you married, unmarried, or separated.\u201d Be sure to include all three of these words in the question.","correct":1},{"num":59,"question":"With an ARM, the margin is added to the ______ to determine the _________ .","choices":["APR \u2013 cost of funds index","Home value / amount borrowed","Index / interest rate charged","Qualifying ratio / maximum monthly mortgage payment"],"answer":"c) A margin, which is also sometimes referred to as a spread, is added to the selected index to determine the interest rate charged on an ARM.","correct":2},{"num":60,"question":"A lender learns that a real estate agent encouraged an appraiser to hit a specific value for a property. The lender","choices":["Can use the appraisal and close the loan if the lender can document that the appraisal does not materially misrepresent the value","Can use the appraisal and close the loan only if the appraised value means the loan will not exceed 80% LTV","Cannot use the loan under any circumstances","Must obtain a different appraisal in order to close the loan"],"answer":"a) Can use the appraisal and close the loan if the lender can document that the appraisal does not materially misrepresent the value.","correct":0},{"num":61,"question":"A lender is obligated to provide a borrower with what document three business day prior to the loan closing?","choices":["Loan estimate","Closing disclosure","Mortgage servicing statement","Promissory note"],"answer":"b) The borrower has a right to view a Closing Disclosure three business day before closing.","correct":1},{"num":62,"question":"The right of rescission is in effect for what type of loan closing?","choices":["Owner occupied purchase","Owner occupied refinance","Non-owner occupied purchase","Non-owner occupied refinance"],"answer":"b) The right of rescission is only in effect for refinances, not purchases. It applies to owner occupied refinances only, because a default on the loan results in the homeowner losing his or her house.","correct":1},{"num":63,"question":"A borrower with less than perfect credit or other risk factors may qualify most easily for what type of loan?","choices":["Conforming","FHA","Subprime","VA"],"answer":"c) Subprime loans fill a need for those with less than perfect credit who want to own a home. Some lenders and investors are willing to make these riskier loans because they can get much higher interest rates and fees than they can with other real estate loans.","correct":2},{"num":64,"question":"During the loan process, you find HMDA government monitoring information on","choices":["A custom form created by your company","The loan estimate","Section X of the Residential Loan Application","The Truth in Lending Statement"],"answer":"c) Under HMDA guidelines, Section X of the standard Residential Loan Application (1003) must be filled out even if the borrower does not wish to furnish the information. However, in the case of a face-to-face Page 18 interview, the loan officer can still mark the \u201cI do not wish to furnish this information\u201d box, but must fill in the application according to a visual observation or the borrower's surname.","correct":2},{"num":65,"question":"Borrower A has a $100,000 30-year loan at 5%. Borrower B has a $100,000 15-year loan at 5.5%. At the end of their respective loan terms, who will have paid more principal?","choices":["Borrower A","Borrower B","Both borrower would pay the same amount of principal","It\u2019s impossible to tell since either could pay off the loan sooner"],"answer":"c) Both borrower would pay the same amount of principal. The question is asking about PRINCIPAL not INTEREST.","correct":2},{"num":66,"question":"Funds for FHA loans are provided by","choices":["The Federal Reserve","The FHA","HUD","Qualified lending institutions"],"answer":"d) FHA insures loans made and funded by approved lenders.","correct":3},{"num":67,"question":"With a fixed rate loan,","choices":["A balloon payment is due at the end of the loan term for any unpaid interest","A lender may increase the interest rate of a borrower misses two payments a year","PMI is required if the LTV exceeds 20%","Principal and interest payments must remain constant"],"answer":"d) Fixed rate loans have interest rates that remain constant for the duration of the loan.","correct":3},{"num":68,"question":"According to the Fair Credit Reporting Act, which of these would NOT have a valid need to information from a consumer credit reporting agency?","choices":["A \u201cbuy here, pay here\u201d car lot","An employer looking to hire a sales agent","A landlord thinking of renting a home to someone","A man who wants to know his brother\u2019s credit score before starting a business with him"],"answer":"d) FCRA protects access to consumer credit files and allows a consumer reporting agency to provide information about a consumer only to people with a valid need. This man would have no permissible purpose to obtain his brother\u2019s credit information.","correct":3},{"num":69,"question":"Fannie Mae may require what to protect lenders against loan defaults by borrowers?","choices":["Credit insurance","Funding fee","Private mortgage insurance","Upfront mortgage insurance premium"],"answer":"c) Both Fannie Mae and Freddie Mac require private mortgage insurance (PMI) on home loans with less than 20% down.","correct":2},{"num":70,"question":"Which law requires notification to a borrower before the servicing of a loan is transferred to someone else?","choices":["ECOA","HOEPA","RESPA","TILA"],"answer":"c) RESPA requires a Servicing Transfer Statement to be sent to the consumer if the loan servicer sells or assigns the servicing rights of the loan to another service provider.","correct":2},{"num":71,"question":"According to the FCRA, a credit agency must give a consumer a free copy of his credit report","choices":["At time of loan application","If the loan application is denied because of information in the report","Never","Whenever he request it"],"answer":"b) FCRA provisions entitle consumers to a free copy of their credit report if credit is denied based on what's in the report.","correct":1},{"num":72,"question":"A Loan Estimate must be provided to the applicant within how many business days of a completed application?","choices":["One","Two","Three","Four"],"answer":"c) This disclosure, as required by the Truth in Lending Act, must be provided to a borrower within three business days of a completed loan application.","correct":2},{"num":73,"question":"When qualifying for a conventional mortgage loan, which would be LEAST LIKELY to count as allowable income?","choices":["Annual bonuses","Occasional overtime","Retirement income","salary"],"answer":"b) Occasional overtime would probably not be considered durable income.","correct":1},{"num":74,"question":"For which transaction must a lender follow the regulations of the Truth in Lending Act?","choices":["An application to purchase a duplex where the borrower will live in one unit and rent the other","An application to purchase a farm","An application to purchase a warehouse","A corporation\u2019s application to purchase a condominium for the use of its contract employees"],"answer":"a) TILA does not apply to business, commercial, or agricultural loans, loans payable with four or less installments and without a finance charge, or to loans made to corporations, partnerships, associations, and agencies. The lender does have to follow the rules of TILA when the loan is for a residential property.","correct":0},{"num":75,"question":"A borrower who is paid $750 per week has a qualifying monthly income of","choices":["$2,999.00","$3,000.00","$3,248.00","$3,250.00"],"answer":"d) To find monthly income, take weekly pay, multiply by 52 weeks, and then divide by 12 months ($750 x 52 = $39,000 / 12 = $3,250).","correct":3},{"num":76,"question":"What is the most common appraisal approach used in appraising single-family housing?","choices":["Cost approach","Highest and best use approach","Income approach","Sales comparison approach"],"answer":"d) The sales comparison approach is most common, since it compares the property to recent comparable property sales. There is no appraisal approach called the highest and best use approach.","correct":3},{"num":77,"question":"A Higher Cost loan is defined by TILA as one that has","choices":["An APR that exceeds the applicable average prime offer rate by at least 6.5% on the first loan","An APR that exceeds the rates on Treasury securities of comparable maturity by more than 8%","Total points and fees greater than 8% of the loan amount","Total points and fees greater than 10% of the loan amount for junior liens"],"answer":"a) 2009 amendments to the Truth in Lending Act define a higher-priced loan as one with an APR that exceeds the applicable average prime offer rate by at least 1.5% on first lien loans or 3.5% for junior lien loans.","correct":0},{"num":78,"question":"The Financial Modernization Act of 1999 is more commonly known as the","choices":["Community Reinvestment Act","Gramm-Leach-Bliley Act","Homeowners Protection Act","SAFE Act"],"answer":"b) The Financial Modernization Act of 1999 is usually referenced by the names of the legislators who sponsored it: Phil Gramm, Jim Leach, and Thomas Bliley.","correct":1},{"num":79,"question":"Which question would NOT be considered a violation of the ECOA, even if asked very innocently during the loan interview process?","choices":["You look very young, can you provide proof that you are 18?","Your accent is really interesting, where are you from?","Your name is unusual, what nationality is that?","Your necklace is beautiful, is that a crucifix?"],"answer":"a) While you could make an argument that each of these questions might violate ECOA guideline related to discrimination, the question about the applicant\u2019s age may be necessary to prove that the applicant is old enough to legally enter into a contract.","correct":0},{"num":80,"question":"Which law requires lenders to make full disclosure about APR to borrowers in real estate financial transactions?","choices":["Regulation C","Regulation V","Regulation X","Regulation Z"],"answer":"d) Lenders offering residential financing, including ARMs, must comply with federal guidelines under Regulation Z of the Truth in Lending Act requiring certain disclosures be made to borrowers, including the annual percentage rate.","correct":3},{"num":81,"question":"Which federal legislation requires that a \"Notification of Action Taken\" form be delivered to the applicant within 30 days of the adverse decision?","choices":["ECOA","HMDA","RESPA","TILA"],"answer":"a) The Equal Credit Opportunity Act requires the lender to provide the borrower an approval, notice of incomplete application, or a reason for rejection of credit in writing within 30 days of loan application.","correct":0},{"num":82,"question":"Arianna has failed to pass the written test for her MLO license two consecutive times. She can retake the test after waiting","choices":["10 days","30 days","6 weeks","6 months"],"answer":"b) She can retake the test after waiting 30 days 1st Fail = 30 days 2nd Fail = 30 days 3rd Fail = 180 days","correct":1},{"num":83,"question":"A loan balance that grows because of deferred due interest is known as","choices":["Adjustable","Amortized","A balloon","Negative amortization"],"answer":"d) Negative amortization occurs when loan balances increase rather than decrease because the borrower is paying less than the minimum interest.","correct":3},{"num":84,"question":"Which of these actions would indicate that a loan office is NOT committed to FACTA compliance?","choices":["Erasing electronic records","Hiring a document disposal company for weekly pick up","Placing locked shredding boxes throughout the office","Putting files in an unlocked drawer at the end of the work day"],"answer":"d) FACTA addresses the problem of identity theft, and an office whose employee puts files in an unlocked drawer would not be in compliance. If someone does not personally secure his files, the confidential information could be accessed for identity theft after work hours by any unscrupulous office worker with keys or access codes to the building.","correct":3},{"num":85,"question":"Who is most generally responsible for completing the accurate final Closing for the seller?","choices":["Broker","Lender","Mortgage loan originator","Settlement agent"],"answer":"d) The title agent is responsible for tabulating all figures from the lender, broker, and government agencies, as well as any items being paid out to creditors.","correct":3},{"num":86,"question":"A minimum of how many hours of approved pre-licensing education are required by the SAFE Act for state-licensed loan originators?","choices":["8 hrs","12 hrs","20 hrs","24 hrs"],"answer":"c) 20 hrs. The SAFE Act requires at least 20 hours of pre-licensing education for state-licensed MLOs. Individual states may impose additional educational requirements.","correct":2},{"num":87,"question":"Disclosing income such as child support and alimony is not required of the borrower. When this type of income is disclosed on the application, what federal regulation requires that it be considered in the approval process?","choices":["Equal Credit Opportunity Act","Fair Credit Reporting Act","Home Mortgage Disclosure Act","Truth in Lending Act"],"answer":"a) The Equal Credit Opportunity Act requires that, if the borrower wishes to disclose this information on the loan application, it must be used in the underwriting decision.","correct":0},{"num":88,"question":"One purpose of the Truth in Lending Act is to","choices":["Allow lenders to order credit reports, appraisals, etc.","Enable borrowers to compare credit cost and shop for best credit terms","Inform borrower of a lender\u2019s privacy policies","Prevent kickbacks by disclosing business interests"],"answer":"b) The Truth in Lending Act requires lenders to disclose consumer credit costs in a uniform manner to promote informed use of consumer credit, enabling them to compare credit costs and shop around for the best credit terms.","correct":1},{"num":89,"question":"If a borrower pays $695.20 for principal and interest every month for 30 years on his $110,000 loan, how much interest will she pay over the life of the loan?","choices":["$20,856","$110,000","$140,272","$250,272"],"answer":"c) She will pay $140,272 in interest for that 30-year loan (695.20 x 12 months x 30 years = $250,272 total payment \u2013 $110,000 principal = $140,272 interest).","correct":2},{"num":90,"question":"Which type of mortgage is funded by the United States Department of Agriculture?","choices":["Section 502 Loan","FHA mortgage","Rural Home Mortgage","VA mortgage"],"answer":"a) USDA Loans (aka Section 502 loans) are funded by the USDA.","correct":0},{"num":91,"question":"Which law regulates the activities of consumer reporting agencies and users of consumer credit reports?","choices":["ECOA","Fair Housing Act","FCRA","Privacy Act"],"answer":"c) The law that regulates credit bureau companies and users of credit reports is the Fair Credit Reporting Act (FCRA).","correct":2},{"num":92,"question":"Which closing document itemizes final closing costs and items paid in connection with the loan for the borrower?","choices":["Loan Estimate","Closing Disclosure","Promissory Note","TIL Statement"],"answer":"b) The Closing Disclosure (CD) is a standard form that clearly shows all charges imposed on borrowers and sellers in connection with the settlement.","correct":1},{"num":93,"question":"The SAFE Act is part of what larger law?","choices":["FCRA","HERA","RESPA","TILA"],"answer":"b) The Secure and Fair Enforcement for Mortgage Licensing Act, or SAFE Act, is a key component of the Housing and Economic Recovery Act of 2008..","correct":1},{"num":94,"question":"A telemarketer can be fined how much per incident for calling someone registered on the National Do Not Call Registry?","choices":["$5,000","$10,000","$42,350","$20,000"],"answer":"c) The National Do Not Call Registry includes provisions that a telemarketer can be charged $42,350 for each instance of calling a number that is on the list.","correct":2},{"num":95,"question":"If a loan includes an escrow account, RESPA allows the lender to require a cushion of up to how many months?","choices":["Two","Four","Six","Nine"],"answer":"a) Section 10 of RESPA sets limits on the amounts that a lender may require a borrower to put into an escrow account while allowing a cushion of up to two months.","correct":0},{"num":96,"question":"ABC Mortgages makes a loan even though the borrower is unlikely to repay it, anticipating that they'll eventually foreclose on the property and get the equity in the property. This is an example of","choices":["Predatory lending","Prime lending","Secondary lending","Subprime lending"],"answer":"a) Extending credit to people with little or no income and who have little chance of repaying the loan so the lender can foreclose on the property and keep the excess equity to cover costs is considered predatory lending, according to the Interagency Statement on Subprime Mortgage Lending.","correct":0},{"num":97,"question":"Which form documents the commission paid to a real estate broker?","choices":["The Closing Disclosure","Servicing Statement","Truth in Lending Statement","URAR"],"answer":"a) The Closing Disclosure requires that all compensation be disclosed.","correct":0},{"num":98,"question":"According to the SAFE Act, which would be considered a task that would require someone to be a licensed MLO?","choices":["Assisting a borrower in obtaining a mortgage loan by offering to negotiate terms with a lender","Calling a mortgage loan applicant and asking him to send in three years' worth of tax returns","Evaluating a mortgage loan application to determine if all the necessary information had been included","Submitting the information in a loan file to the mortgage underwriter for a credit decision"],"answer":"a) Someone who offers to negotiate the terms of a residential mortgage loan requires a license. These other tasks would be considered clerical or support duties that do not require licensure.","correct":0},{"num":99,"question":"A mortgage broker with 20 years of experience is neither registered nor licensed as a mortgage loan originator. If he continues his loan origination activities, he would be in violation of what law?","choices":["The Gramm-Leach-Bliley Act","The Real Estate Settlement and Procedures Act","The SAFE Act","He is not in violation of any Federal Law"],"answer":"c) The SAFE Act requires states to establish minimum standards for the licensing and registration of state-licensed mortgage loan originators.","correct":2},{"num":100,"question":"All of the following loans are covered by RESPA, except:","choices":["A loan assumption made without lender approval","A 30-year fixed loan made by a federally regulated credit union","And FHA Loan","A conforming loan"],"answer":"a) The answer is a loan assumption made without lender approval. RESPA covers loans secured by first or subordinate liens on residential property but does not extend to an assumable loan which can be assumed without lender approval.","correct":0},{"num":101,"question":"Which is a purpose for the Mortgage Servicing Disclosure Statement?","choices":["To disclose the percentages of the loan closing this lender has services in the last three years","To explain the resolution of \u201cservicing complaints: required by law","To inform the consumer the likelihood that the mortgage could be sold","To inform the consumer the likelihood that the servicing of the mortgage will be sold"],"answer":"d) Nearly all mortgages are sold and the consumer is not affected by the selling of the mortgage. The consumer is only affected if the \u201cservicing\u201d of the mortgage is sold (who the customer makes the payments to).","correct":3},{"num":102,"question":"Identify which attribute is NOT considered illegal discrimination in granting credit under the Equal Credit Opportunity Act.","choices":["Color","Income level","Race","Source of income"],"answer":"b) ECOA prohibits discrimination in granting credit to people based on sex, age (if at least 18), marital status, race, color, religion, national origin, receipt of public assistance, exercised rights under the Consumer Credit Protection Act. C-R-R-N-M-A-P-S Color/Race/Religion/National Origin/Marital Status/Age/Public Assistance/Sex","correct":1},{"num":103,"question":"What is the proper title of the SAFE Act?","choices":["Safe and Fair Education Act","Secure and Fair Enforcement for Mortgage Licensing Act","Security for Americans Foreclosure Elimination Act","Sure and Accurate Fraud Eradication Act"],"answer":"b) The Secure and Fair Enforcement for Mortgage Licensing Act is more commonly known as the SAFE Act.","correct":1},{"num":104,"question":"Which of these circumstances would NOT be an acceptable reason to provide a revised Loan Estimate to a borrower?","choices":["The borrower lost the income from a part-time job and so was no longer eligible for the specific loan terms identified in the loan estimate","The borrower requested to change the loan term from 15 years to 30 years","The mortgage loan originator regretted overlooking certain liabilities in the order to qualify the borrower for a better interest rate","The title company discovered a junior lien on the property that was not considered when preparing the loan estimate"],"answer":"c) Of these, the MLO's mistake, even if done unintentionally, would not be considered a changed circumstance.","correct":2},{"num":105,"question":"The Fair Credit Reporting Act is also known as","choices":["Regulation B","Regulation C","Regulation V","Regulation X"],"answer":"c) FCRA is also known as Regulation V.","correct":2},{"num":106,"question":"A borrower's stable monthly income is $6,800. Every month he pays: $485 car payment, $200 revolving credit payment, and $1,500 alimony. What is the maximum monthly mortgage payment for which he would qualify on an FHA mortgage loan?","choices":["$739","$1,423","$2,108","$2,239"],"answer":"a) Using the payment-to-income ratio of 31% for an FHA loan, we get $2,108. But using the total debt service ratio of 43% for this loan, we find: $6,800 (income) multiplied by 0.43, which equals $2,924. From that, you subtract monthly debts (485 + 200 + 1,500) which total $2,185, leaving $739.","correct":0},{"num":107,"question":"Which federal legislation allows a borrower three business days to reconsider an owner-occupied refinance transaction?","choices":["ECOA","FCRA","HMDA","TILA"],"answer":"d) The Truth in Lending Act (TILA) allows for a three business-day right of rescission. Furthermore, the act specifies that the three business day time limit requires only notification and that the right-torescind document does not have to be delivered to the lender within that time as long as notification was provided by mail prior to midnight of the third business day.","correct":3},{"num":108,"question":"Which fee would NOT be considered a finance charge and would NOT be part of the APR calculation?","choices":["Discount points","Escrow deposit for property taxes","Mortgage insurance","Origination fee"],"answer":"b) Escrow deposits are never part of calculating the APR.","correct":1},{"num":109,"question":"What is the loan-to-value ratio if the loan amount is $100,000, the appraised value is $125,000 and the sales price is $127,000?","choices":["74%","79%","80%","98%"],"answer":"c) $100,000 (LOAN) divided by $125,000(VALUE) - (the lowest of the sales price or appraised value) equals 80%.","correct":2},{"num":110,"question":"Generally speaking, a credit agency may not report negative credit information in a credit report that is more than how many years old?","choices":["3","5","7","10"],"answer":"c) Under the Fair Credit Reporting Act, consumer reporting agencies may not report negative information that is more than seven years old, in most cases.","correct":2},{"num":111,"question":"Which act is primarily focused on protecting consumers from identity theft?","choices":["FACT Act","HMDA","RESPA","TILA"],"answer":"a) The Fair and Accurate Credit Transaction Act of 2003\u2014also known as FACTA or the FACT Act\u2014 added new sections to the federal Fair Credit Reporting Act, intended primarily to help consumers fight the growing crime of identity theft.","correct":0},{"num":112,"question":"What is the earliest that a mortgage loan may close after a potential borrower completes an application?","choices":["3 business days after completing the application","3 business days after receiving required disclosure or after the disclosures are mailed","7 business days after completing the application","7 business day after receiving the required disclosures or after the disclosures are mailed"],"answer":"d) TILA imposes a waiting period of 7 business days after receiving the required disclosures or the disclosures are mailed before a loan may close.","correct":3},{"num":113,"question":"Which is NOT a triggering term according to TILA, requiring additional disclosing in advertising?","choices":["360 easy payments","$3,000 down","Pay only $800 a month","Terms to fit every budget"],"answer":"d) Generic statements that do not state specific loan information are exempt from additional disclosing of referencing specific information concerning loan terms.","correct":3},{"num":114,"question":"The SAFE Act mandates specific topics that must be covered as part of a state-licensed mortgage loan originator's continuing education every year. Which topic is NOT required?","choices":["Conventional mortgage products","Ethics","Federal law","Nontraditional mortgage products"],"answer":"a) The SAFE Act does not require continuing education on conventional mortgage products.","correct":0},{"num":115,"question":"It is a violation of which law to discriminate against a potential borrower on public assistance?","choices":["CRA","ECOA","FCRA","RESPA"],"answer":"b) The Equal Credit Opportunity Act requires lenders to accept any stable income that an applicant gets from public assistance.","correct":1},{"num":116,"question":"Which is NOT a part of the Gramm-Leach-Bliley Act?","choices":["Financial Privacy Rule","Pretexting Provisions","Reg Flags Rules","Safeguards Rule"],"answer":"c) The Red Flags Rules are contained in the Fair and Accurate Credit Transaction Act (FACT Act), not the Gramm-Leach-Bliley Act","correct":2},{"num":117,"question":"An appraiser can enter the contract price as the final opinion of value if","choices":["The client says it\u2019s a condition for the appraiser to get the assignment","The contract price falls within the developed value range","The lender requires a specific appraised value to close the loan","A target price is stated in the appraisal order"],"answer":"b) An appraiser is required to render an impartial opinion of value. The only acceptable reason for an appraisal to match the contract price is if the appraiser came up with that value independently of the sales contract.","correct":1},{"num":118,"question":"Under laws related to fair lending and fair housing, which is legal?","choices":["Creating and promoting a racially or ethnically exclusive lending image","Disregarding income that cannot be verified","Refusing to include alimony and child support payments as viable income","Subjecting applicants to more extensive credit checks because of race, sex, or national origin"],"answer":"b) Although it might not be something a cautious lender would do, it is not illegal under fair housing and fair lending laws to disregard income that cannot be verified.","correct":1},{"num":119,"question":"What is the total monthly payment, including escrows, on a 30-year interest only loan of $205,000, taxes of $1,800 per half, hazard insurance of $420 annually, $65 monthly mortgage insurance, and an interest rate of 6%.","choices":["$1.275","$1,315","$1,425","$1,575"],"answer":"c) The interest-only payment is calculated by multiplying the loan amount of $205,000 by the annual interest rate of 6% and dividing by the 12 monthly payments ($1,025 per month). Next, the taxes are quoted by the half-year so this amount is divided by 6 and not 12 ($300 per month). The hazard insurance is quoted annually so it must be divided by 12 ($35 per month). The mortgage insurance is quoted monthly ($65 per month). By adding these monthly amounts together, the total monthly payment is derived: $1,025 + $300 + $35 + $65 = $1,425 total monthly payment.","correct":2},{"num":120,"question":"RESPA does NOT prohibit","choices":["Charging a premium on third-party fees","Kickbacks","Reasonable fees paid for services actually rendered","Referral fees to consumers and service providers"],"answer":"c) RESPA allows the payment of fees to service providers for services rendered in connection with a mortgage loan.","correct":2},{"num":121,"question":"Which situation is LEAST LIKELY to be an example of predatory lending?","choices":["ABC Mortgage Company offers a subprime loan to a borrower who is coming out of bankruptcy","A buyer shows up at closing and finds that the lender has changed the terms of the loan","A homeowner was 12 days late on paying her mortgage, and the lender raised the interest rate 1/4%","A homeowner paid off his mortgage loan early with lottery winnings and the lender charged a $12,000 pre-payment penalty"],"answer":"a) A subprime loan in and of itself is not evidence of predatory lending. The other situations should raise red flags, however.","correct":0},{"num":122,"question":"Which law requires lenders to disclose consumer credit costs related to adjustable-rate mortgages?","choices":["ECOA","RESPA","TILA","Title VIII"],"answer":"c) The purpose of the Truth in Lending Act is to let consumers know exactly what they\u2019re paying for credit, enabling them to compare credit costs and shop around for the best credit terms.","correct":2},{"num":123,"question":"Which is a voluntary lien?","choices":["Assessment","Mechanics","Mortgage","Property tax"],"answer":"c) A mortgage is considered a voluntary specific lien, meaning that it is placed with the consent of the owner, and it applies to a specified property.","correct":2},{"num":124,"question":"According to the Fair Credit Reporting Act, which situation does NOT entitle someone to a free copy of his credit report?","choices":["An applicant was refused credit due to insufficient income","A consumer is on public assistance or is unemployed","A consumer was a victim of identify theft and a fraud alert was inserted in the credit file","The credit file contains inaccurate information as a result of fraud"],"answer":"a) An applicant is entitled to a free credit report if information in that report resulted in adverse action. Denying credit for another reason does not entitle the consumer to a free copy.","correct":0},{"num":125,"question":"Which situation does NOT involve a straw buyer?","choices":["Ann revised her pay stubs so she can qualify for a loan to buy her dream house","Bob uses his twin brother\u2019s SS number and credit information to apply for a loan","Dave agrees to secure a loan under his name even though it\u2019s his sister with bad credit who intends to live in the house and make the payments","Tina tells rob, who is facing foreclosure, that if he deeds the property to her, she will refinance on good terms and let him stay in the house"],"answer":"Ann committed fraud by revising those income documents, but she did intend to buy and live in the house. The other situations all involved a borrower who did not intend to live in the house. In the case of Bob\u2019s brother, the straw buyer may not have even realized that he was part of a scheme.","correct":0},{"num":126,"question":"A mortgage lending company refuses to make loans for homes in a minority neighborhood. This is an illegal action called","choices":["Blockbusting","Coercion","Redlining","Steering"],"answer":"c) Redlining is a refusal to make loans or issue insurance policies on property located in a particular neighborhood for discriminatory reasons.","correct":2},{"num":127,"question":"What federal law prohibits making a loan to a customer without verifying the customer's ability to repay the loan?","choices":["CRA","HMDA","HOEPA","RESPA"],"answer":"c) The Home Ownership and Equity Protection Act (HOEPA) establishes disclosure requirements, prohibits deceptive and unfair practices in lending, and it requires verification of a borrower\u2019s ability to repay (ATR) a high-cost loan.","correct":2},{"num":128,"question":"MLO Dave knew that his customer worked at a factory that was two weeks away from closing, but in his eagerness to close the deal, he decided to ignore that fact. This might be considered an example of","choices":["Actual fraud","Constructive fraud","Good business","Negligent misrepresentation"],"answer":"a) If Dave made the decision to ignore a critical fact, he could be accused of actual fraud.","correct":0},{"num":129,"question":"What fee may be collected prior to delivering required disclosures?","choices":["Appraisal","Credit report","Origination","Rate-lock"],"answer":"b) Only the fee to pull a credit report may be charged.","correct":1},{"num":130,"question":"While it is illegal to ask or consider the race or national origin of an applicant, which federal legislation requires that this information be requested from every applicant to monitor whether discriminatory practices are being used?","choices":["Equal Credit Opportunity Act","Fair Credit Reporting Act","Home Mortgage Disclosure Act","Truth in Lending Act"],"answer":"c) The Home Mortgage Disclosure Act requires that the applicant be asked their race or national origin for monitoring purposes.","correct":2},{"num":131,"question":"Marvin and Juanita have a reverse mortgage. Over the term of this mortgage, their","choices":["Debt grows and their equity shrinks","Debt shrinks and their equity grows","Debt grows and their equity remains stable","Debt remains stable and the equity shrinks"],"answer":"a) A reverse mortgage is based on the equity in the home. It shrinks and the debt grows.","correct":0},{"num":132,"question":"Your refinancing borrower qualifies for a 95% LTV and has a payoff of $70,000. How much cash is available if the appraisal is $95,000 and the closing costs are $3,000?","choices":["$17,250","$20,250","$22,000","$90,250"],"answer":"a) $95,000 X 95% = $90,250 - $70,000 - $3,000 = $17,250","correct":0},{"num":133,"question":"Which of these situations would NOT violate ECOA?","choices":["While looking at your customer\u2019s pay check stubs, you see that child support is being paid and ask, \u201cDo you pay child support, alimony, or separate maintenance?\u201d","Your customer's income information includes aid to dependent children from the state. You ask, \"Are you sure you want to include this as part of your income on this application? It won't look good.\u201c","Your customer\u2019s last name is Patel and you observe, \u201cThat\u2019s Indian, right?\u201d","Your very pregnant customer is sitting at your desk while two more little ones who came in with her are running around your office. You ask her, \u201cDo you think this is your last child?\u201d"],"answer":"a) You would not be in violation of ECOA for asking a question that is on the loan application. The other questions, even if asked out of politeness or curiosity, would violate ECOA.","correct":0},{"num":134,"question":"On the loan application (Form 1003), which section ensures compliance with HMDA?","choices":["III: Borrower Information","VII: Detail of Transactions","VIII: Declarations","X: Information for Government Monitoring Purposes"],"answer":"d) HMDA data is found in section X of the 1003, titled Information for Government Monitoring Purposes. It gathers the information needed to make the lending practices public record.","correct":3},{"num":135,"question":"ABC Bank receives a change of address request from a consumer. What requires the bank to follow up with her to verify the validity of the request?","choices":["Federal Reserve","Reg Flag Rules","SAFE Act","Truth in Lending Act"],"answer":"b) Section 114 of the FACT Act is known as the Red Flags Rules, which, among other things, requires financial institutions and creditors to implement a written identity theft prevention program.","correct":1},{"num":136,"question":"If a home is in a federally designated flood hazard area, the lender will require specific flood insurance","choices":["Only if the homeowner does not carry a flood rider on his homeowner\u2019s insurance","Until the LTV is 80%","Until the LTV is 78%","For the life of the loan"],"answer":"d) When a home is in such a designated flood zone, the lender will require some form of flood insurance for the life of the loan.","correct":3},{"num":137,"question":"The type of mortgage that requires regular payment of principal and interest calculated to pay off the entire balance by the end of the loan term is called","choices":["Adjustable rate","Balloon payment","Fully amortizing","Partially amortizing"],"answer":"c) A fully amortizing mortgage requires regular payment of principal and interest calculated to pay off the entire balance by the end of the loan term.","correct":2},{"num":138,"question":"Protected classes under the Fair Housing Act include race, color, national origin, sex, disability, religion, and","choices":["Familial status","Martial status","Military status","Sexual orientation"],"answer":"a) The Fair Housing Act prohibits discrimination in housing based on \u201crace, color, religion, sex, national origin, disability, or familial status in the sale or lease of residential property.\u201d","correct":0},{"num":139,"question":"The portion of an adjustable rate mortgage used to compute the interest rate that can change and is based on the T-Bill, LIBOR, or any other factor outlined in the note is known as the","choices":["ARM","Index","Margin","Rate"],"answer":"b) The index added to the margin is the rate. The index is the variable portion of this formula that causes the rate to adjust.","correct":1},{"num":140,"question":"Which borrower would be the best candidate for a reverse equity mortgage?","choices":["A borrower with a poor credit history but has a large down payment","A borrower who is age 62 or older who owns their own free and clear","A borrower who income is at or below 80% of the adjusted median income level","A borrower whose spouse was a veteran who died in the line of active duty"],"answer":"b) A reverse mortgage borrower must be at least 62 years old and own a home with little or no outstanding mortgage.","correct":1},{"num":141,"question":"Which type of loan is LEAST LIKELY to result in payment shock?","choices":["Adjustable rate mortgage","Hybrid ARM","I/O Interest Only","Reverse mortgage"],"answer":"d) Loans that have an adjustable interest rate or an interest only option can result in substantial increases in the monthly payment. A borrower with a reverse mortgage doesn\u2019t make a payment.","correct":3},{"num":142,"question":"A borrower has an ARM with an initial rate of 6% and a rate cap 2/6. What's the highest his interest rate could be over the life of the loan?","choices":["8%","12%","18%","It depends on the index"],"answer":"b) With a 2/6 rate cap, the rate can increase 2% each adjustment period to a maximum of 12% over the life of the loan (6% start plus 6% lifetime cap).","correct":1},{"num":143,"question":"What is another name for a nonconforming loan?","choices":["Adverse loan","Indexed loan","Jumbo loan","Unconventional loan"],"answer":"c) A nonconforming loan is one that does not follow Fannie Mae and Freddie Mac criteria, for example, for maximum loan amount. It is also known as a jumbo loan.","correct":2},{"num":144,"question":"A seller takes back a $150,000 mortgage at 6% interest. Payments are interest-only for 10 years. What balloon payment amount will be due?","choices":["$0","$40,000","$90,000","$150,000"],"answer":"d) The entire principal must be repaid at the end of the loan term since the borrower paid only interest for 10 years.","correct":3},{"num":145,"question":"Some lenders and investors are willing to make subprime loans because","choices":["Borrowers typically have greater income stability than with other real estate loans","Borrowers typically have greater net worth than with other real estate loans","Lenders can charge much higher rates than they can with other real estate loans","Lenders experience less risk with subprime loans than with other real estate loans"],"answer":"c) Some lenders and investors are willing to make these riskier loans because they can get much higher rates than they can with other real estate loans.","correct":2},{"num":146,"question":"Discount points refer specifically to points paid","choices":["For documentation and closing fees","For servicing and charges and administration costs","To cover loan origination fees","To lower borrower\u2019s interest fees"],"answer":"d) Points paid for loan origination fees, servicing charges, administration costs, documentation fees, and closing fees may be referred to as points but they are not discount points.","correct":3},{"num":147,"question":"In order to comply with HMDA, which is NOT a question a loan originator may ask a borrower?","choices":["Martial status","National origin","Race","religion"],"answer":"d) Religion is not a question that a loan originator may ask relevant to HMDA, since it is in no way included in government monitoring under the guidelines of the Home Mortgage Disclosure Act.","correct":3},{"num":148,"question":"A borrower is buying a house for $100,000. He provides a down payment of $5,000. If he pays two discount points, what is the total cost of the points?","choices":["$1,500","$1,900","$2,000","$2,100"],"answer":"b) He would pay $1,900 because $95,000 x 0.02 = $1,900. Discount points are paid on the mortgage amount. The down payment is separate.","correct":1},{"num":149,"question":"Regulation C is more commonly known as the","choices":["Community Reinvestment Act","Equal Credit Opportunity Act","Home Mortgage Disclosure Act","Truth in Lending Act"],"answer":"c) The Home Mortgage Disclosure Act was enacted by Congress and implemented by the Federal Reserve Board as Regulation C.","correct":2},{"num":150,"question":"RESPA applies to what types of properties?","choices":["Commercial","One-to-four family residential properties","Residential properties with five or fewer units","Residential property and unimproved land"],"answer":"b) RESPA applies to one- to four-family residential properties. Properties of five or more units are considered commercial. Unimproved land has no structure on it.","correct":1},{"num":151,"question":"What type of mortgage allows personal property (like appliances) to be included in the property sale and financed together with one loan?","choices":["Bridge mortgage","Equity participation mortgage","Package mortgage","Wraparound mortgage"],"answer":"c) A package mortgage allows personal property to be packaged together and included in the mortgage loan.","correct":2},{"num":152,"question":"Calculating the housing expense ratio by taking stable monthly income and multiplying by 0.31 is the ratio used to qualify for a(n)","choices":["Conventional loan","FHA-insured loan","Subprime loan","VA loan"],"answer":"b) The housing expense ratio for an FHA-insured loan is calculated by taking the borrower\u2019s stable monthly income and multiplying by 31% (0.31).","correct":1},{"num":153,"question":"The annual percentage rate (APR) is also referred to as","choices":["Effective rate of interest","Equity","Escrow account","Nominal rate of interest"],"answer":"a) The APR or effective rate of interest is the total cost of the loan as an annual percentage of the loan amount and includes the loan fees, discount points, and other charges that must be paid by the borrower","correct":0},{"num":154,"question":"A mortgage broker rents office space from a title company at a discount in exchange for referring customers for settlement services. Which federal law does this arrangement violate?","choices":["RESPA","SAFE Act","TILA","It does not violate any federal law"],"answer":"a) This would be considered a kickback, and it is prohibited under Section 8 of RESPA.","correct":0},{"num":155,"question":"When must a mortgage loan originator give a borrower a Loan Estimate?","choices":["At closing","At least 10 days before the loan closes","Only when the borrower request one","Within 3 business days of when the application is completed"],"answer":"d) A Good Faith Estimate (LE) of Settlement Costs, which lists the charges the borrower is likely to pay at settlement, must be given to a borrower within three business days of the loan application.","correct":3},{"num":156,"question":"While taking a loan application, a mortgage loan originator will NOT gather","choices":["Bankruptcy papers from 10 years ago","Income information","Liabilities information","Rent/mortgage history"],"answer":"a) Bankruptcy papers from 10 years ago would not be relevant today, because a bankruptcy does not show on a credit bureau report after 10 years. In rare cases, the papers may be needed for verification.","correct":0},{"num":157,"question":"A borrower's stable monthly income is $2,500. He has three monthly debts: $250 car payment, $100 personal loan payment, and $50 credit card payment. What is the maximum monthly mortgage payment he would qualify for using the total debt to income ratio for a conventional loan?","choices":["$900","$800","$600","$500"],"answer":"d) Total DTI ratio is calculated as: $2,500 (income) multiplied by (x) 0.36, which equals $900. From the $900, you must subtract his monthly debts ($250 + $100 + $50) which total $400. So, this leaves $500 to be used. If he could pay off some of his debts and reduce his total of other long-term monthly obligations, he would be able to qualify for a larger mortgage payment.","correct":3},{"num":158,"question":"Which law requires that state-licensed mortgage loan originators pass a national exam?","choices":["CRA","FACT Act","HOEPA","SAFE Act"],"answer":"d) The SAFE Act mandates pre-licensing and continuing education requirements for state licensed mortgage loan originators, as well as a national licensing exam.","correct":3},{"num":159,"question":"How many years of employment are required to be disclosed on the mortgage loan application?","choices":["One","Two","Three","Four"],"answer":"b) Two full years of employment are required on the loan application, with an explanation of any gaps of 30 days or more.","correct":1},{"num":160,"question":"A borrower has been at her job for 10 years and typically works overtime 5 hours per week at time and a half. Her hourly rate is $15.75. What is the gross monthly income you can use to qualify her?","choices":["$2,614.50","$2,832.40","$3,170.05","$3,241.88"],"answer":"d) To find the monthly income for an hourly worker, multiply the hourly rate by 40 to find the weekly rate; multiply that by 52 weeks per year then divide by 12 months ($2,730). Then add the monthly amount of the overtime: $15.75 / 2 + $15.75 = $23.63 x 5 hours per week x 52 weeks / 12 months = $511.98; $2,730 + $511.88 = $3,241.88","correct":3},{"num":161,"question":"Total debt to income ratio is the relationship between the borrower's","choices":["Equity in the home and the amount of the loan","Monthly housing costs and other debt obligations","Stable monthly income and the area mean income (AMI)","Total monthly debt obligation and gross monthly income"],"answer":"d) A borrower\u2019s total DTI ratio is the relationship of the borrower\u2019s total monthly debt obligations (including housing and long-term debts with more than ten payments left) to income, expressed as a percentage.","correct":3},{"num":162,"question":"A second mortgage loan that allows the borrower to obtain multiple advances of funds up to an approved amount is known as a(n)","choices":["Bi-weekly mortgage","Bridge loan","HELOC","Installment second mortgage"],"answer":"c) A Home Equity Line of Credit (HELOC) is a mortgage loan (usually in second lien position) that allows a borrower to use and payoff, then use and payoff the loan up to a pre-determined amount. It is just like a credit card but secured by real estate.","correct":2},{"num":163,"question":"A veteran needs two documents to obtain a VA loan. One is a DD-214 and the other is a","choices":["Birth certificate","Certificate of Eligibility","Certificate of Occupancy","Military discharge paper"],"answer":"b) A Certificate of Eligibility (COE) is issued by the VA to those who qualify for VA loans and is required by a lender to establish the amount and status of the veteran\u2019s eligibility under the VA loan guarantee program. The DD-214 is the official military discharge paper.","correct":1},{"num":164,"question":"Which of the following types of income will NOT require additional information, such as likelihood that it will continue, to determine if the income can be used to qualify the borrower?","choices":["Alimony","Disability","Salary","unemployment"],"answer":"c) Salaried income can be considered, and it is assumed that it will continue. Unemployment, disability, and alimony will need additional documentation to prove the likelihood that it will continue.","correct":2},{"num":165,"question":"Which was the first major legislation to directly affect equal rights to ownership of real property?","choices":["Civil Right Act","Emancipation Proclamation","Federal Fair Housing Act","Homeowners Protection Act"],"answer":"a) The Civil Rights Act of 1866 prohibits racial discrimination in all property transactions in the United States.","correct":0},{"num":166,"question":"An appraiser has been contracted to determine the value of a large apartment building for a potential investor. Which appraisal method is probably the most useful for this situation?","choices":["Competitive market analysis","Cost approach","Income approach","Sales comparison approach"],"answer":"c) The income approach is a valuable appraisal method when determining the value of investment property","correct":2},{"num":167,"question":"Conventional mortgages require mortgage insurance once the LTV exceeds","choices":["74%","80%","85%","90%"],"answer":"b) Mortgage insurance is required once the LTV reaches 80% for conventional loans.","correct":1},{"num":168,"question":"An acceleration clause in a mortgage instrument","choices":["Allows the interest rate to be increased","Increases payments at periodic intervals","Makes the loan balance due immediately in the event of default","States one late payment is an act of default"],"answer":"c) The lender\u2019s right of acceleration can mean that a buyer who misses one or two payments may have to pay off the entire debt to save the home.","correct":2},{"num":169,"question":"Which document is NOT required by RESPA to be given to consumers within three business days of a completed loan application?","choices":["Loan Estimate (LE)","Closing Disclosure (CD)","Mortgage Servicing Disclosure Statement","Know Before You Owe Disclosure"],"answer":"b) The Closing Disclosure must be made available one business day prior to closing. The other documents must be given to consumers within three business days of the completed loan application","correct":1},{"num":170,"question":"The Equal Credit Opportunity Act is a law that requires the lender to provide the borrower a reason for rejection of credit in writing within how many days of loan application?","choices":["3","10","30","45"],"answer":"c) The Equal Credit Opportunity Act requires the lender to provide the borrower a reason for rejection of credit in writing within 30 days of loan application.","correct":2},{"num":171,"question":"A document that conveys ownership of real property from the grantor to the grantee is known as a","choices":["Deed","Mortgage","Note","Title commitment"],"answer":"a) A deed proves ownership of a property and is transferred in the event of the sale of the property.","correct":0},{"num":172,"question":"The SAFE Act requires at least how many hours of continuing education annually for state-licensed mortgage loan originators?","choices":["4","8","12","20"],"answer":"b) The SAFE Act requires eight hours of continuing education for state-licensed mortgage loan originators","correct":1},{"num":173,"question":"Which document is NOT required at closing?","choices":["Loan Estimate","Closing Disclosure","Initial Escrow Statement","Promissory Note"],"answer":"a) The Loan Estimate is given to borrowers within three business days of applying for mortgage loan.","correct":0},{"num":174,"question":"According to the Fair Credit Reporting Act, when is a consumer entitled to a free copy of his credit score (assuming there has been no fraud)?","choices":["Once a year","When he has been turned down for credit","When he is on public assistance","A consumer has no right to a free copy of his credit score"],"answer":"d) FCRA provisions do not entitle consumers to a free copy of their credit scores.","correct":3},{"num":175,"question":"Who is typically the perpetrator in a fraud for property scheme?","choices":["Appraiser","Borrower","Lender","seller"],"answer":"b) The perpetrator in a fraud for property scheme is usually the borrower. Typically, there is no industry insider directing the illegal activity. Therefore, the borrower is the one with the agenda and the one who hopes to gain from the fraud.","correct":1},{"num":176,"question":"If an MLO or real estate agent suggests to a client that he move to a particular area to reside in a community that he will \"fit into,\" they would be guilty of","choices":["Blockbusting","Flipping","Redlining","Steering"],"answer":"d) Steering is when an MLO or real estate agent \u201cadvises\u201d a borrower to move, or not move, to an area to \u201cfit in.\u201d","correct":3},{"num":177,"question":"Form 4506-T is used to","choices":["Apply for a mortgage loan","Communicate the appraiser\u2019s opinion of value on a property","Request transcripts of federal tax returns","Verify if a veteran\u2019s discharge from the armed services"],"answer":"c) Form 4506-T gives the lender permission to request transcripts of federal tax returns from the IRS to document the borrower\u2019s income..","correct":2},{"num":178,"question":"The Home Owner Equity Protection Act is also known as","choices":["Section 30","Section 31","Section 32","Section 33"],"answer":"c) HOEPA is also known as Section 32 of the Truth in Lending Act. High-cost mortgage loans.","correct":2},{"num":179,"question":"A borrower is applying to refinance his mortgage. His first mortgage is $25,000 at a 9% rate. He plans to get cash out, up to $40,000. He qualifies for an 80% LTV and his house appraises for $100,000. Shortly before closing, the title exam shows $23,000 in bond liens. Closing costs total $6,000. How much cash will he receive at closing?","choices":["$9,000","$26,000","$46,000","$49,000"],"answer":"b) $100,000 X 80% = $80,000 - $25,000 - $23,000 - $6,000 = $26,000","correct":1},{"num":180,"question":"What federal legislation allows the borrower to challenge the value stated on an appraisal report?","choices":["ECOA","FCRA","RESPA","TILA"],"answer":"a) Since the property is being used as collateral for the loan, certain determinations are made based on the accuracy of the appraisal. Property condition and loan-to-value are dependant on accuracy, and the Equal Credit Opportunity Act allows the borrower to challenge that information.","correct":0},{"num":181,"question":"Regulation Z applies to all residential loans","choices":["Made to corporations or businesses","That do not have finance charges","With four or less installments","With more than four installments"],"answer":"d) Regulation Z does not apply to business, commercial, or agricultural loans, loans payable with four or less installments and without a finance charge, or to loans made to corporations, partnerships, associations and agencies.","correct":3},{"num":182,"question":"An appraisal","choices":["Establishes the selling price of a property","Guarantees the value of a piece of real estate","Is an opinion of value","Is a prediction of future worth"],"answer":"c) An appraisal is only an estimate or opinion. It is not a guarantee of value or the ultimate price that a buyer actually pays.","correct":2},{"num":183,"question":"At closing, who issues a clear to close?","choices":["Lender","Mortgage broker","Real estate broker","Title agency"],"answer":"a) A clear to close the loan is issued by the lender, giving permission to close the loan.","correct":0},{"num":184,"question":"The legislation that restricts the circumstances under which a financial institution may disclose a consumer's personal financial information to non-affiliated third parties is the","choices":["Fair and Accurate Credit Transaction Act","Fair Credit Reporting Act","Gramm-Leach-Bliley Act","Home Mortgage Disclosure Act"],"answer":"c) The federal Gramm-Leach-Bliley Act, which was passed by Congress in 1999, regulates the handling and disclosure of consumers\u2019 private financial information.","correct":2},{"num":185,"question":"According to the Interagency Guidance on Nontraditional Mortgage Products, loans to borrowers who do not show capacity to repay the loan from sources other than the collateral are","choices":["acceptable as long as the interest rate is fixed","acceptable if the borrower pays PMI","acceptable with superior credit scores","unsafe and should be avoided"],"answer":"d) The Guidance indicates that institutions should avoid loan terms that rely on property sale or refinancing once amortization begins.","correct":3},{"num":186,"question":"Which statement would trigger additional loan term disclosure for advertising purposes according to TILA?","choices":["FHA financing available","No down payment","Pay only $700 per month","We make VA Loans"],"answer":"c) Whenever a specific payment is quoted in an advertisement, the entire loan terms that determined that payment must be disclosed in the advertisement.","correct":2},{"num":187,"question":"A nontraditional loan is defined by the SAFE Act as","choices":["Any loan that could not be sold in the secondary market","Any that is insured by a governmental agency","Anything other than a 30-year fixed rate loan","Anything that exceeds the maximum loan limit set by Fannie Mae"],"answer":"c) The SAFE Act defines a nontraditional loan as anything other than a 30-year fixed rate loan.","correct":2},{"num":188,"question":"A consumer with a loan for closed-end credit may exercise his or her right to rescind:","choices":["If he or she collects the signatures of all other parties with an ownership interest in the property","Until midnight on the third business day after signing the lending agreement","Until midnight on the first business day after signing the lending agreement","Only if he or she has a loan contract that explicitly provides for the right to rescind"],"answer":"b) The answer is until midnight on the third business day after signing the lending agreement. A consumer with a loan for closed-end credit may exercise his or her right to rescind at any time before midnight on the third business day after signing the lending agreement.","correct":1},{"num":189,"question":"Which of the following is intended to ensure that consumers are provided with information on the nature and costs of the settlement process?","choices":["FCRA","HPA","HOEPA","RESPA"],"answer":"d) The purpose of RESPA and Regulation X is to help consumers become better shoppers for settlement (closing) services by providing them with information on the nature and costs of the settlement process. RESPA and Regulation X are also intended to eliminate kickbacks and referral fees that unnecessarily increase the costs of certain settlement services.","correct":3},{"num":190,"question":"Which of the following best describes a loan with a principal balance exceeding Fannie Mae or Freddie Mac guidelines?","choices":["Subprime","Jumbo","Illegal","Balloon"],"answer":"b) Conventional loans that conform to the eligibility guidelines for purchase by Fannie Mae or Freddie Mac are considered conforming loans. Fannie Mae and Freddie Mac have a maximum loan limit for loans they will purchase, which is adjusted annually. Loans to persons with satisfactory credit but that exceed this loan limit are called jumbo loans or nonconforming loans. Because these loans cannot be sold to Fannie Mae or Freddie Mac, they often have a higher interest rate than conforming loans.","correct":1},{"num":191,"question":"A borrower receives $1,000 per month in rental income. How much of the income may be used to qualify the borrower for a loan?","choices":["$1,000","$800","$750","$1,250"],"answer":"c) Generally, 75% of rental income may be used to qualify a borrower for a loan. This formula is based on an industry standard that taxes, insurance, and maintenance costs will equal about 25% of the income that a property generates. In this case, 75% \u00d7 $1,000 = $750.","correct":2},{"num":192,"question":"Assume a borrower completes an online loan application, including all six required elements, but never hits \"submit.\" Which of the following is true regarding the lender's obligation to issue a Loan Estimate?","choices":["The lender must issue a Loan Estimate within Three days of the borrower's submission of the last required piece of information","The lender is not required to issue a Loan Estimate","The lender is required to issue a Loan Estimate once it realizes all six pieces of information have been submitted","The lender is required to contact the borrower"],"answer":"b) A lender must provide the Loan Estimate either in person or by placing it in the mail no more than three business days after receipt of the consumer\u2019s application AND no later than seven business days prior to consummation. If a loan application has not been submitted, a lender is not required to issue a Loan Estimate.","correct":1},{"num":193,"question":"The Red Flags Rule identifies all of the following as possible red flags, except:","choices":["The borrower is buying an investment property","The borrower fails to respond to a request for additional information","The borrower\u2019s indentification looks altered","The borrower\u2019s address is invalid"],"answer":"a) The Red Flags Rule requires financial institutions (including mortgage lenders) that hold any consumer account, or other account for which there is a reasonably foreseeable risk of identity theft, to develop and implement an Identity Theft Prevention Program. Signs indicating possible identity theft include presentation of suspicious documents and personal identifying information (e.g., an address that does not match any address in the consumer report). Buying an investment property is not, in itself, a red flag.","correct":0},{"num":194,"question":"A mortgage broker also owns a title company. Is this business arrangement allowed by RESPA?","choices":["No, this is considered a business conflict of interest","No, this is an illegal business arrangement","Yes, as long as the title company is legitimate and the arrangement is disclosed","Yes, but the two affiliations can never be involved in a single real estate transaction"],"answer":"c) RESPA allows a mortgage broker to own a title company; however, the title company must be an actual company with a place of business, have employees, etc. If the title company is used in the same transaction, that relationship must be disclosed.","correct":2},{"num":195,"question":"The minimum down payment contribution needed for a home with an FHA-appraised value of $132,000 (assuming appropriate FICO score) is","choices":["$0","$4,620","$6,600","$26,400"],"answer":"b) The minimum down payment on an FHA loan is 3.5%, so $4,520 (if the FICO score is 580 or above).","correct":1},{"num":196,"question":"As a mortgage broker puts together an ad to attract some new customers, what law should he be most concerned about?","choices":["FACTA","NAMBA","RESPA","TILA"],"answer":"d) The National Association of Mortgage Brokers (NAMB) Code of Ethics reinforces the obligation to avoid false advertising, but it is the Truth in Lending Act (TILA) contains very specific requirements for advertising the terms of a mortgage loan.","correct":3},{"num":197,"question":"For a loan that has escrow included, RESPA requires a lender to perform an escrow analysis","choices":["Monthly","Quarterly","Semi-annually","Annually"],"answer":"d) D The lender must perform an escrow account analysis once during the year and notify borrowers of any shortage.","correct":3},{"num":198,"question":"Which regulation allows a lender to obtain information (and file monthly reports) regarding the age, ethnicity and sex of every applicant that applies for a home loan, to help identify possible discrimination?","choices":["TILA","RESPA","HMDA","MDIA Act"],"answer":"c) HMDA allows a lender to obtain information (and file monthly reports) regarding the age, ethnicity, and sex of every applicant that applies for a home loan, to help identify possible discrimination","correct":2},{"num":199,"question":"A seller agrees to pay two points on a buyer's loan. The price is $60,000 and the buyer is making a 20% down payment. Two points equal","choices":["$960","$1,200","$1,440","$1,800"],"answer":"a) A point is equal to 1% of the loan amount. So for this loan: $60,000 x 60% = $48,000 loan amount; so two points is $48,000 x 2% = $960.","correct":0},{"num":200,"question":"What two regulations require financial disclosures be provided to the applicant within three business days of a completed mortgage loan application?","choices":["Regulation B and Regulation C","Regulation B and Regulation Z","Regulation C and Regulation X","Regulation X and Regulation Z"],"answer":"d) Regulation X (RESPA) requires the LE and Regulation Z (TILA) requires the TIL.","correct":3}];
+
+const FREE_LIMIT = 5;
+const RESEND_ENDPOINT = 'https://api.resend.com/emails'; // swap in your key server-side
+
+let mode = 'quiz';
+let questions = [];
+let currentIndex = 0;
+let score = { correct: 0, wrong: 0 };
+let answered = false;
+let sessionAnswered = 0;
+let missedIds = [];
+try { missedIds = JSON.parse(localStorage.getItem('nmls_missed') || '[]'); } catch(e) {}
+
+// Persist access across browser sessions via localStorage
+let fullAccess = localStorage.getItem('nmls_full_access') === 'true';
+let previewUsed = parseInt(sessionStorage.getItem('nmls_preview_used') || '0');
+
+function updateLockUI() {
+  const icon = document.getElementById('lock-icon');
+  if (!icon) return;
+  if (fullAccess) {
+    icon.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>';
+    icon.title = 'Full access unlocked';
+  } else {
+    icon.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+    icon.title = 'Free preview — register for full access';
+  }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  updateLockUI();
+  // Stamp timing token when modal is opened
+  const tField = document.getElementById('_formT');
+  if (tField && !tField.value) tField.value = Date.now().toString();
+});
+
+let examQuestions = [], examAnswers = {}, examTimerInterval = null, examSecondsLeft = 5400;
+let fcFlipped = false;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+function saveMissed() {
+  try { localStorage.setItem('nmls_missed', JSON.stringify([...new Set(missedIds)])); } catch(e) {}
+}
+const LETTERS = ['A', 'B', 'C', 'D'];
+
+// ── GATE ──
+function showGate() {
+  document.getElementById('gate-modal').classList.add('show');
+  const tField = document.getElementById('_formT');
+  if (tField && !tField.value) tField.value = Date.now().toString();
+}
+
+// Stamp timing token when gate modal opens
+function showGateStampTime() {
+  const tField = document.getElementById('_formT');
+  if (tField) tField.value = Date.now().toString();
+}
+
+async function submitGate() {
+  const name  = document.getElementById('gate-name').value.trim();
+  const email = document.getElementById('gate-email').value.trim();
+  const phone = document.getElementById('gate-phone').value.trim();
+  const honey = document.getElementById('website').value;
+  const ts    = document.getElementById('_formT').value;
+
+  // Silently reject honeypot fills (bots)
+  if (honey) { return; }
+
+  if (!name || !email) {
+    document.getElementById('gate-name').style.borderColor = name ? '' : '#e74c3c';
+    document.getElementById('gate-email').style.borderColor = email ? '' : '#e74c3c';
+    return;
+  }
+
+  const btn = document.getElementById('gate-submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    const res = await fetch('/api/register-prep', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone, _t: ts, website: honey })
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      btn.disabled = false;
+      btn.textContent = data.error || 'Something went wrong — try again.';
+      return;
+    }
+
+    document.getElementById('confirm-email-display').textContent = email;
+    document.getElementById('modal-form-body').style.display = 'none';
+    document.getElementById('modal-success').classList.add('show');
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = 'Network error — try again.';
+  }
+}
+
+// ── HOME ──
+function exitToHome() {
+  if (examTimerInterval) { clearInterval(examTimerInterval); examTimerInterval = null; }
+  showScreen('home');
+}
+
+function startMode(m) {
+  // Exam and missed modes require full access
+  if ((m === 'exam' || m === 'missed') && !fullAccess) {
+    showGate(); return;
+  }
+
+  // Preview limit check for quiz and flashcard
+  if (!fullAccess && previewUsed >= FREE_LIMIT && (m === 'quiz' || m === 'flashcard')) {
+    showGate(); return;
+  }
+
+  mode = m;
+  currentIndex = 0;
+  score = { correct: 0, wrong: 0 };
+  answered = false;
+
+  if (m === 'quiz') {
+    questions = shuffle(ALL_QUESTIONS).slice(0, fullAccess ? ALL_QUESTIONS.length : FREE_LIMIT);
+    showScreen('quiz');
+    renderQuizQuestion();
+
+  } else if (m === 'flashcard') {
+    questions = shuffle(ALL_QUESTIONS).slice(0, fullAccess ? ALL_QUESTIONS.length : FREE_LIMIT);
+    showScreen('flashcard');
+    renderFlashcard();
+
+  } else if (m === 'exam') {
+    examQuestions = shuffle(ALL_QUESTIONS).slice(0, 50);
+    examAnswers = {};
+    examSecondsLeft = 5400;
+    showScreen('exam');
+    renderExamQuestion();
+    startExamTimer();
+
+  } else if (m === 'missed') {
+    const missed = ALL_QUESTIONS.filter(q => missedIds.includes(q.num));
+    if (missed.length === 0) { alert('No missed questions yet! Complete a quiz first.'); return; }
+    questions = shuffle(missed);
+    mode = 'quiz';
+    showScreen('quiz');
+    renderQuizQuestion();
+  }
+}
+
+// ── QUIZ ──
+function renderQuizQuestion() {
+  if (currentIndex >= questions.length) {
+    // Hit preview limit — show gate instead of results
+    if (!fullAccess) { showGate(); return; }
+    showQuizResults(); return;
+  }
+
+  answered = false;
+  const q = questions[currentIndex];
+  const total = questions.length;
+  const displayTotal = fullAccess ? total : FREE_LIMIT;
+
+  document.getElementById('quiz-counter').textContent = `${currentIndex + 1} / ${displayTotal}`;
+  document.getElementById('quiz-progress').style.width = `${(currentIndex / displayTotal) * 100}%`;
+  document.getElementById('quiz-score').textContent = `${score.correct} / ${currentIndex}`;
+  document.getElementById('quiz-q-label').textContent = `Question ${currentIndex + 1}`;
+  document.getElementById('quiz-q-text').textContent = q.question;
+  document.getElementById('quiz-next-btn').disabled = true;
+
+  // Update preview note
+  const note = document.getElementById('quiz-preview-note');
+  const countEl = document.getElementById('quiz-preview-count');
+  if (!fullAccess) {
+    note.style.display = 'block';
+    countEl.textContent = `${currentIndex + 1}–${FREE_LIMIT}`;
+  } else {
+    note.style.display = 'none';
+  }
+
+  const expBox = document.getElementById('quiz-exp-box');
+  expBox.className = 'explanation-box';
+
+  const choicesEl = document.getElementById('quiz-choices');
+  choicesEl.innerHTML = '';
+  q.choices.forEach((choice, i) => {
+    const div = document.createElement('div');
+    div.className = 'choice';
+    div.innerHTML = `<div class="choice-letter">${LETTERS[i]}</div><div>${choice}</div>`;
+    div.onclick = () => selectChoice(i, q);
+    choicesEl.appendChild(div);
+  });
+}
+
+function selectChoice(idx, q) {
+  if (answered) return;
+  answered = true;
+
+  // Increment preview count
+  if (!fullAccess) {
+    previewUsed++;
+    sessionStorage.setItem('nmls_preview_used', previewUsed);
+  }
+
+  const choices = document.querySelectorAll('#quiz-choices .choice');
+  choices.forEach(c => c.classList.add('disabled'));
+
+  const isCorrect = idx === q.correct;
+  choices[idx].classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) choices[q.correct].classList.add('correct');
+
+  if (isCorrect) {
+    score.correct++;
+    missedIds = missedIds.filter(id => id !== q.num);
+  } else {
+    score.wrong++;
+    if (!missedIds.includes(q.num)) missedIds.push(q.num);
+  }
+  saveMissed();
+  sessionAnswered++;
+
+  const expBox = document.getElementById('quiz-exp-box');
+  expBox.className = 'explanation-box show ' + (isCorrect ? 'correct-exp' : 'wrong-exp');
+  document.getElementById('quiz-exp-icon').textContent = isCorrect ? '✓' : '✗';
+  document.getElementById('quiz-exp-status').textContent = isCorrect ? 'Correct!' : 'Incorrect';
+
+  const correctText = q.choices[q.correct];
+  document.getElementById('quiz-exp-correct').textContent = `Correct Answer: ${LETTERS[q.correct]}) ${correctText}`;
+  const cleanExp = q.answer.replace(/^[a-dA-D]\)\s*/, '');
+  document.getElementById('quiz-exp-text').textContent = cleanExp;
+
+  document.getElementById('quiz-next-btn').disabled = false;
+  document.getElementById('quiz-score').textContent = `${score.correct} / ${currentIndex + 1}`;
+
+  setTimeout(() => { expBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
+}
+
+function nextQuestion() {
+  currentIndex++;
+  // After last free question, show gate
+  if (!fullAccess && currentIndex >= FREE_LIMIT) {
+    showGate(); return;
+  }
+  renderQuizQuestion();
+}
+
+function showQuizResults() {
+  const total = questions.length;
+  const pct = Math.round((score.correct / total) * 100);
+  document.getElementById('result-icon').textContent = pct >= 75 ? '★' : pct >= 60 ? '◆' : '✗';
+  document.getElementById('result-score').textContent = pct + '%';
+  document.getElementById('result-label').textContent = pct >= 75
+    ? 'Passing score! You\'re getting exam-ready.'
+    : pct >= 60
+    ? 'Good progress. Keep reviewing your missed questions.'
+    : 'Keep grinding. Every miss is a lesson learned.';
+  document.getElementById('result-correct').textContent = score.correct;
+  document.getElementById('result-wrong').textContent = score.wrong;
+  document.getElementById('result-total').textContent = total;
+  showScreen('results');
+}
+
+// ── FLASHCARD ──
+function renderFlashcard() {
+  fcFlipped = false;
+  const q = questions[currentIndex];
+  const total = questions.length;
+
+  document.getElementById('fc-counter').textContent = `${currentIndex + 1} / ${total}`;
+  document.getElementById('fc-progress').style.width = `${((currentIndex + 1) / total) * 100}%`;
+  document.getElementById('fc-num').textContent = `Card ${currentIndex + 1} of ${total}`;
+  document.getElementById('fc-prev').disabled = currentIndex === 0;
+  document.getElementById('fc-next').disabled = currentIndex === total - 1;
+
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  document.getElementById('card-side').textContent = 'Question';
+  document.getElementById('card-front').style.display = 'block';
+  document.getElementById('card-back').style.display = 'none';
+  document.getElementById('card-q-text').textContent = q.question;
+
+  const correctChoice = q.choices[q.correct];
+  document.getElementById('card-correct-choice').textContent = `${LETTERS[q.correct]}) ${correctChoice}`;
+  const cleanExp = q.answer.replace(/^[a-dA-D]\)\s*/, '');
+  document.getElementById('card-exp-text').textContent = cleanExp;
+}
+
+function flipCard() {
+  fcFlipped = !fcFlipped;
+  const card = document.getElementById('flashcard');
+  if (fcFlipped) {
+    card.classList.add('flipped');
+    document.getElementById('card-side').textContent = 'Answer + Explanation';
+    document.getElementById('card-front').style.display = 'none';
+    document.getElementById('card-back').style.display = 'block';
+  } else {
+    card.classList.remove('flipped');
+    document.getElementById('card-side').textContent = 'Question';
+    document.getElementById('card-front').style.display = 'block';
+    document.getElementById('card-back').style.display = 'none';
+  }
+}
+
+function fcNav(dir) {
+  const next = currentIndex + dir;
+  // Gate check for next card in preview
+  if (!fullAccess && next >= FREE_LIMIT) { showGate(); return; }
+  currentIndex = next;
+  renderFlashcard();
+}
+
+// ── EXAM ──
+function startExamTimer() {
+  if (examTimerInterval) clearInterval(examTimerInterval);
+  updateTimer();
+  examTimerInterval = setInterval(() => {
+    examSecondsLeft--;
+    updateTimer();
+    if (examSecondsLeft <= 0) { clearInterval(examTimerInterval); submitExam(); }
+  }, 1000);
+}
+function updateTimer() {
+  const m = Math.floor(examSecondsLeft / 60);
+  const s = examSecondsLeft % 60;
+  document.getElementById('exam-timer').textContent = `${m}:${s.toString().padStart(2, '0')}`;
+}
+function renderExamQuestion() {
+  if (currentIndex >= examQuestions.length) { submitExam(); return; }
+  const q = examQuestions[currentIndex];
+  const total = examQuestions.length;
+  const doneCount = Object.keys(examAnswers).length;
+
+  document.getElementById('exam-counter').textContent = `${currentIndex + 1} / ${total}`;
+  document.getElementById('exam-progress').style.width = `${(doneCount / total) * 100}%`;
+  document.getElementById('exam-q-label').textContent = `Question ${currentIndex + 1}`;
+  document.getElementById('exam-q-text').textContent = q.question;
+  document.getElementById('exam-unanswered').textContent = doneCount > 0 ? `${doneCount} of ${total} answered` : '';
+
+  const choicesEl = document.getElementById('exam-choices');
+  choicesEl.innerHTML = '';
+  q.choices.forEach((choice, i) => {
+    const div = document.createElement('div');
+    div.className = 'choice';
+    if (examAnswers[q.num] === i) div.classList.add('correct');
+    div.innerHTML = `<div class="choice-letter">${LETTERS[i]}</div><div>${choice}</div>`;
+    div.onclick = () => { examAnswers[q.num] = i; renderExamQuestion(); };
+    choicesEl.appendChild(div);
+  });
+}
+function examNext() {
+  currentIndex++;
+  if (currentIndex >= examQuestions.length) currentIndex = examQuestions.length - 1;
+  renderExamQuestion();
+}
+function submitExam() {
+  if (examTimerInterval) { clearInterval(examTimerInterval); examTimerInterval = null; }
+  let correct = 0;
+  examQuestions.forEach(q => {
+    if (examAnswers[q.num] === q.correct) correct++;
+    else if (!missedIds.includes(q.num)) missedIds.push(q.num);
+  });
+  saveMissed();
+  sessionAnswered += examQuestions.length;
+  const total = examQuestions.length;
+  const pct = Math.round((correct / total) * 100);
+
+  document.getElementById('er-icon').textContent = pct >= 75 ? '★' : pct >= 60 ? '◆' : '✗';
+  document.getElementById('er-score').textContent = pct + '%';
+  document.getElementById('er-label').textContent = pct >= 75 ? 'Passing score! Review the ones below.' : 'Keep grinding — study every explanation carefully.';
+  document.getElementById('er-correct').textContent = correct;
+  document.getElementById('er-wrong').textContent = total - correct;
+  document.getElementById('er-total').textContent = total;
+
+  const reviewList = document.getElementById('review-list');
+  reviewList.innerHTML = '';
+  examQuestions.forEach((q, idx) => {
+    const userAnswer = examAnswers[q.num];
+    const isCorrect = userAnswer === q.correct;
+    const cleanExp = q.answer.replace(/^[a-dA-D]\)\s*/, '');
+    const item = document.createElement('div');
+    item.className = 'review-item ' + (isCorrect ? 'review-correct' : 'review-wrong');
+    const yourAnswerHTML = userAnswer === undefined
+      ? `<div class="review-your-answer"><span class="lbl">Your answer: </span><span class="val-wrong">Not answered</span></div>`
+      : isCorrect
+      ? `<div class="review-your-answer"><span class="lbl">Your answer: </span><span class="val-correct-mark">✓ ${LETTERS[userAnswer]}) ${q.choices[userAnswer]}</span></div>`
+      : `<div class="review-your-answer"><span class="lbl">Your answer: </span><span class="val-wrong">✗ ${LETTERS[userAnswer]}) ${q.choices[userAnswer]}</span></div>`;
+    item.innerHTML = `
+      <div class="review-q-num">Question ${idx + 1}</div>
+      <div class="review-q-text">${q.question}</div>
+      ${yourAnswerHTML}
+      ${!isCorrect ? `<div class="review-correct-answer">✓ Correct: ${LETTERS[q.correct]}) ${q.choices[q.correct]}</div>` : ''}
+      <div class="review-explanation"><div class="review-exp-label">Why</div>${cleanExp}</div>`;
+    reviewList.appendChild(item);
+  });
+  showScreen('exam-review');
+}
+</script>
+
+<!-- ── SITE FOOTER ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-logo-row">
+      <div class="footer-logo">Phuong<span>Ha</span>.Loans</div>
+      <div class="footer-nmls-badge">
+        <!-- Equal Housing Lender Icon (SVG) -->
+        <svg class="equal-housing-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <rect width="60" height="60" rx="4" fill="#1a3a5c"/>
+          <polygon points="30,8 52,28 52,52 8,52 8,28" fill="none" stroke="#c9a84c" stroke-width="2.5"/>
+          <rect x="22" y="36" width="16" height="16" fill="none" stroke="#c9a84c" stroke-width="2"/>
+          <line x1="18" y1="38" x2="42" y2="38" stroke="#c9a84c" stroke-width="1.5"/>
+          <line x1="18" y1="43" x2="42" y2="43" stroke="#c9a84c" stroke-width="1.5"/>
+          <text x="30" y="57" text-anchor="middle" font-family="Inter,sans-serif" font-size="5" fill="#8a9ab5">EQUAL HOUSING</text>
+        </svg>
+        <div class="footer-nmls-text">
+          <strong>Equal Housing Lender</strong><br>
+          Phuong Ha · NMLS #1839449
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-contact-row">
+      <span><a href="tel:9714449107">(971) 444-9107</a></span>
+      <span>·</span>
+      <span><a href="mailto:phuong.ha@mortgagesolutions.net">phuong.ha@mortgagesolutions.net</a></span>
+      <span>·</span>
+      <span><a href="https://phuongha.loans" target="_blank">phuongha.loans</a></span>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-disclosure">
+      Phuong Ha, NMLS #1839449. Mortgage Solutions of Colorado, LLC., dba Mortgage Solutions Financial, NMLS #61602.
+      Licensed to originate mortgage loans. All loans subject to credit approval. Rates, terms, and availability subject to change without notice.
+      Not a commitment to lend. This content is for educational purposes only and does not constitute financial or legal advice.
+      <br>
+      <a href="https://www.nmlsconsumeraccess.org/" target="_blank" rel="noopener">NMLSConsumerAccess.org</a>
+      &nbsp;·&nbsp;
+      <a href="https://phuongha.loans" target="_blank">phuongha.loans</a>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
