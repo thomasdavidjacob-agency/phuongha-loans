@@ -2,7 +2,7 @@ const crypto = require('crypto');
 
 function verifyToken(token) {
   try {
-    const secret = process.env.PREP_SECRET || 'phuongha-prep-default-2026';
+    const secret = process.env.PREP_SECRET || require('crypto').createHash('sha256').update('nmls-prep:' + (process.env.RESEND_API_KEY || '')).digest('hex');
     const decoded = Buffer.from(token, 'base64url').toString('utf8');
     // Format: email:timestamp:signature
     const lastColon = decoded.lastIndexOf(':');

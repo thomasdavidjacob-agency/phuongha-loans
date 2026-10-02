@@ -36,7 +36,7 @@ function checkRate(ip) {
 }
 
 function createToken(email) {
-  const secret = process.env.PREP_SECRET || 'phuongha-prep-default-2026';
+  const secret = process.env.PREP_SECRET || require('crypto').createHash('sha256').update('nmls-prep:' + (process.env.RESEND_API_KEY || '')).digest('hex');
   const ts = Date.now().toString();
   const payload = `${email}:${ts}`;
   const sig = crypto.createHmac('sha256', secret).update(payload).digest('hex');
