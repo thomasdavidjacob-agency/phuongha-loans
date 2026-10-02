@@ -11,7 +11,7 @@
   const QUESTIONS = [
     { key: 'county', q: 'Where do you want to buy?', help: 'Programs differ by state, and local help differs by county.', opts: [...OREGON, ...WASHINGTON, 'Not sure yet'] },
     { key: 'owned_recently', q: 'Have you owned a home in the last three years?', help: 'For many programs, "first-time buyer" just means you haven’t owned in the past three years.', opts: ['No, never owned', 'Not in the last three years', 'Yes, I own or owned recently'] },
-    { key: 'income_band', q: 'Roughly, what is your household’s yearly income?', help: 'Programs set income limits by county and household size. A rough band is enough.', opts: ['Under $80,000', '$80,000 to $125,000', 'Over $125,000', 'Prefer not to say'] },
+    { key: 'income_band', q: 'Roughly, what is your household’s yearly income?', help: 'Programs set income limits by county and household size. Your best guess is enough — we confirm the real limits together.', opts: ['Lower to moderate for my area', 'Middle of the road', 'On the higher side', 'Prefer not to say'] },
     { key: 'veteran', q: 'Are you (or your spouse) a veteran, active-duty service member, or surviving spouse?', opts: ['Yes', 'No'] },
     { key: 'area', q: 'What kind of area are you looking in?', help: 'Some federal programs only apply outside larger cities.', opts: ['In or near a city', 'Small town or rural area', 'Not sure / open to either'] },
     { key: 'public_service', q: 'Do you work as a teacher, firefighter, police officer or EMT?', opts: ['Yes', 'No'] },
@@ -51,14 +51,14 @@
     const inOregon = OREGON.includes(a.county) || a.county === 'Not sure yet';
     const inWashington = WASHINGTON.includes(a.county) || a.county === 'Not sure yet';
     const firstTime = a.owned_recently !== 'Yes, I own or owned recently';
-    const overNextStep = a.income_band === 'Over $125,000';
+    const overNextStep = a.income_band === 'On the higher side';
     const out = [];
     if (inOregon && firstTime)
       out.push({ tag: 'Oregon · state program', title: 'OHCS Flex Lending: FirstHome', body: `Oregon's program for buyers who haven't owned in the last three years. It pairs a first mortgage with assistance that can go toward your down payment, closing costs and prepaid items. Expect a homebuyer education course, a credit minimum, and income and price limits set by county. <a href="${FIRSTHOME}" target="_blank" rel="noopener">OHCS details</a>` });
     if (inOregon && !overNextStep)
       out.push({ tag: 'Oregon · state program', title: 'OHCS Flex Lending: NextStep', body: `No first-time buyer requirement, so it's the one to ask about if you've owned before. It has a household income cap. <a href="${OHCS}" target="_blank" rel="noopener">OHCS details</a>` });
     if (inOregon && overNextStep && !firstTime)
-      out.push({ tag: 'Oregon', title: 'Conventional options with low upfront cash', body: 'Your income is likely above the state assistance limits for repeat buyers, but there are still low-upfront-cash conventional and FHA routes worth comparing. We cover them in class.' });
+      out.push({ tag: 'Oregon', title: 'Conventional options with low upfront cash', body: 'Your income may be above the state assistance limits for repeat buyers, but there are still low-upfront-cash conventional and FHA routes worth comparing. We cover them in class.' });
     if (inWashington)
       out.push({ tag: 'Washington · state programs', title: 'WSHFC Home Advantage and related programs', body: 'The Washington State Housing Finance Commission runs the state’s assistance programs. Relevant if you’re buying in Clark County and commuting into Portland. <a href="blog-dpa-washington-wshfc.html">How they work</a>' });
     if (METRO.includes(a.county))
