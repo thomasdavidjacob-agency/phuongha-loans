@@ -1,0 +1,96 @@
+/* Oregon Home Buyer School — class.html + quiz.html. Builds on style.css tokens. */
+.cls-hero { position: relative; z-index: 10; padding: clamp(36px, 7vh, 80px) 0 clamp(40px, 6vh, 72px); }
+.cls-hero__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+.cls-hero h1 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); line-height: 1.08; letter-spacing: -0.04em; color: #fff; margin-bottom: 18px; }
+.cls-hero__sub { font-size: clamp(1rem, 1.5vw, 1.12rem); color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 22px; max-width: 600px; }
+.cls-hero__facts { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+.cls-hero__note { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 12px; }
+.cls-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 30px; max-width: 560px; }
+.cls-stats div { padding: 16px; border-radius: 0.9rem; background: rgba(255,255,255,0.03); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08); }
+.cls-stats b { display: block; font-size: 1.35rem; color: var(--accent-light); font-weight: 600; letter-spacing: -0.02em; }
+.cls-stats span { font-size: 0.8rem; color: rgba(255,255,255,0.6); line-height: 1.4; display: block; margin-top: 2px; }
+
+.cls-form { padding: 30px 28px; border-radius: 1.5rem; }
+.cls-form h2 { font-size: 1.35rem; color: #fff; margin-bottom: 4px; }
+.cls-form__lead { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 18px; }
+.cls-dates { display: grid; gap: 8px; }
+.cls-date { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 0.75rem; cursor: pointer; background: rgba(255,255,255,0.04); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); transition: background .2s, box-shadow .2s; margin: 0; }
+.cls-date:hover { background: rgba(255,255,255,0.07); }
+.cls-date input { width: 18px; height: 18px; padding: 0; margin: 0; accent-color: var(--accent); -webkit-appearance: radio; appearance: auto; flex-shrink: 0; }
+.cls-date:has(input:checked) { background: rgba(200,145,58,0.12); box-shadow: inset 0 0 0 1px var(--accent); }
+.cls-date b { color: #fff; font-weight: 500; font-size: 0.95rem; }
+.cls-date small { display: block; color: rgba(255,255,255,0.55); font-size: 0.8rem; }
+.cls-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.cls-fine { font-size: 0.75rem; color: rgba(255,255,255,0.45); line-height: 1.55; margin-top: 12px; }
+.cls-success { text-align: center; padding: 10px 4px; }
+.cls-success h2 { color: var(--accent-light); margin-bottom: 8px; }
+.cls-success p { color: rgba(255,255,255,0.75); font-size: 0.95rem; margin-bottom: 10px; }
+
+.cls-section { position: relative; z-index: 10; padding: clamp(48px, 9vh, 96px) 0; }
+.cls-section__head { max-width: 760px; margin-bottom: 36px; }
+.cls-section__head p { color: rgba(255,255,255,0.65); margin-top: 14px; line-height: 1.7; }
+.cls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.cls-card { padding: 28px 26px; border-radius: 1.25rem; }
+.cls-card__num { font-family: var(--font-serif); font-style: italic; color: var(--accent-light); font-size: 1.5rem; margin-bottom: 8px; }
+.cls-card h3 { color: #fff; font-size: 1.15rem; margin-bottom: 8px; line-height: 1.3; }
+.cls-card p { color: rgba(255,255,255,0.65); font-size: 0.93rem; line-height: 1.65; }
+.cls-card .cls-src { display: block; margin-top: 12px; font-size: 0.75rem; color: rgba(255,255,255,0.45); }
+.cls-card .cls-src a { color: var(--accent-light); text-decoration: underline; text-underline-offset: 2px; }
+.cls-honest { margin-top: 22px; padding: 22px 26px; border-radius: 1.1rem; background: rgba(200,145,58,0.07); box-shadow: inset 0 0 0 1px rgba(200,145,58,0.3); }
+.cls-honest h3 { color: var(--accent-light); font-size: 1.05rem; margin-bottom: 6px; }
+.cls-honest p { color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.7; }
+
+.cls-ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.cls-way { padding: 28px 24px; border-radius: 1.25rem; display: flex; flex-direction: column; }
+.cls-way__time { font-size: 0.72rem; letter-spacing: 0.18em; color: var(--accent-light); margin-bottom: 8px; text-transform: uppercase; }
+.cls-way h3 { color: #fff; font-size: 1.2rem; margin-bottom: 8px; }
+.cls-way p { color: rgba(255,255,255,0.65); font-size: 0.92rem; line-height: 1.6; flex: 1; margin-bottom: 18px; }
+
+.cls-about { display: grid; grid-template-columns: 240px 1fr; gap: 36px; align-items: center; padding: 34px; border-radius: 1.5rem; }
+.cls-about img { border-radius: 1rem; width: 100%; height: auto; }
+.cls-about h2 { color: #fff; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 12px; letter-spacing: -0.03em; }
+.cls-about p { color: rgba(255,255,255,0.7); line-height: 1.75; margin-bottom: 12px; }
+
+.cls-disclaimer { font-size: 0.75rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin: 0 0 18px; max-width: 900px; }
+
+/* ---- quiz ---- */
+.qz { max-width: 760px; margin: 0 auto; padding: 32px 30px; border-radius: 1.5rem; }
+.qz__bar { height: 6px; border-radius: 99px; background: rgba(255,255,255,0.08); overflow: hidden; margin-bottom: 22px; }
+.qz__bar i { display: block; height: 100%; background: var(--accent); transition: width .3s ease; }
+.qz__step { font-size: 0.75rem; letter-spacing: 0.18em; color: var(--accent-light); text-transform: uppercase; margin-bottom: 8px; }
+.qz h2 { color: #fff; font-size: clamp(1.3rem, 2.4vw, 1.7rem); letter-spacing: -0.02em; margin-bottom: 6px; line-height: 1.25; }
+.qz__help { color: rgba(255,255,255,0.55); font-size: 0.9rem; margin-bottom: 18px; }
+.qz__opts { display: grid; gap: 10px; }
+.qz__opt { text-align: left; padding: 14px 16px; border-radius: 0.8rem; background: rgba(255,255,255,0.04); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); color: #fff; font: inherit; font-size: 0.97rem; cursor: pointer; border: 0; transition: background .2s, box-shadow .2s, transform .15s; }
+.qz__opt:hover { background: rgba(200,145,58,0.1); box-shadow: inset 0 0 0 1px var(--accent); }
+.qz__opt:active { transform: scale(0.99); }
+.qz__nav { display: flex; justify-content: space-between; margin-top: 18px; }
+.qz__back { background: none; border: 0; color: rgba(255,255,255,0.55); font: inherit; font-size: 0.9rem; cursor: pointer; padding: 6px 0; }
+.qz__back:hover { color: #fff; }
+.qz-res h2 { margin-bottom: 10px; }
+.qz-res__list { display: grid; gap: 12px; margin: 18px 0 22px; }
+.qz-res__item { padding: 18px 20px; border-radius: 1rem; background: rgba(255,255,255,0.04); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); }
+.qz-res__item h3 { color: #fff; font-size: 1.02rem; margin-bottom: 4px; }
+.qz-res__item p { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.6; }
+.qz-res__item a { color: var(--accent-light); text-decoration: underline; text-underline-offset: 2px; }
+.qz-res__tag { display: inline-block; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); background: var(--accent-light); padding: 2px 8px; border-radius: 99px; margin-bottom: 8px; }
+.qz-res__timeline { padding: 16px 20px; border-radius: 1rem; background: rgba(200,145,58,0.07); box-shadow: inset 0 0 0 1px rgba(200,145,58,0.3); color: rgba(255,255,255,0.8); font-size: 0.93rem; line-height: 1.65; margin-bottom: 22px; }
+.qz-res__ctas { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+@media (max-width: 900px) {
+  .cls-hero__grid { grid-template-columns: 1fr; }
+  .cls-ways { grid-template-columns: 1fr; }
+  .cls-about { grid-template-columns: 1fr; padding: 24px; }
+  .cls-about img { max-width: 220px; }
+}
+@media (max-width: 520px) {
+  .cls-stats { grid-template-columns: 1fr; }
+  .cls-form { padding: 24px 18px; }
+  .qz { padding: 24px 18px; }
+}
+
+/* announcement strip used on index.html + down-payment-assistance.html */
+.cls-strip { position: relative; z-index: 20; display: block; text-align: center; padding: 10px 20px; font-size: 0.88rem; color: rgba(255,255,255,0.85); background: linear-gradient(90deg, rgba(200,145,58,0.16), rgba(200,145,58,0.28), rgba(200,145,58,0.16)); border-bottom: 1px solid rgba(200,145,58,0.35); }
+.cls-strip b { color: var(--accent-light); font-weight: 600; }
+.cls-strip span { color: var(--accent-light); font-weight: 600; white-space: nowrap; margin-left: 6px; }
+.cls-strip:hover span { text-decoration: underline; text-underline-offset: 3px; }

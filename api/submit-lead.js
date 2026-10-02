@@ -1,4 +1,5 @@
 const { Resend } = require('resend');
+const { sendToRelay } = require('./_relay.js');
 
 const RECIPIENT = ['phuonghaloans@gmail.com', 'phuong.ha@mortgagesolutions.net'];
 const FROM_ADDRESS = 'leads@phuongha.loans';
@@ -120,6 +121,9 @@ module.exports = async function handler(req, res) {
       html: htmlBody,
       text: textBody,
     });
+
+    // Also hand the lead to the local CRM (Winston's World Wide) via its relay. Never blocks or breaks the form.
+    await sendToRelay({ site: 'phuongha.loans', name, email, phone, message, fields: { loan_type: loanType } });
 
     return res.status(200).json({ ok: true });
   } catch (err) {

@@ -3,13 +3,20 @@
     "api/submit-lead.js": {
       "memory": 128,
       "maxDuration": 10
+    },
+    "api/register-class.js": {
+      "memory": 128,
+      "maxDuration": 15
     }
   },
   "headers": [
     {
       "source": "/api/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "no-store" }
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
       ]
     }
   ]
