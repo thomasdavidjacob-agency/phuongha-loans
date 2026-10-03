@@ -1031,3 +1031,34 @@ a.blog__card:hover .blog__readmore { color: var(--accent-light); }
 }
 .cta--ghost:hover { background: rgba(200,145,58,0.12); }
 .cta--ghost .cta__icon { background: rgba(200,145,58,0.18); color: var(--accent); }
+
+/* ============================================================
+   NAV DROPDOWN — "Down Payment Help" (nav.js handles touch)
+   ============================================================ */
+.nav-dd { position: relative; display: inline-flex; align-items: center; }
+.nav-dd__top { position: relative; display: inline-block; }
+.nav-dd__caret { position: absolute; right: -11px; top: 50%; margin-top: -4px; width: 8px; height: 8px; transition: transform 0.2s ease; opacity: 0.8; }
+.nav-dd:hover .nav-dd__caret, .nav-dd:focus-within .nav-dd__caret, .nav-dd.is-open .nav-dd__caret { transform: rotate(180deg); }
+.nav-dd__menu {
+  position: absolute; top: 100%; left: -14px; z-index: 50;
+  min-width: 270px; max-width: calc(100vw - 32px);
+  padding: 8px; margin-top: 10px;
+  background: #0A1420; border-radius: 0.85rem;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.1);
+  opacity: 0; visibility: hidden; transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+.nav-dd__menu::before { content: ''; position: absolute; left: 0; right: 0; top: -12px; height: 12px; } /* hover bridge */
+.nav-dd:hover .nav-dd__menu, .nav-dd:focus-within .nav-dd__menu, .nav-dd.is-open .nav-dd__menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.topbar__links .nav-dd__menu a { display: block; padding: 9px 12px; border-radius: 0.55rem; font-size: 0.88rem; font-weight: 500; white-space: normal; color: rgba(255,255,255,0.88); }
+.topbar__links .nav-dd__menu a:hover, .topbar__links .nav-dd__menu a:focus-visible { background: rgba(200,145,58,0.12); color: var(--accent-light); outline: none; }
+.topbar__links .nav-dd__menu a.nav-dd__hi { color: var(--accent-light); font-weight: 600; }
+.nav-dd__label { padding: 8px 12px 4px; font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+.nav-dd__sep { height: 1px; margin: 6px 8px; background: rgba(255,255,255,0.08); }
+@media (prefers-reduced-motion: reduce) { .nav-dd__menu, .nav-dd__caret { transition: none; } }
+
+/* FREE Live Class announcement strip — every page, right under the menu */
+.cls-strip { position: relative; z-index: 20; display: block; text-align: center; padding: 10px 20px; font-size: 0.88rem; color: rgba(255,255,255,0.85); background: linear-gradient(90deg, rgba(200,145,58,0.16), rgba(200,145,58,0.28), rgba(200,145,58,0.16)); border-bottom: 1px solid rgba(200,145,58,0.35); }
+.cls-strip b { color: var(--accent-light); font-weight: 600; }
+.cls-strip span { color: var(--accent-light); font-weight: 600; white-space: nowrap; margin-left: 6px; }
+.cls-strip:hover span { text-decoration: underline; text-underline-offset: 3px; }

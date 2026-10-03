@@ -46,7 +46,24 @@
         <a href="#home" data-spy="home">Home</a>
         <a href="#why" data-spy="why">Why Me</a>
         <a href="#loans" data-spy="loans">Loan Programs</a>
-        <a href="down-payment-assistance.html">Down Payment Help</a>
+        <div class="nav-dd">
+          <a href="down-payment-assistance.html" class="nav-dd__top" aria-haspopup="true" aria-expanded="false">Down Payment Help<svg class="nav-dd__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="nav-dd__menu" role="menu">
+            <div class="nav-dd__label">Start here</div>
+            <a href="down-payment-assistance.html" role="menuitem">Complete guide to down payment help</a>
+            <a href="class.html" role="menuitem" class="nav-dd__hi">FREE Live Class: Oregon Home Buyer School</a>
+            <a href="quiz.html" role="menuitem">2-minute quiz: which programs fit me?</a>
+            <div class="nav-dd__sep" role="separator"></div>
+            <div class="nav-dd__label">Programs &amp; topics</div>
+            <a href="blog-dpa-oregon-bond.html" role="menuitem">Oregon Flex Lending (FirstHome &amp; NextStep)</a>
+            <a href="blog-dpa-washington-wshfc.html" role="menuitem">Washington programs (WSHFC)</a>
+            <a href="blog-dpa-local-counties.html" role="menuitem">Portland-metro county programs</a>
+            <a href="blog-dpa-income-limits.html" role="menuitem">Income limits</a>
+            <a href="blog-dpa-fha-combo.html" role="menuitem">FHA + down payment help</a>
+            <a href="blog-dpa-teachers-first-responders.html" role="menuitem">Teachers &amp; first responders</a>
+            <a href="blog-dpa-myths.html" role="menuitem">5 myths about down payment help</a>
+          </div>
+        </div>
         <a href="calculator.html">Calculator</a>
         <a href="#contact" data-spy="contact">Contact</a>
         <a href="blog.html">Blog</a>
@@ -57,8 +74,9 @@
     </div>
   </nav>
 
-  <!-- Free class announcement (class.css) -->
-  <a href="class.html" class="cls-strip"><b>Free live class:</b> Oregon Home Buyer School, the down payment programs most renters never hear about. <span>Save a seat &rarr;</span></a>
+  <!-- FREE Live Class announcement (style.css .cls-strip) -->
+  <a href="class.html" class="cls-strip"><b>FREE Live Class:</b> Oregon Home Buyer School, the down payment programs most renters never hear about. <span>Save a seat &rarr;</span></a>
+
 
   <!-- ====================================================== -->
   <!-- HERO — TEXT + VIDEO                                     -->
@@ -272,7 +290,7 @@
         <div class="card liquid-glass loans__card fade-in">
           <span class="loans__badge">FHA</span>
           <h3>FHA Loans</h3>
-          <p>Low down payment options starting at 3.5% with flexible credit requirements — a great path to homeownership.</p>
+          <p>Low down payment options with flexible credit requirements — a great path to homeownership.</p>
           <a href="#contact" class="loans__link">Learn More <svg viewBox="0 0 24 24" class="ic ic--sm"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
         <div class="card liquid-glass loans__card fade-in">
@@ -411,5 +429,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="nav.js" defer></script>
 </body>
 </html>

@@ -38,7 +38,24 @@
         <a href="index.html#home">Home</a>
         <a href="index.html#why">Why Me</a>
         <a href="index.html#loans">Loan Programs</a>
-        <a href="down-payment-assistance.html">Down Payment Help</a>
+        <div class="nav-dd">
+          <a href="down-payment-assistance.html" class="nav-dd__top" aria-haspopup="true" aria-expanded="false">Down Payment Help<svg class="nav-dd__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="nav-dd__menu" role="menu">
+            <div class="nav-dd__label">Start here</div>
+            <a href="down-payment-assistance.html" role="menuitem">Complete guide to down payment help</a>
+            <a href="class.html" role="menuitem" class="nav-dd__hi">FREE Live Class: Oregon Home Buyer School</a>
+            <a href="quiz.html" role="menuitem">2-minute quiz: which programs fit me?</a>
+            <div class="nav-dd__sep" role="separator"></div>
+            <div class="nav-dd__label">Programs &amp; topics</div>
+            <a href="blog-dpa-oregon-bond.html" role="menuitem">Oregon Flex Lending (FirstHome &amp; NextStep)</a>
+            <a href="blog-dpa-washington-wshfc.html" role="menuitem">Washington programs (WSHFC)</a>
+            <a href="blog-dpa-local-counties.html" role="menuitem">Portland-metro county programs</a>
+            <a href="blog-dpa-income-limits.html" role="menuitem">Income limits</a>
+            <a href="blog-dpa-fha-combo.html" role="menuitem">FHA + down payment help</a>
+            <a href="blog-dpa-teachers-first-responders.html" role="menuitem">Teachers &amp; first responders</a>
+            <a href="blog-dpa-myths.html" role="menuitem">5 myths about down payment help</a>
+          </div>
+        </div>
         <a href="calculator.html" class="active">Calculator</a>
         <a href="index.html#contact">Contact</a>
         <a href="blog.html">Blog</a>
@@ -48,6 +65,9 @@
       </div>
     </div>
   </nav>
+
+  <!-- FREE Live Class announcement (style.css .cls-strip) -->
+  <a href="class.html" class="cls-strip"><b>FREE Live Class:</b> Oregon Home Buyer School, the down payment programs most renters never hear about. <span>Save a seat &rarr;</span></a>
 
   <!-- CALCULATOR -->
   <main class="calc section">
@@ -218,5 +238,6 @@
   </footer>
 
   <script src="calc.js"></script>
+  <script src="nav.js" defer></script>
 </body>
 </html>

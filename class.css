@@ -88,9 +88,3 @@
   .cls-form { padding: 24px 18px; }
   .qz { padding: 24px 18px; }
 }
-
-/* announcement strip used on index.html + down-payment-assistance.html */
-.cls-strip { position: relative; z-index: 20; display: block; text-align: center; padding: 10px 20px; font-size: 0.88rem; color: rgba(255,255,255,0.85); background: linear-gradient(90deg, rgba(200,145,58,0.16), rgba(200,145,58,0.28), rgba(200,145,58,0.16)); border-bottom: 1px solid rgba(200,145,58,0.35); }
-.cls-strip b { color: var(--accent-light); font-weight: 600; }
-.cls-strip span { color: var(--accent-light); font-weight: 600; white-space: nowrap; margin-left: 6px; }
-.cls-strip:hover span { text-decoration: underline; text-underline-offset: 3px; }
