@@ -8,40 +8,119 @@
   const WASHINGTON = ['Clark County, WA', 'Somewhere else in Washington'];
   const METRO = ['Multnomah', 'Washington', 'Clackamas', 'Clark County, WA'];
 
+  const IMG = 'img/quiz/';
+  const o = (label, img) => ({ label, img: IMG + img + '.svg' });
+
+  // Where-to-buy is asked as a picture of the region first, then the county (when a region has more than one).
+  const REGIONS = [
+    { label: 'Portland metro', img: IMG + 'region-metro.svg', counties: ['Multnomah', 'Washington', 'Clackamas', 'Clark County, WA'] },
+    { label: 'Willamette Valley', img: IMG + 'region-valley.svg', counties: ['Marion', 'Polk', 'Yamhill', 'Lane', 'Linn or Benton'] },
+    { label: 'Central, Southern & Eastern Oregon', img: IMG + 'region-central.svg', counties: ['Deschutes', 'Jackson', 'Somewhere else in Oregon'] },
+    { label: 'Oregon Coast', img: IMG + 'region-coast.svg', counties: ['An Oregon Coast county'] },
+    { label: 'Elsewhere in Washington', img: IMG + 'region-washington.svg', counties: ['Somewhere else in Washington'] },
+    { label: 'Not sure yet', img: IMG + 'region-notsure.svg', counties: ['Not sure yet'] },
+  ];
+  const COUNTY_LABEL = { Multnomah: 'Multnomah County', Washington: 'Washington County, OR', Clackamas: 'Clackamas County', Marion: 'Marion County', Polk: 'Polk County', Yamhill: 'Yamhill County', Lane: 'Lane County', Deschutes: 'Deschutes County', Jackson: 'Jackson County', 'Linn or Benton': 'Linn or Benton County' };
+
   const QUESTIONS = [
-    { key: 'county', q: 'Where do you want to buy?', help: 'Programs differ by state, and local help differs by county.', opts: [...OREGON, ...WASHINGTON, 'Not sure yet'] },
-    { key: 'owned_recently', q: 'Have you owned a home in the last three years?', help: 'For many programs, "first-time buyer" just means you haven’t owned in the past three years.', opts: ['No, never owned', 'Not in the last three years', 'Yes, I own or owned recently'] },
-    { key: 'income_band', q: 'Roughly, what is your household’s yearly income?', help: 'Programs set income limits by county and household size. Your best guess is enough — we confirm the real limits together.', opts: ['Lower to moderate for my area', 'Middle of the road', 'On the higher side', 'Prefer not to say'] },
-    { key: 'veteran', q: 'Are you (or your spouse) a veteran, active-duty service member, or surviving spouse?', opts: ['Yes', 'No'] },
-    { key: 'area', q: 'What kind of area are you looking in?', help: 'Some federal programs only apply outside larger cities.', opts: ['In or near a city', 'Small town or rural area', 'Not sure / open to either'] },
-    { key: 'public_service', q: 'Do you work as a teacher, firefighter, police officer or EMT?', opts: ['Yes', 'No'] },
-    { key: 'savings', q: 'How much do you have saved toward buying?', help: 'Down payment, closing costs and moving money combined.', opts: ['Very little so far', 'Some, but not a lot', 'A solid amount'] },
-    { key: 'timeline', q: 'When would you like to be in your own place?', opts: ['Within 3 months', '3 to 6 months', '6 to 12 months', 'More than a year', 'Just learning for now'] },
+    { key: 'county', type: 'region', q: 'Where do you want to buy?', help: 'Programs differ by state, and local help differs by county.' },
+    { key: 'owned_recently', q: 'Have you owned a home in the last three years?', help: 'For many programs, "first-time buyer" just means you haven’t owned in the past three years.', opts: [o('No, never owned', 'owned-never'), o('Not in the last three years', 'owned-3yrs'), o('Yes, I own or owned recently', 'owned-yes')] },
+    { key: 'income_band', q: 'Roughly, what is your household’s yearly income?', help: 'Programs set income limits by county and household size. Your best guess is enough — we confirm the real limits together.', opts: [o('Lower to moderate for my area', 'income-lower'), o('Middle of the road', 'income-middle'), o('On the higher side', 'income-higher'), o('Prefer not to say', 'income-private')] },
+    { key: 'veteran', q: 'Are you (or your spouse) a veteran, active-duty service member, or surviving spouse?', opts: [o('Yes', 'vet-yes'), o('No', 'vet-no')] },
+    { key: 'area', q: 'What kind of area are you looking in?', help: 'Some federal programs only apply outside larger cities.', opts: [o('In or near a city', 'area-city'), o('Small town or rural area', 'area-rural'), o('Not sure / open to either', 'area-either')] },
+    { key: 'public_service', q: 'Do you work as a teacher, firefighter, police officer or EMT?', opts: [o('Yes', 'public-yes'), o('No', 'public-no')] },
+    { key: 'savings', q: 'How much do you have saved toward buying?', help: 'Down payment, closing costs and moving money combined.', opts: [o('Very little so far', 'savings-little'), o('Some, but not a lot', 'savings-some'), o('A solid amount', 'savings-solid')] },
+    { key: 'timeline', q: 'When would you like to be in your own place?', opts: [o('Within 3 months', 'time-3mo'), o('3 to 6 months', 'time-6mo'), o('6 to 12 months', 'time-12mo'), o('More than a year', 'time-1yr'), o('Just learning for now', 'time-learning')] },
   ];
 
   const answers = {};
   let step = 0;
+  let region = null; // region picked on question 1, while choosing the county
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Warm the cache so the next question's pictures appear instantly.
+  function preload(i) {
+    const Q = QUESTIONS[i];
+    if (!Q) return;
+    (Q.type === 'region' ? REGIONS : Q.opts).forEach((x) => { const im = new Image(); im.src = x.img; });
+  }
+
+  function cards(list, picked) {
+    return `<div class="qz__pics qz__pics--${list.length}">${list
+      .map((x, i) => `<button type="button" class="qz__pic${picked === x.label ? ' is-picked' : ''}" data-i="${i}"><span class="qz__img"><img src="${x.img}" alt="" width="320" height="200" decoding="async"></span><span class="qz__lbl">${esc(x.label)}</span></button>`)
+      .join('')}</div>`;
+  }
+
+  function frame(title, help, inner, stepNo) {
+    return `
+      <div class="qz__bar"><i style="width:${(stepNo / QUESTIONS.length) * 100}%"></i></div>
+      <p class="qz__step">Question ${stepNo + 1} of ${QUESTIONS.length}</p>
+      <h2>${esc(title)}</h2>
+      ${help ? `<p class="qz__help">${esc(help)}</p>` : '<div style="height:12px"></div>'}
+      <div class="qz__body">${inner}</div>
+      <div class="qz__nav">${stepNo || region ? '<button type="button" class="qz__back">← Back</button>' : '<span></span>'}<span></span></div>`;
+  }
+
+  function choose(btn, done) {
+    root.querySelectorAll('.qz__pic, .qz__chip').forEach((b) => (b.disabled = true));
+    btn.classList.add('is-picked');
+    setTimeout(done, reduceMotion ? 0 : 260);
+  }
+
+  function next(value) {
+    answers[QUESTIONS[step].key] = value;
+    region = null;
+    step++;
+    render();
+    // Keep the new question in view, below the fixed menu bar.
+    const bar = document.querySelector('.topbar');
+    const offset = bar && /fixed|sticky/.test(getComputedStyle(bar).position) ? bar.getBoundingClientRect().bottom : 0;
+    const top = root.getBoundingClientRect().top;
+    if (top < offset + 8) window.scrollTo({ top: window.scrollY + top - offset - 12, behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
 
   function render() {
     if (step >= QUESTIONS.length) return renderResults();
     const Q = QUESTIONS[step];
-    root.innerHTML = `
-      <div class="qz__bar"><i style="width:${(step / QUESTIONS.length) * 100}%"></i></div>
-      <p class="qz__step">Question ${step + 1} of ${QUESTIONS.length}</p>
-      <h2>${esc(Q.q)}</h2>
-      ${Q.help ? `<p class="qz__help">${esc(Q.help)}</p>` : '<div style="height:12px"></div>'}
-      <div class="qz__opts">${Q.opts.map((o, i) => `<button type="button" class="qz__opt" data-i="${i}">${esc(o)}</button>`).join('')}</div>
-      <div class="qz__nav">${step ? '<button type="button" class="qz__back">← Back</button>' : '<span></span>'}<span></span></div>`;
-    root.querySelectorAll('.qz__opt').forEach((b) =>
-      b.addEventListener('click', () => {
-        answers[Q.key] = Q.opts[Number(b.dataset.i)];
-        step++;
-        render();
-      })
-    );
+    preload(step + 1);
+
+    if (Q.type === 'region' && region) {
+      // County follow-up for the picked region.
+      const r = region;
+      root.innerHTML = frame('Which county?', `${r.label}. Local programs change at the county line.`, `
+        <div class="qz__sub"><img src="${r.img}" alt="" width="320" height="200"><div class="qz__chips">${r.counties
+          .map((c, i) => `<button type="button" class="qz__chip${answers.county === c ? ' is-picked' : ''}" data-i="${i}">${esc(COUNTY_LABEL[c] || c)}</button>`)
+          .join('')}</div></div>`, step);
+      root.querySelectorAll('.qz__chip').forEach((b) => b.addEventListener('click', () => choose(b, () => next(r.counties[Number(b.dataset.i)]))));
+    } else if (Q.type === 'region') {
+      const pickedRegion = REGIONS.find((x) => x.counties.includes(answers.county));
+      root.innerHTML = frame(Q.q, Q.help, cards(REGIONS, pickedRegion && pickedRegion.label), step);
+      root.querySelectorAll('.qz__pic').forEach((b) =>
+        b.addEventListener('click', () => {
+          const r = REGIONS[Number(b.dataset.i)];
+          choose(b, () => {
+            if (r.counties.length === 1) return next(r.counties[0]);
+            region = r;
+            render();
+          });
+        })
+      );
+    } else {
+      root.innerHTML = frame(Q.q, Q.help, cards(Q.opts, answers[Q.key]), step);
+      root.querySelectorAll('.qz__pic').forEach((b) => b.addEventListener('click', () => choose(b, () => next(Q.opts[Number(b.dataset.i)].label))));
+    }
+
     const back = root.querySelector('.qz__back');
-    if (back) back.addEventListener('click', () => (step--, render()));
+    if (back)
+      back.addEventListener('click', () => {
+        if (region) region = null;
+        else {
+          step--;
+          if (QUESTIONS[step].type === 'region') region = REGIONS.find((x) => x.counties.length > 1 && x.counties.includes(answers.county)) || null;
+        }
+        render();
+      });
   }
 
   const OHCS = 'https://www.oregon.gov/ohcs/homeownership/homebuyers/pages/flex-lending.aspx';
