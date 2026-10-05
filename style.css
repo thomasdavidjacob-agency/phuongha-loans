@@ -1055,6 +1055,12 @@ a.blog__card:hover .blog__readmore { color: var(--accent-light); }
 .topbar__links .nav-dd__menu a.nav-dd__hi { color: var(--accent-light); font-weight: 600; }
 .nav-dd__label { padding: 8px 12px 4px; font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
 .nav-dd__sep { height: 1px; margin: 6px 8px; background: rgba(255,255,255,0.08); }
+/* Escape dismisses the menu even while focus stays on the trigger */
+.nav-dd.is-dismissed .nav-dd__menu { opacity: 0; visibility: hidden; transform: translateY(-4px); }
+/* Mobile: the topbar is tall and sticky, so let the menu scroll inside the viewport */
+@media (max-width: 960px) {
+  .nav-dd__menu { max-height: calc(100vh - 170px); max-height: calc(100dvh - 170px); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+}
 @media (prefers-reduced-motion: reduce) { .nav-dd__menu, .nav-dd__caret { transition: none; } }
 
 /* FREE Live Class announcement strip — every page, right under the menu */

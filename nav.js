@@ -17,6 +17,7 @@
     var top = dd.querySelector('.nav-dd__top');
     if (!top) return;
     top.addEventListener('click', function (e) {
+      dd.classList.remove('is-dismissed');
       if (touch && !dd.classList.contains('is-open')) {
         e.preventDefault();
         closeAll(dd);
@@ -27,9 +28,14 @@
     dd.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         dd.classList.remove('is-open');
+        dd.classList.add('is-dismissed');
         top.setAttribute('aria-expanded', 'false');
         top.focus();
       }
+    });
+    dd.addEventListener('mouseleave', function () { dd.classList.remove('is-dismissed'); });
+    dd.addEventListener('focusout', function (e) {
+      if (!dd.contains(e.relatedTarget)) dd.classList.remove('is-dismissed');
     });
   });
   document.addEventListener('click', function (e) {

@@ -11,6 +11,9 @@
 .cls-stats span { font-size: 0.8rem; color: rgba(255,255,255,0.6); line-height: 1.4; display: block; margin-top: 2px; }
 
 .cls-form { padding: 30px 28px; border-radius: 1.5rem; }
+/* Land below the sticky topbar when jumping to #register */
+#register { scroll-margin-top: 110px; }
+@media (max-width: 960px) { #register { scroll-margin-top: 220px; } }
 .cls-form h2 { font-size: 1.35rem; color: #fff; margin-bottom: 4px; }
 .cls-form__lead { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 18px; }
 .cls-dates { display: grid; gap: 8px; }
