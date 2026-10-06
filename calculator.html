@@ -110,10 +110,12 @@
 
           <div class="calc__divider"></div>
 
+          <p class="calc__est-note"><strong>Estimates below.</strong> Property tax and PMI are pre-filled with typical starting values. Replace them with your county's tax rate and your actual PMI quote, and enter your real insurance premium, for a more accurate payment.</p>
+
           <div class="form__row">
             <div class="form__group">
-              <label for="tax">Property tax <span class="calc__hint">/yr</span></label>
-              <div class="calc__field"><input type="text" inputmode="decimal" id="tax" value="1.0" /><span class="calc__suffix">%</span></div>
+              <label for="tax">Property tax <span class="calc__hint">/yr</span> <span class="calc__est">Estimate</span></label>
+              <div class="calc__field calc__field--est"><input type="text" inputmode="decimal" id="tax" value="1.0" /><span class="calc__suffix">%</span></div>
             </div>
             <div class="form__group">
               <label for="insurance">Home insurance <span class="calc__hint">/yr</span></label>
@@ -127,8 +129,8 @@
               <div class="calc__field"><span class="calc__prefix">$</span><input type="text" inputmode="numeric" id="hoa" value="0" /></div>
             </div>
             <div class="form__group">
-              <label for="pmi-rate">PMI rate <span class="calc__hint">/yr</span></label>
-              <div class="calc__field"><input type="text" inputmode="decimal" id="pmi-rate" value="0.5" /><span class="calc__suffix">%</span></div>
+              <label for="pmi-rate">PMI rate <span class="calc__hint">/yr</span> <span class="calc__est">Estimate</span></label>
+              <div class="calc__field calc__field--est"><input type="text" inputmode="decimal" id="pmi-rate" value="0.5" /><span class="calc__suffix">%</span></div>
             </div>
           </div>
         </div>

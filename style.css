@@ -854,6 +854,11 @@ textarea { resize: vertical; min-height: 100px; }
 .calc__field:has(.calc__prefix) input { padding-left: 28px; }
 .calc__field:has(.calc__suffix) input { padding-right: 30px; }
 .calc__hint { font-weight: 400; color: rgba(255,255,255,0.4); font-size: 0.78rem; }
+/* Pre-filled estimate fields (property tax, PMI): flagged so buyers replace them with real numbers */
+.calc__est { display: inline-block; margin-left: 4px; padding: 1px 7px; border-radius: 999px; font-size: 0.64rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); background: rgba(200,145,58,0.14); vertical-align: 1px; }
+.calc__field--est input { border-color: rgba(200,145,58,0.55); }
+.calc__est-note { margin: 0 0 18px; padding: 12px 14px; border-left: 3px solid var(--gold); border-radius: 0.5rem; background: rgba(200,145,58,0.08); font-size: 0.85rem; line-height: 1.5; color: rgba(255,255,255,0.75); }
+.calc__est-note strong { color: var(--gold); }
 .calc__divider { height: 1px; background: rgba(255,255,255,0.1); margin: 6px 0 20px; }
 
 /* result panel */
