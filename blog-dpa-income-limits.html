@@ -71,7 +71,7 @@
       <a href="blog.html" class="post__back">&larr; All articles</a>
       <p class="post__cat">Down Payment Assistance</p>
       <h1 class="post__title">DPA income limits: <span class="italic">do you actually earn too much?</span></h1>
-      <p class="post__meta">By Phuong Ha &middot; NMLS #1839449 &middot; June 2026</p>
+      <p class="post__meta">By Phuong Ha &middot; NMLS #1839449 &middot; Updated October 2026</p>
       <hr class="post__hr" />
       <div class="post__body">
         <p>"I probably make too much to qualify." I hear this constantly — and more often than not, it's wrong. Down payment assistance income limits are higher than most people expect, especially in the Portland–Vancouver metro where cost of living is reflected in the caps.</p>
@@ -79,6 +79,34 @@
         <h2>How income limits are set</h2>
         <p>DPA income limits are typically tied to <strong>Area Median Income</strong> (AMI) — a number calculated by HUD for each county and updated annually. Programs might allow buyers at 80%, 100%, 120%, or even 140% of AMI depending on the program type and location.</p>
         <p>In Multnomah County and Clark County, the AMI numbers are substantial — which means the income limits are too. Plenty of households that assume they earn too much — including solid two-income households — can qualify for certain programs.</p>
+      </div>
+
+      <section class="ilmap card liquid-glass" id="ilmap" aria-labelledby="ilmap-title">
+        <h2 id="ilmap-title">Look up your county</h2>
+        <p class="ilmap__intro">Tap your county on the map, or pick it from the list, to see HUD's current income limits for Oregon and Washington. Change the household size to see how the limit moves.</p>
+        <div class="ilmap__controls">
+          <label>County<select id="il-county"></select></label>
+          <label>Household size
+            <select id="il-hh">
+              <option value="1">1 person</option><option value="2">2 people</option><option value="3">3 people</option>
+              <option value="4" selected>4 people</option><option value="5">5 people</option><option value="6">6 people</option>
+              <option value="7">7 people</option><option value="8">8 people</option>
+            </select>
+          </label>
+        </div>
+        <div class="ilmap__grid">
+          <div class="ilmap__mapwrap">
+            <svg class="ilmap__svg" role="group" aria-label="Map of Oregon and Washington counties, shaded by area median income"></svg>
+            <div class="ilmap__tip" hidden></div>
+            <ul class="ilmap__legend" aria-label="Area median family income"></ul>
+          </div>
+          <div class="ilmap__panel" aria-live="polite"></div>
+        </div>
+        <noscript><p class="ilmap__intro">The interactive map needs JavaScript. You can look up any county directly on <a href="https://www.huduser.gov/portal/datasets/il.html" target="_blank" rel="noopener">HUD's income limits site</a>.</p></noscript>
+        <p class="ilmap__note">Figures are HUD's FY2026 income limits for each county: the area median family income, the 80% "low income" limit, and the 50% "very low income" limit. Counties in the same metro area share one set of limits. These are a benchmark, not the cap for any specific loan or assistance program. Each program sets its own limit (often a percentage of area median income) and its own rules for counting income. Source: <a href="https://www.huduser.gov/portal/datasets/il.html" target="_blank" rel="noopener">HUD User, FY2026 Income Limits</a>.</p>
+      </section>
+
+      <div class="post__body">
 
         <h2>Household size matters</h2>
         <p>Income limits aren't flat numbers — they scale with household size. A family of four will have a higher limit than a single buyer. This is one of the most frequently overlooked details. If you're buying as a couple, or have dependents, the qualifying income threshold goes up meaningfully.</p>
@@ -148,5 +176,7 @@
   </footer>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   <script src="nav.js" defer></script>
+  <script src="income-limits-data.js" defer></script>
+  <script src="income-map.js" defer></script>
 </body>
 </html>
