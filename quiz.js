@@ -146,21 +146,10 @@
       });
   }
 
-  const OHCS = 'https://www.oregon.gov/ohcs/homeownership/homebuyers/pages/flex-lending.aspx';
-  const FIRSTHOME = 'https://www.oregon.gov/ohcs/homeownership/lenders-real-estate-professionals/pages/first-home-gov-product-summary.aspx';
-
   function programs(a) {
-    const inOregon = OREGON.includes(a.county) || a.county === 'Not sure yet';
     const inWashington = WASHINGTON.includes(a.county) || a.county === 'Not sure yet';
-    const firstTime = a.owned_recently !== 'Yes, I own or owned recently';
-    const overNextStep = a.income_band === 'On the higher side';
     const out = [];
-    if (inOregon && firstTime)
-      out.push({ tag: 'Oregon · state program', title: 'OHCS Flex Lending: FirstHome', body: `Oregon's program for buyers who haven't owned in the last three years. It pairs a first mortgage with assistance that can go toward your down payment, closing costs and prepaid items. Expect a homebuyer education course, a credit minimum, and income and price limits set by county. <a href="${FIRSTHOME}" target="_blank" rel="noopener">OHCS details</a>` });
-    if (inOregon && !overNextStep)
-      out.push({ tag: 'Oregon · state program', title: 'OHCS Flex Lending: NextStep', body: `No first-time buyer requirement, so it's the one to ask about if you've owned before. It has a household income cap. <a href="${OHCS}" target="_blank" rel="noopener">OHCS details</a>` });
-    if (inOregon && overNextStep && !firstTime)
-      out.push({ tag: 'Oregon', title: 'Conventional options with low upfront cash', body: 'Your income may be above the state assistance limits for repeat buyers, but there are still low-upfront-cash conventional and FHA routes worth comparing. We cover them in class.' });
+    out.push({ tag: 'Lender program · OR & WA', title: 'MSF National DPA', body: 'Down payment assistance offered through Mortgage Solutions Financial, the lender I work with. It isn’t tied to one state’s housing agency, so it’s available in both Oregon and Washington. The program sets the terms and eligibility, so we check your numbers together. <a href="blog-dpa-msf-national.html">How it works</a>' });
     if (inWashington)
       out.push({ tag: 'Washington · state programs', title: 'WSHFC Home Advantage and related programs', body: 'The Washington State Housing Finance Commission runs the state’s assistance programs. Relevant if you’re buying in Clark County and commuting into Portland. <a href="blog-dpa-washington-wshfc.html">How they work</a>' });
     if (METRO.includes(a.county))

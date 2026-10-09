@@ -582,11 +582,19 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.02em; }
   gap: 56px;
   align-items: start;
 }
+/* Photo on the left, eyebrow + heading beside it */
+.contact__head {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 26px;
+}
+.contact__head .section-title { margin-bottom: 0; font-size: clamp(1.8rem, 3.2vw, 2.6rem); }
 .contact__portrait {
+  flex: none;
   width: 172px;
   border-radius: 1.5rem;
   padding: 8px;
-  margin-bottom: 26px;
 }
 .contact__portrait img {
   width: 100%;
@@ -796,6 +804,8 @@ textarea { resize: vertical; min-height: 100px; }
 
 @media (max-width: 900px) {
   .contact__wrap { grid-template-columns: 1fr; gap: 40px; }
+  .contact__head { gap: 22px; }
+  .contact__portrait { width: 128px; padding: 6px; }
   .footer__inner { grid-template-columns: 1fr; gap: 28px; text-align: center; justify-items: center; }
   .footer__details { align-items: center; }
   .footer__links { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; }

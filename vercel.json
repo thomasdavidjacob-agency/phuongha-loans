@@ -9,6 +9,18 @@
       "maxDuration": 15
     }
   },
+  "redirects": [
+    {
+      "source": "/blog-dpa-oregon-bond.html",
+      "destination": "/blog-dpa-msf-national.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog-dpa-oregon-bond",
+      "destination": "/blog-dpa-msf-national.html",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
