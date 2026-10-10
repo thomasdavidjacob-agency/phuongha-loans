@@ -7,6 +7,12 @@
     "api/register-class.js": {
       "memory": 128,
       "maxDuration": 15
+    },
+    "api/chat.js": {
+      "maxDuration": 60
+    },
+    "api/live.js": {
+      "maxDuration": 10
     }
   },
   "redirects": [

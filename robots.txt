@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /nmls-exam-prep.html
+Disallow: /agent.html
 
 Sitemap: https://phuongha.loans/sitemap.xml

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Live Chat Console | phuongha.loans</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#0D1B2A" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --navy:#0D1B2A; --card:#0F2030; --deep:#0A1622; --gold:#C8913A; --gold-l:#DBA84F; --green:#3DDC84; --line:rgba(255,255,255,.1); }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; background:var(--navy); color:#fff; font-family:'Poppins',system-ui,sans-serif; }
+    button, input, textarea { font:inherit; }
+    .wrap { max-width:1100px; margin:0 auto; padding:16px; }
+    header { display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:14px 18px; background:var(--card); border:1px solid var(--line); border-radius:16px; }
+    header h1 { font-size:1.05rem; font-weight:600; margin:0; flex:1; min-width:180px; }
+    header h1 span { color:var(--gold-l); }
+    .toggle { display:flex; border-radius:999px; overflow:hidden; border:1px solid var(--line); }
+    .toggle button { border:0; padding:12px 22px; cursor:pointer; font-weight:600; background:transparent; color:rgba(255,255,255,.6); }
+    .toggle button.on-live { background:var(--green); color:#0D1B2A; }
+    .toggle button.on-away { background:#3a4656; color:#fff; }
+    .hint { font-size:.75rem; color:rgba(255,255,255,.55); width:100%; margin:2px 0 0; }
+    .grid { display:grid; grid-template-columns:300px 1fr; gap:14px; margin-top:14px; height:calc(100vh - 150px); min-height:420px; }
+    .list, .thread { background:var(--card); border:1px solid var(--line); border-radius:16px; overflow:hidden; display:flex; flex-direction:column; }
+    .list h2, .thread h2 { margin:0; padding:12px 16px; font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.55); border-bottom:1px solid var(--line); font-weight:600; }
+    .chats { overflow-y:auto; flex:1; }
+    .chat { width:100%; text-align:left; border:0; border-bottom:1px solid var(--line); background:transparent; color:#fff; padding:12px 16px; cursor:pointer; display:block; }
+    .chat:hover, .chat.sel { background:rgba(255,255,255,.05); }
+    .chat b { display:block; font-weight:600; font-size:.92rem; }
+    .chat small { color:rgba(255,255,255,.5); font-size:.75rem; }
+    .chat .new { display:inline-block; margin-left:6px; padding:1px 7px; border-radius:999px; background:var(--gold); color:#0D1B2A; font-size:.65rem; font-weight:600; vertical-align:2px; }
+    .chat.closed b { color:rgba(255,255,255,.5); }
+    .msgs { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; }
+    .m { max-width:78%; padding:10px 13px; border-radius:14px; font-size:.92rem; line-height:1.5; white-space:pre-wrap; word-wrap:break-word; }
+    .m.visitor { align-self:flex-start; background:rgba(255,255,255,.08); border-bottom-left-radius:4px; }
+    .m.agent { align-self:flex-end; background:var(--gold); color:#0D1B2A; border-bottom-right-radius:4px; }
+    .m.system { align-self:center; font-size:.78rem; color:rgba(255,255,255,.55); background:none; }
+    .m time { display:block; font-size:.66rem; opacity:.6; margin-top:3px; }
+    .reply { display:flex; gap:8px; padding:12px; border-top:1px solid var(--line); }
+    .reply textarea { flex:1; resize:none; height:52px; padding:12px; border-radius:12px; border:1px solid var(--line); background:var(--deep); color:#fff; }
+    .btn { border:0; border-radius:12px; padding:0 18px; cursor:pointer; font-weight:600; background:var(--gold); color:#0D1B2A; }
+    .btn.ghost { background:transparent; color:#fff; border:1px solid var(--line); }
+    .empty { margin:auto; color:rgba(255,255,255,.45); font-size:.9rem; text-align:center; padding:24px; }
+    .rules { font-size:.72rem; color:rgba(255,255,255,.5); padding:8px 16px; border-top:1px solid var(--line); line-height:1.45; }
+    #login { max-width:360px; margin:12vh auto 0; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:28px; display:flex; flex-direction:column; gap:12px; }
+    #login input { padding:12px; border-radius:10px; border:1px solid var(--line); background:var(--deep); color:#fff; }
+    #login .btn { padding:12px; }
+    .err { color:#ff8a8a; font-size:.85rem; min-height:1.2em; }
+    @media (max-width:760px) {
+      .grid { grid-template-columns:1fr; height:auto; }
+      .list { max-height:220px; }
+      .thread { height:70vh; }
+    }
+  </style>
+</head>
+<body>
+  <form id="login" hidden>
+    <h1 style="margin:0;font-size:1.2rem">Live chat console</h1>
+    <input type="password" placeholder="Console password" autocomplete="current-password" required />
+    <button class="btn" type="submit">Sign in</button>
+    <div class="err"></div>
+  </form>
+
+  <div class="wrap" id="app" hidden>
+    <header>
+      <h1>phuongha<span>.loans</span> live chat</h1>
+      <div class="toggle" role="group" aria-label="Your chat status">
+        <button type="button" data-live="true">● I'm Live</button>
+        <button type="button" data-live="false">I'm Away</button>
+      </div>
+      <button class="btn ghost" type="button" id="notify" style="padding:10px 14px">Enable alerts</button>
+      <p class="hint" id="hint"></p>
+    </header>
+    <div class="grid">
+      <section class="list"><h2>Chats (last 7 days)</h2><div class="chats"></div></section>
+      <section class="thread">
+        <h2 id="thread-title">Pick a chat</h2>
+        <div class="msgs"><div class="empty">When a visitor starts a live chat it shows up on the left. You'll also get an email.</div></div>
+        <form class="reply" hidden>
+          <textarea placeholder="Reply…" maxlength="2000"></textarea>
+          <button class="btn" type="submit">Send</button>
+          <button class="btn ghost" type="button" id="end">End</button>
+        </form>
+        <div class="rules">Reminder: no rates, payments, or fee figures in chat, and don't take Social Security or account numbers here. Move anything sensitive to your secure application or a call.</div>
+      </section>
+    </div>
+  </div>
+
+<script>
+(function () {
+  const KEY_STORE = 'agent-key';
+  let key = null;
+  try { key = sessionStorage.getItem(KEY_STORE); } catch (e) {}
+  let live = false;
+  let selected = null;
+  let seenCount = 0;
+  const lastSeen = {};       // chat id -> last activity the console has shown
+  let firstList = true;
+
+  const $ = (s) => document.querySelector(s);
+  const api = async (params, body) => {
+    const opts = body
+      ? { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-agent-key': key }, body: JSON.stringify({ ...params, ...body }) }
+      : { headers: { 'x-agent-key': key }, cache: 'no-store' };
+    const url = body ? '/api/live' : '/api/live?' + new URLSearchParams(params);
+    const r = await fetch(url, opts);
+    if (r.status === 401) { signOut(); throw new Error('Signed out'); }
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(data.error || 'Request failed');
+    return data;
+  };
+
+  // ---------- alerts ----------
+  let audio;
+  function ding() {
+    try {
+      audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+      const o = audio.createOscillator(), g = audio.createGain();
+      o.frequency.value = 880; g.gain.value = 0.15;
+      o.connect(g); g.connect(audio.destination); o.start(); o.stop(audio.currentTime + 0.25);
+    } catch (e) {}
+    if (navigator.vibrate) navigator.vibrate(200);
+    if (document.hidden) document.title = '● New message | Live chat';
+    if (window.Notification && Notification.permission === 'granted' && document.hidden) {
+      new Notification('New chat message', { body: 'A visitor is waiting on phuongha.loans' });
+    }
+  }
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) document.title = 'Live Chat Console | phuongha.loans'; });
+  $('#notify').addEventListener('click', async () => {
+    if (window.Notification) await Notification.requestPermission();
+    ding();   // also unlocks sound on phones, which need a tap first
+    $('#notify').textContent = 'Alerts on';
+  });
+
+  // ---------- live toggle ----------
+  function paintToggle() {
+    document.querySelectorAll('.toggle button').forEach((b) => {
+      const isLive = b.dataset.live === 'true';
+      b.className = isLive ? (live ? 'on-live' : '') : (live ? '' : 'on-away');
+    });
+    $('#hint').textContent = live
+      ? "You're live. Visitors see \"Phuong is online\". Keep this page open; if it closes or sleeps, you switch to Away automatically within about 90 seconds."
+      : "You're away. Winston (AI) answers questions and visitors can send you a message.";
+  }
+  document.querySelectorAll('.toggle button').forEach((b) => b.addEventListener('click', async () => {
+    try { live = (await api({}, { action: 'setLive', live: b.dataset.live === 'true' })).live; paintToggle(); }
+    catch (e) { alert(e.message); }
+  }));
+  setInterval(async () => {
+    if (!key || !live) return;
+    try { live = (await api({}, { action: 'heartbeat' })).live; paintToggle(); } catch (e) {}
+  }, 30000);
+
+  // ---------- chats ----------
+  const ago = (t) => { const s = Math.round((Date.now() - Number(t)) / 1000); return s < 60 ? 'just now' : s < 3600 ? Math.round(s / 60) + 'm ago' : s < 86400 ? Math.round(s / 3600) + 'h ago' : Math.round(s / 86400) + 'd ago'; };
+  async function loadList() {
+    if (!key) return;
+    let data;
+    try { data = await api({ action: 'list' }); } catch (e) { return; }
+    if (data.live !== live) { live = data.live; paintToggle(); }
+    const box = $('.chats');
+    box.innerHTML = '';
+    if (!data.chats.length) box.innerHTML = '<div class="empty">No chats yet.</div>';
+    let fresh = false;
+    data.chats.forEach((c) => {
+      const isNew = c.lastFrom === 'visitor' && c.status === 'open' && lastSeen[c.id] !== c.last;
+      if (isNew && !firstList && c.id !== selected) fresh = true;
+      const b = document.createElement('button');
+      b.className = 'chat' + (c.id === selected ? ' sel' : '') + (c.status !== 'open' ? ' closed' : '');
+      b.innerHTML = '<b></b><small></small>';
+      b.querySelector('b').textContent = c.name || 'Visitor';
+      if (isNew && c.id !== selected) b.querySelector('b').insertAdjacentHTML('beforeend', '<span class="new">new</span>');
+      b.querySelector('small').textContent = (c.status === 'open' ? 'Open' : 'Ended') + ' · ' + ago(c.last) + (c.page ? ' · ' + c.page : '');
+      b.addEventListener('click', () => openChat(c));
+      box.appendChild(b);
+      if (firstList) lastSeen[c.id] = c.last;
+    });
+    if (fresh) ding();
+    firstList = false;
+  }
+  async function openChat(c) {
+    selected = c.id;
+    lastSeen[c.id] = c.last;
+    seenCount = 0;
+    $('#thread-title').textContent = c.name || 'Visitor';
+    $('.msgs').innerHTML = '';
+    $('.reply').hidden = c.status !== 'open';
+    await loadThread();
+    loadList();
+    $('.reply textarea').focus();
+  }
+  async function loadThread() {
+    if (!selected) return;
+    let data;
+    try { data = await api({ action: 'read', id: selected, after: seenCount }); } catch (e) { return; }
+    const box = $('.msgs');
+    let visitorNew = false;
+    data.messages.forEach((m) => {
+      seenCount++;
+      const d = document.createElement('div');
+      d.className = 'm ' + m.from;
+      d.textContent = m.text;
+      const t = document.createElement('time');
+      t.textContent = new Date(m.at).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+      d.appendChild(t);
+      box.appendChild(d);
+      if (m.from === 'visitor' && seenCount > 1) visitorNew = true;
+    });
+    if (data.messages.length) box.scrollTop = box.scrollHeight;
+    if (visitorNew && document.hidden) ding();
+    $('.reply').hidden = data.meta.status !== 'open';
+    lastSeen[selected] = data.meta.last;
+  }
+  $('.reply').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const ta = $('.reply textarea');
+    const text = ta.value.trim();
+    if (!text) return;
+    ta.value = '';
+    try { await api({}, { action: 'reply', id: selected, text }); await loadThread(); }
+    catch (err) { ta.value = text; alert(err.message); }
+  });
+  $('.reply textarea').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); $('.reply').requestSubmit(); }
+  });
+  $('#end').addEventListener('click', async () => {
+    if (!selected || !confirm('End this chat for the visitor?')) return;
+    try { await api({}, { action: 'close', id: selected }); await loadThread(); loadList(); } catch (e) { alert(e.message); }
+  });
+
+  // ---------- sign in ----------
+  function signOut() {
+    key = null;
+    try { sessionStorage.removeItem(KEY_STORE); } catch (e) {}
+    $('#app').hidden = true;
+    $('#login').hidden = false;
+  }
+  async function start() {
+    $('#login').hidden = true;
+    $('#app').hidden = false;
+    paintToggle();
+    await loadList();
+    setInterval(loadList, 4000);
+    setInterval(loadThread, 2500);
+  }
+  $('#login').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    key = $('#login input').value;
+    try {
+      await api({ action: 'list' });
+      try { sessionStorage.setItem(KEY_STORE, key); } catch (err) {}
+      start();
+    } catch (err) {
+      $('#login .err').textContent = err.message === 'Signed out' ? 'Wrong password.' : err.message;
+      $('#login').hidden = false;
+    }
+  });
+  if (key) start(); else $('#login').hidden = false;
+})();
+</script>
+</body>
+</html>
