@@ -306,6 +306,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.02em; }
 .hero__actions  { order: 5; }
 
 .left__logo { width: clamp(160px, 18vw, 250px); height: auto; aspect-ratio: 1; object-fit: contain; opacity: 0.95; }
+/* MSF wordmark is wide (508x110); a square box adds empty space above and below it */
+.hero__logo { aspect-ratio: auto; width: clamp(170px, 16vw, 230px); }
 .left__headline { font-size: clamp(2.2rem, 4.2vw, 3.7rem); line-height: 1.04; letter-spacing: -0.05em; color: #fff; }
 .left__headline .italic { font-size: 0.95em; }
 
@@ -322,20 +324,41 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.02em; }
 .left__author { display: flex; align-items: center; gap: 14px; margin-top: 18px; font-size: 0.7rem; letter-spacing: 0.18em; color: var(--accent-light); }
 .left__author .line { height: 1px; flex: 1; max-width: 60px; background: rgba(200,145,58,0.5); }
 
-/* desktop: 2-column — text left, video right */
+/* Faded state names: Oregon reads bottom-to-top up the left edge, Washington top-to-bottom down the right.
+   Desktop only; there's no side gutter for them on smaller screens. */
+.hero__state { display: none; }
+@media (min-width: 1024px) {
+  .hero__state {
+    display: block; position: absolute; top: 50%; z-index: 0;
+    font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+    font-size: clamp(36px, 3vw, 44px); letter-spacing: 0.14em; line-height: 1;
+    color: rgba(74, 118, 186, 0.16); writing-mode: vertical-rl; white-space: nowrap;
+    pointer-events: none; user-select: none;
+  }
+  .hero__state--or { left: clamp(18px, 1.8vw, 36px); transform: translateY(-50%) rotate(180deg); }
+  .hero__state--wa { right: clamp(18px, 1.8vw, 36px); transform: translateY(-50%); }
+  /* keep the real content above the background words */
+  .hero__grid > *:not(.hero__map):not(.hero__state) { position: relative; z-index: 1; }
+}
+
+/* desktop: 2-column — photo left, text right, vertically centered on each other and kept close */
 @media (min-width: 1024px) {
   .hero__grid {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    grid-template-rows: auto auto auto 1fr;
+    grid-template-columns: minmax(0, 600px) minmax(0, 600px);
+    justify-content: center;
+    grid-template-rows: 1fr auto auto auto auto 1fr;
     grid-template-areas:
-      "logo    video"
-      "quote   video"
-      "head    video"
-      "actions video";
-    column-gap: 48px;
+      "video   ."
+      "video   logo"
+      "video   quote"
+      "video   head"
+      "video   actions"
+      "video   .";
+    column-gap: 44px;
     row-gap: 16px;
-    padding: 30px 48px;
+    /* side padding leaves a gutter for the faded OREGON / WASHINGTON words */
+    padding: 30px clamp(72px, 7vw, 96px);
     align-items: start;
   }
   .hero__logo { grid-area: logo; }
@@ -343,6 +366,8 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.02em; }
   .hero__headline { grid-area: head; }
   .hero__actions { grid-area: actions; align-self: start; }
   .hero__video { grid-area: video; align-self: center; }
+  /* keep the headline to two lines beside the photo */
+  .hero__headline { font-size: clamp(2.4rem, 3.4vw, 3.2rem); }
 }
 
 /* ---- VIDEO MODULE ---- */
@@ -357,6 +382,26 @@ h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.02em; }
 /* photo-only variant: no play affordance, so no pointer cursor */
 .video-poster--static { cursor: default; }
 .video-poster picture, .video-poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Hero photo: enlarge from the top-right so Phuong sits left of center and the dark corner frees up for the logo */
+.video-poster--static picture img { transform: scale(1.25); transform-origin: 100% 35%; }
+/* Logo + contact block, top-right on the photo. Sizes track the photo's width (container units). */
+.video-poster { container-type: inline-size; }
+.video-poster__brand {
+  position: absolute; top: 50%; right: 5%; z-index: 2; transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: flex-end; gap: 3.2cqw; text-align: right;
+}
+.video-poster .video-poster__logo {
+  position: static; inset: auto; width: 38cqw; height: auto; object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+}
+.video-poster__info {
+  margin: 0; color: #fff; font-size: 0.8rem; font-size: max(9px, 2.3cqw); line-height: 1.75; letter-spacing: 0.02em;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.85);
+}
+.video-poster__lic { display: inline-block; margin-top: 0.5em; font-size: 0.9em; letter-spacing: 0.04em; color: rgba(255,255,255,0.85); }
+.video-poster__info strong { font-weight: 600; font-size: 1.15em; }
+.video-poster__info a { color: #fff; text-decoration: none; }
+.video-poster__info a:hover { text-decoration: underline; text-underline-offset: 2px; }
 .video-poster__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,27,42,0) 35%, rgba(13,27,42,0.7) 100%); }
 .video-play {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
