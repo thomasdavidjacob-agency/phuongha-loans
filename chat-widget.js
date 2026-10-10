@@ -73,6 +73,8 @@
   .wz-form textarea{min-height:70px;resize:vertical}
   .wz-form small{font-size:.7rem;color:rgba(255,255,255,.5);line-height:1.4}
   .wz-form .wz-act{flex:none}
+  .wz-legal{display:flex;align-items:center;justify-content:center;gap:6px;padding:6px 12px 10px;font-size:.62rem;letter-spacing:.02em;color:rgba(255,255,255,.5);border-top:1px solid rgba(255,255,255,.06)}
+  .wz-legal svg{width:14px;height:auto;flex:none}
   .wz-hide{display:none!important}
   @media (max-width:520px){.wz-panel{right:0;bottom:0;width:100vw;height:100dvh;border-radius:0}.wz-btn{right:16px;bottom:16px}}
   @media (prefers-reduced-motion:reduce){.wz-btn,.wz-typing i{transition:none;animation:none}}`;
@@ -108,7 +110,11 @@
     <form class="wz-input">
       <textarea rows="1" placeholder="Ask about FHA, VA, USDA…" aria-label="Your message" maxlength="1500"></textarea>
       <button class="wz-send" type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
-    </form>`;
+    </form>
+    <div class="wz-legal">
+      <svg viewBox="0 0 200 160" role="img" aria-label="Equal Housing Lender" fill="currentColor"><path fill-rule="evenodd" d="M100,2 L198,80 L198,160 L2,160 L2,80 L100,2 Z M100,22 L183,82 L183,148 L17,148 L17,82 L100,22 Z"/><rect x="42" y="90" width="116" height="18" rx="1"/><rect x="42" y="120" width="116" height="18" rx="1"/></svg>
+      <span>Equal Housing Lender · Mortgage Solutions Financial NMLS #61602</span>
+    </div>`;
   document.body.appendChild(btn);
   document.body.appendChild(panel);
 
