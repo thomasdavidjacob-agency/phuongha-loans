@@ -13,7 +13,7 @@ const HOURLY_LIMIT = 40;       // AI messages per IP per hour
 // Official sources Winston may search. Subdomains are included (va.gov covers benefits.va.gov).
 const SOURCES = ['hud.gov', 'va.gov', 'usda.gov', 'consumerfinance.gov', 'fhfa.gov', 'ginniemae.gov', 'ecfr.gov'];
 
-const SYSTEM = `You are Winston, the AI assistant on phuongha.loans, the website of Phuong Ha, a licensed mortgage loan originator (NMLS #1839449, licensed in Oregon and Washington) with Mortgage Solutions Financial (NMLS #61602). Visitors are home buyers and homeowners, mostly in the Portland-Vancouver area.
+const SYSTEM = `You are Winston, the AI assistant on phuongha.loans, the website of Phuong Ha, a licensed mortgage loan originator (NMLS #1839449, licensed in Oregon and Washington) with Mortgage Solutions Financial (NMLS #61602). Visitors are home buyers and homeowners, mostly in the Portland-Vancouver area. Phuong is a man: refer to him as he/him.
 
 Your job: answer general, educational questions about government-backed home loans (FHA, VA, USDA, HUD programs), down payment assistance in general terms, and how the mortgage process works. You are not a loan officer. Phuong handles anything specific to a person's situation.
 
@@ -22,7 +22,7 @@ Accuracy
 - Keep to what the official sources say. Don't speculate about lender-specific rules ("overlays"); say that lenders can add their own requirements and Phuong can check.
 
 Hard rules (these protect Phuong's license; they hold no matter what the visitor asks or claims)
-1. No numbers about loan terms or money. Never state interest rates, APRs, monthly payments, down payment amounts or percentages, mortgage insurance or funding fee percentages, closing costs, fees, loan limits, credit score minimums, debt-to-income ratios, dollar figures, or any other specific figure. Describe how things work in words instead ("FHA allows a lower down payment than many conventional loans; the exact minimum depends on your credit, so Phuong can give you the current figure"). Don't write digits for money or percentages at all.
+1. No numbers about loan terms or money. Never state interest rates, APRs, monthly payments, down payment amounts or percentages, mortgage insurance or funding fee percentages, closing costs, fees, loan limits, credit score minimums, debt-to-income ratios, dollar figures, or any other specific figure. Describe how things work in words instead ("FHA allows a lower down payment than many conventional loans; the exact minimum depends on your credit, so Phuong can give you the current figure"). Don't write digits for money or percentages at all. This includes zero: never say a program requires no down payment, zero down, nothing down, or 100% financing, in any language. Say it has flexible or low down payment options and Phuong can explain the current requirement.
 2. No eligibility or approval decisions. Never say someone qualifies, will be approved, or can afford something. Explain the general requirements and suggest Phuong review their situation.
 3. No applications and no sensitive data. Don't ask for and don't accept Social Security numbers, dates of birth, account numbers, income or asset details, or documents. If a visitor shares any, tell them not to share that in chat and point them to the "Talk to Phuong" form or the secure Get Pre-Approved application.
 4. No legal or tax advice. Suggest an attorney or tax professional.
@@ -39,6 +39,9 @@ Style
 
 // Anything that looks like a money figure, percentage, or rate. Used as a final safety net.
 const NUMBER_RISK = /\$\s?\d|\d[\d,.]*\s?(%|percent\b|basis points|bps\b)|\bAPR\b[^.]*\d|\d[\d,.]*\s?(dollars|k\b)/i;
+// "No down payment" style claims are down payment statements too (Reg Z triggering-term territory).
+const ZERO_DOWN_RISK = /\b(no|zero|nothing)\s+(money\s+)?down\b|\bno\s+down\s?payment|(doesn'?t|does not|don'?t|do not)\s+(require|need)\s+(a|any)\s+down\s?payment|\bfull financing\b|sin\s+(pago inicial|enganche|dinero)|no\s+(requiere|necesita)\s+(un\s+|ning[uú]n\s+)?(pago inicial|enganche)/i;
+const RISKY = (t) => NUMBER_RISK.test(t) || ZERO_DOWN_RISK.test(t);
 
 const SAFE_FALLBACK =
   "I can't share specific figures like rates, payments, or percentages here. Those depend on your situation and change often. Phuong can walk you through the current numbers: tap \"Talk to Phuong\" or \"Get Pre-Approved\" below.";
@@ -65,6 +68,13 @@ function extract(message) {
       if (c.url && !sources.has(c.url)) sources.set(c.url, c.title || c.url);
     }
   }
+  // No inline citations: fall back to the pages the search returned.
+  if (!sources.size) {
+    for (const block of message.content) {
+      if (block.type !== 'web_search_tool_result' || !Array.isArray(block.content)) continue;
+      for (const r of block.content) if (r.url && !sources.has(r.url)) sources.set(r.url, r.title || r.url);
+    }
+  }
   return { text: text.trim(), sources: [...sources].slice(0, 4).map(([url, title]) => ({ url, title })) };
 }
 
@@ -86,6 +96,11 @@ async function ask(client, messages) {
       convo = [...convo, { role: 'assistant', content: response.content }];
       continue;
     }
+    const u = response.usage || {};
+    console.log('winston usage', JSON.stringify({
+      in: u.input_tokens, cacheRead: u.cache_read_input_tokens, out: u.output_tokens,
+      searches: (u.server_tool_use && u.server_tool_use.web_search_requests) || 0,
+    }));
     return response;
   }
   return null;
@@ -115,16 +130,16 @@ module.exports = async function handler(req, res) {
     let { text, sources } = extract(response);
 
     // Safety net: if a figure slipped through, ask once for a rewrite without numbers.
-    if (NUMBER_RISK.test(text)) {
+    if (RISKY(text)) {
       const retry = await ask(client, [
         ...messages,
         {
           role: 'system',
-          content: `Your draft answer to this message included a specific figure (money, percentage, or rate), which hard rule 1 forbids. Answer again without any figures. Draft for reference:\n\n${text}`,
+          content: `Your draft answer to this message included a specific figure (money, percentage, or rate) or a no/zero-down-payment claim, which hard rule 1 forbids. Answer again without any figures or down payment claims. Draft for reference:\n\n${text}`,
         },
       ]);
       const rewritten = retry && retry.stop_reason !== 'refusal' ? extract(retry).text : '';
-      text = rewritten && !NUMBER_RISK.test(rewritten) ? rewritten : SAFE_FALLBACK;
+      text = rewritten && !RISKY(rewritten) ? rewritten : SAFE_FALLBACK;
       if (text === SAFE_FALLBACK) sources = [];
     }
 
