@@ -1,7 +1,8 @@
 const { Resend } = require('resend');
 const { sendToRelay } = require('./_relay.js');
+const { checkSpam, rejectSpam } = require('./_spam.js');
 
-const RECIPIENT = ['phuonghaloans@gmail.com', 'phuong.ha@mortgagesolutions.net'];
+const RECIPIENT = ['phuonghaloans@gmail.com'];
 const FROM_ADDRESS = 'leads@phuongha.loans';
 
 function sanitize(str) {
@@ -31,6 +32,8 @@ module.exports = async function handler(req, res) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: 'Invalid email address.' });
   }
+
+  if (rejectSpam(res, checkSpam(req, body, { name, email, phone, message }, { phoneRequired: true }))) return;
 
   if (!process.env.RESEND_API_KEY) {
     console.error('RESEND_API_KEY is not set');

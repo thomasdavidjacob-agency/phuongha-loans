@@ -116,6 +116,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const form      = document.getElementById('lead-form');
   const submitBtn = document.getElementById('submit-btn');
   const resultEl  = document.getElementById('form-result');
+  const loadedAt  = Date.now(); // spam filter: the server rejects submits under 3s or with no timestamp
 
   if (!form) return;
 
@@ -174,6 +175,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
       email:    form.elements['email'].value,
       loanType: form.elements['loanType'].value,
       message:  form.elements['message'].value,
+      website:  form.elements['website'].value, // honeypot
+      _t:       String(loadedAt),
     };
 
     if (!validate(data)) return;

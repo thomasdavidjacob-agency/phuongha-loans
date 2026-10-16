@@ -1195,3 +1195,6 @@ a.blog__card:hover .blog__readmore { color: var(--accent-light); }
   .ilmap__legend-scale span:nth-child(n+2):nth-child(-n+4) { visibility: hidden; }
 }
 @media (prefers-reduced-motion: reduce) { .ilmap__county, .ilmap__statelabel { transition: none; } }
+
+/* Spam honeypot on the lead forms: off-screen, never seen or tabbed to by people */
+.hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }

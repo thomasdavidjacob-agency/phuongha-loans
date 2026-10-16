@@ -1,38 +1,13 @@
 const { Resend } = require('resend');
 const crypto = require('crypto');
+const { checkSpam, rejectSpam } = require('./_spam.js');
 
 const FROM_ADDRESS = 'leads@phuongha.loans';
-const NOTIFY_RECIPIENTS = ['phuonghaloans@gmail.com', 'phuong.ha@mortgagesolutions.net'];
-
-const RATE_WINDOW = 10 * 60 * 1000; // 10 minutes
-const RATE_MAX = 3;
-const ipLog = new Map();
-
-const BLOCKED_DOMAINS = [
-  'mailinator.com','guerrillamail.com','tempmail.com','10minutemail.com','throwam.com',
-  'yopmail.com','sharklasers.com','guerrillamailblock.com','grr.la','spam4.me',
-  'trashmail.com','fakeinbox.com','maildrop.cc','getairmail.com','dispostable.com',
-  'discard.email','spamgourmet.com','tempr.email','mailnesia.com','mailnull.com',
-];
-
-const SPAM_PHRASES = [
-  'buy cheap','seo ','casino','crypto','bitcoin','make money','work from home',
-  'click here','free gift','limited offer','congratulations you',
-];
+const NOTIFY_RECIPIENTS = ['phuonghaloans@gmail.com'];
 
 function esc(str) {
   return String(str ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
     .replace(/"/g,'&quot;').replace(/'/g,'&#x27;');
-}
-
-function checkRate(ip) {
-  const now = Date.now();
-  const entry = ipLog.get(ip) || { count: 0, start: now };
-  if (now - entry.start > RATE_WINDOW) { ipLog.set(ip, { count: 1, start: now }); return true; }
-  if (entry.count >= RATE_MAX) return false;
-  entry.count++;
-  ipLog.set(ip, entry);
-  return true;
 }
 
 function createToken(email) {
@@ -46,26 +21,10 @@ function createToken(email) {
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
-  if (!checkRate(ip)) {
-    return res.status(429).json({ error: 'Too many requests. Please wait a few minutes and try again.' });
-  }
-
   const body = req.body || {};
   const name   = String(body.name  ?? '').trim().slice(0, 200);
   const email  = String(body.email ?? '').trim().toLowerCase().slice(0, 200);
   const phone  = String(body.phone ?? '').trim().slice(0, 40);
-  const honey  = String(body.website ?? '');
-  const _t     = String(body._t ?? '');
-
-  // Honeypot — bots fill this field
-  if (honey) return res.status(200).json({ ok: true }); // silent accept
-
-  // Timing check — must have had form open at least 3 seconds
-  const loadTime = parseInt(_t, 10);
-  if (!isNaN(loadTime) && Date.now() - loadTime < 3000) {
-    return res.status(200).json({ ok: true }); // silent accept
-  }
 
   if (!name || !email) {
     return res.status(400).json({ error: 'Name and email are required.' });
@@ -75,16 +34,7 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Please enter a valid email address.' });
   }
 
-  const domain = email.split('@')[1] || '';
-  if (BLOCKED_DOMAINS.includes(domain)) {
-    return res.status(400).json({ error: 'Please use a personal or business email address.' });
-  }
-
-  // Spam keyword check in name field
-  const nameLower = name.toLowerCase();
-  if (SPAM_PHRASES.some(p => nameLower.includes(p))) {
-    return res.status(200).json({ ok: true }); // silent accept
-  }
+  if (rejectSpam(res, checkSpam(req, body, { name, email, phone }))) return;
 
   if (!process.env.RESEND_API_KEY) {
     console.error('RESEND_API_KEY not set');

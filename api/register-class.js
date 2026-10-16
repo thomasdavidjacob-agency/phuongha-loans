@@ -8,33 +8,19 @@
 const crypto = require('crypto');
 const { upcomingSessions, label, MINUTES } = require('./_class-schedule.js');
 const { sendToRelay } = require('./_relay.js');
+const { checkSpam, rejectSpam } = require('./_spam.js');
 
 const FROM = 'Phuong Ha <class@phuongha.loans>';
-const REPLY_TO = 'phuong.ha@mortgagesolutions.net';
-const NOTIFY = ['phuonghaloans@gmail.com', 'phuong.ha@mortgagesolutions.net'];
+const REPLY_TO = 'phuonghaloans@gmail.com';
+const NOTIFY = ['phuonghaloans@gmail.com'];
 const CLASS_NAME = 'Oregon Home Buyer School';
 const FOOTER_TEXT =
   "You're getting this because you registered for the free Oregon Home Buyer School class at phuongha.loans. Reply \"stop\" and I'll take you off the list.\n" +
   'Phuong Ha, Licensed Mortgage Loan Originator, NMLS #1839449 · 900 Main Street, Suite 106, Oregon City, OR 97045 · 971-444-9107\n' +
   'Mortgage Solutions of Colorado, LLC., dba Mortgage Solutions Financial, NMLS #61602. Equal Housing Lender. This is not a commitment to lend.';
 
-const BLOCKED_DOMAINS = ['mailinator.com', 'guerrillamail.com', 'tempmail.com', '10minutemail.com', 'yopmail.com', 'sharklasers.com', 'trashmail.com', 'fakeinbox.com', 'maildrop.cc', 'dispostable.com'];
-const RATE_WINDOW = 10 * 60 * 1000;
-const RATE_MAX = 5;
-const ipLog = new Map();
-
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;');
 const clean = (s, n = 200) => String(s ?? '').replace(/[<>]/g, '').trim().slice(0, n);
-
-function checkRate(ip) {
-  const now = Date.now();
-  const e = ipLog.get(ip) || { count: 0, start: now };
-  if (now - e.start > RATE_WINDOW) return ipLog.set(ip, { count: 1, start: now }), true;
-  if (e.count >= RATE_MAX) return false;
-  e.count++;
-  ipLog.set(ip, e);
-  return true;
-}
 
 // ---------- email building ----------
 
@@ -132,14 +118,7 @@ module.exports = async function handler(req, res) {
   }
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
-  if (!checkRate(ip)) return res.status(429).json({ error: 'Too many requests. Please wait a few minutes and try again.' });
-
   const b = req.body || {};
-  if (b.website) return res.status(200).json({ ok: true }); // honeypot
-  const loaded = parseInt(b._t, 10);
-  if (!isNaN(loaded) && Date.now() - loaded < 3000) return res.status(200).json({ ok: true }); // filled too fast to be human
-
   const firstName = clean(b.first_name, 80);
   const lastName = clean(b.last_name, 80);
   const email = clean(b.email).toLowerCase();
@@ -147,7 +126,7 @@ module.exports = async function handler(req, res) {
   const county = clean(b.county, 60);
   if (!firstName || !email) return res.status(400).json({ error: 'Your first name and email are required.' });
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return res.status(400).json({ error: 'Please enter a valid email address.' });
-  if (BLOCKED_DOMAINS.includes(email.split('@')[1])) return res.status(400).json({ error: 'Please use a personal or work email address.' });
+  if (rejectSpam(res, checkSpam(req, b, { name: `${firstName} ${lastName}`.trim(), email, phone }))) return;
 
   const session = upcomingSessions().find((s) => s.iso === b.session);
   if (!session) return res.status(400).json({ error: 'That class date is no longer open. Please pick another date.' });

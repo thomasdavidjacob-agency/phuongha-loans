@@ -143,6 +143,7 @@
   if (!form) return;
   const submitBtn = document.getElementById('dpa-submit');
   const resultEl = document.getElementById('dpa-result');
+  const loadedAt = Date.now(); // spam filter: the server rejects submits under 3s or with no timestamp
 
   function setError(field, msg) {
     const el = form.elements[field];
@@ -173,6 +174,8 @@
       email: form.elements['email'].value,
       loanType: 'Down Payment Assistance',
       message: 'Submitted from the payment calculator — interested in down-payment help.',
+      website: form.elements['website'].value, // honeypot
+      _t: String(loadedAt),
     };
     if (!validate(data)) return;
 
