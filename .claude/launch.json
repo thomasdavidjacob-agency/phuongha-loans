@@ -14,6 +14,27 @@
       "runtimeArgs": ["@11ty/eleventy", "--serve", "--port", "8125"],
       "port": 8125,
       "cwd": "C:/Users/obtai/Desktop/amore-coordination"
+    },
+    {
+      "name": "tdj-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "C:/Users/obtai/Desktop/thomasdavidjacob", "run", "dev", "--", "-p", "3100"],
+      "port": 3100,
+      "cwd": "."
+    },
+    {
+      "name": "diamondbond",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "4321", "C:/Users/obtai/Desktop/diamondbond-preview"],
+      "port": 4321,
+      "cwd": "."
+    },
+    {
+      "name": "disasters",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "4399", "C:/Users/obtai/Desktop/10DeadliestDisasters"],
+      "port": 4399,
+      "cwd": "."
     }
   ]
 }
