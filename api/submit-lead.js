@@ -116,7 +116,8 @@ module.exports = async function handler(req, res) {
   ].join('\n');
 
   try {
-    await resend.emails.send({
+    // resend v3 returns { error } instead of throwing, so check it or a bad key fails silently.
+    const { error: sendError } = await resend.emails.send({
       from: FROM_ADDRESS,
       to: RECIPIENT,
       reply_to: email,
@@ -124,6 +125,7 @@ module.exports = async function handler(req, res) {
       html: htmlBody,
       text: textBody,
     });
+    if (sendError) throw new Error(`Resend ${sendError.name || ""}: ${sendError.message || JSON.stringify(sendError)}`);
 
     // Also hand the lead to the local CRM (Winston's World Wide) via its relay. Never blocks or breaks the form.
     await sendToRelay({ site: 'phuongha.loans', name, email, phone, message, fields: { loan_type: loanType } });

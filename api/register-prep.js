@@ -85,7 +85,8 @@ module.exports = async function handler(req, res) {
 </body></html>`;
 
   try {
-    await Promise.all([
+    // resend v3 returns { error } instead of throwing, so check every result.
+    const results = await Promise.all([
       resend.emails.send({
         from: FROM_ADDRESS,
         to: email,
@@ -102,6 +103,8 @@ module.exports = async function handler(req, res) {
         text: `New NMLS Prep Registration\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone || 'not provided'}\nTime: ${ts} (Pacific)\n\nConfirmation email sent.`,
       }),
     ]);
+    const failed = results.find((r) => r && r.error);
+    if (failed) throw new Error(`Resend ${failed.error.name || ""}: ${failed.error.message || JSON.stringify(failed.error)}`);
 
     return res.status(200).json({ ok: true });
   } catch (err) {
