@@ -1,10 +1,10 @@
 // Shared spam filter for every form endpoint (submit-lead, register-class, register-prep).
-// checkSpam() returns null for a clean submission, or { reason, silent, error }.
+// checkSpam() (async) returns null for a clean submission, or { reason, silent, error }.
 //   silent: true  → caller answers 200 {ok:true} so the bot gets no signal, and nothing is emailed or relayed.
 //   silent: false → caller answers 400 with `error` (a real person may have made a fixable mistake).
 // Every block is logged as "spam blocked" so it shows up in Vercel runtime logs for tuning.
 
-const MIN_FILL_MS = 3000;
+const { checkFormToken, turnstileOk } = require('./_guard.js');
 const RATE_WINDOW = 10 * 60 * 1000;
 const RATE_MAX = 5;
 const ipLog = new Map();
@@ -46,11 +46,11 @@ function overRate(ip) {
 
 /**
  * @param req   the request (for IP)
- * @param body  the parsed body (reads `website` honeypot and `_t` load timestamp)
+ * @param body  the parsed body (reads `website` honeypot, `ft` signed token, `cf-turnstile-response`)
  * @param f     { name, email, phone, message } — whichever the form has
  * @param opts  { phoneRequired }
  */
-function checkSpam(req, body, f, opts = {}) {
+async function checkSpam(req, body, f, opts = {}) {
   const ip = clientIp(req);
   const block = (reason, silent = true, error = '') => {
     console.log('spam blocked:', JSON.stringify({ reason, ip, path: req.url, name: f.name, email: f.email }));
@@ -62,10 +62,11 @@ function checkSpam(req, body, f, opts = {}) {
   // Honeypot: hidden field only bots fill in.
   if (String(body.website ?? '').trim()) return block('honeypot');
 
-  // Load timestamp is set by the page's script. Missing = a bot posting straight to the API.
-  const loaded = parseInt(body._t, 10);
-  if (isNaN(loaded)) return block('no-timestamp');
-  if (Date.now() - loaded < MIN_FILL_MS) return block('too-fast');
+  // Signed load-time token from /api/form-token (time trap). Missing or forged = a bot posting straight
+  // to the API, or a tab open longer than a day; a real person is told to refresh.
+  const ft = checkFormToken(body.ft);
+  if (ft === 'too-fast') return block('too-fast');
+  if (ft !== 'ok') return block('bad-token', false, 'This form expired. Please refresh the page and try again, or call or text 971-444-9107.');
 
   const name = String(f.name ?? '');
   const email = String(f.email ?? '').toLowerCase();
@@ -85,6 +86,11 @@ function checkSpam(req, body, f, opts = {}) {
     const digits = String(f.phone).replace(/\D/g, '');
     const badPhone = digits.length ? digits.length < 10 || digits.length > 15 : opts.phoneRequired;
     if (badPhone) return block('bad-phone', false, 'Please enter a valid phone number, including area code.');
+  }
+
+  // Cloudflare Turnstile last, so cheap checks run first. Skipped (with a warning) if the secret is unset.
+  if (!(await turnstileOk(body['cf-turnstile-response'], ip))) {
+    return block('turnstile', false, 'We couldn\x27t verify the form. Please refresh the page and try again, or call or text 971-444-9107.');
   }
 
   return null;

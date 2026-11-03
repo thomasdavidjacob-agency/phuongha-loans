@@ -116,9 +116,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const form      = document.getElementById('lead-form');
   const submitBtn = document.getElementById('submit-btn');
   const resultEl  = document.getElementById('form-result');
-  const loadedAt  = Date.now(); // spam filter: the server rejects submits under 3s or with no timestamp
-
   if (!form) return;
+  const guard     = window.PHGuard ? PHGuard.protect(form) : null; // signed time token + Turnstile (guard.js)
 
   function setError(fieldName, msg) {
     const field = form.elements[fieldName];
@@ -176,7 +175,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
       loanType: form.elements['loanType'].value,
       message:  form.elements['message'].value,
       website:  form.elements['website'].value, // honeypot
-      _t:       String(loadedAt),
     };
 
     if (!validate(data)) return;
@@ -188,7 +186,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       const res = await fetch('/api/submit-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(Object.assign({}, data, guard ? await guard.fields() : {})),
       });
 
       const json = await res.json().catch(() => ({}));
@@ -201,8 +199,10 @@ document.getElementById('year').textContent = new Date().getFullYear();
         throw new Error(json.error || 'Server error');
       }
     } catch (err) {
-      resultEl.textContent =
-        'Something went wrong. Please call or text 971-444-9107, or email phuong.ha@mortgagesolutions.net.';
+      if (guard) guard.reset();
+      resultEl.textContent = (err && err.message && err.message !== 'Server error' && !/fetch/i.test(err.message))
+        ? err.message
+        : 'Something went wrong. Please call or text 971-444-9107.';
       resultEl.className = 'form__result error';
     } finally {
       submitBtn.classList.remove('loading');

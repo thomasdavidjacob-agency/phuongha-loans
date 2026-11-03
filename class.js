@@ -5,7 +5,7 @@
   const datesEl = document.getElementById('class-dates');
   const btn = document.getElementById('class-submit');
   const result = document.getElementById('class-result');
-  const loadedAt = Date.now();
+  const guard = window.PHGuard ? PHGuard.protect(form) : null; // signed time token + Turnstile (guard.js)
   const params = new URLSearchParams(location.search);
   const QUIZ_KEYS = ['owned_recently', 'income_band', 'veteran', 'timeline', 'savings', 'took_quiz', 'utm_source', 'utm_campaign', 'heard_from'];
 
@@ -43,7 +43,7 @@
     if (!data.first_name.trim()) return showError('Please enter your first name.');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email.trim())) return showError('Please enter a valid email address.');
     QUIZ_KEYS.forEach((k) => params.get(k) && (data[k] = params.get(k)));
-    data._t = String(loadedAt);
+    if (guard) Object.assign(data, await guard.fields());
 
     btn.classList.add('loading');
     btn.disabled = true;
@@ -56,6 +56,7 @@
       document.getElementById('class-success').hidden = false;
       document.getElementById('register').scrollIntoView({ behavior: 'smooth', block: 'center' });
     } catch (err) {
+      if (guard) guard.reset();
       showError(err.message);
     } finally {
       btn.classList.remove('loading');

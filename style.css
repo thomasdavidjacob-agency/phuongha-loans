@@ -1198,3 +1198,7 @@ a.blog__card:hover .blog__readmore { color: var(--accent-light); }
 
 /* Spam honeypot on the lead forms: off-screen, never seen or tabbed to by people */
 .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Turnstile slot (guard.js). Empty until Cloudflare needs the visitor to click. */
+.ts-slot { margin: 0.75rem 0; }
+.ts-slot:empty { display: none; }

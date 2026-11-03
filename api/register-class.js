@@ -126,7 +126,7 @@ module.exports = async function handler(req, res) {
   const county = clean(b.county, 60);
   if (!firstName || !email) return res.status(400).json({ error: 'Your first name and email are required.' });
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return res.status(400).json({ error: 'Please enter a valid email address.' });
-  if (rejectSpam(res, checkSpam(req, b, { name: `${firstName} ${lastName}`.trim(), email, phone }))) return;
+  if (rejectSpam(res, await checkSpam(req, b, { name: `${firstName} ${lastName}`.trim(), email, phone }))) return;
 
   const session = upcomingSessions().find((s) => s.iso === b.session);
   if (!session) return res.status(400).json({ error: 'That class date is no longer open. Please pick another date.' });

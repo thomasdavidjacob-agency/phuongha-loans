@@ -33,7 +33,7 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid email address.' });
   }
 
-  if (rejectSpam(res, checkSpam(req, body, { name, email, phone, message }, { phoneRequired: true }))) return;
+  if (rejectSpam(res, await checkSpam(req, body, { name, email, phone, message }, { phoneRequired: true }))) return;
 
   if (!process.env.RESEND_API_KEY) {
     console.error('RESEND_API_KEY is not set');
